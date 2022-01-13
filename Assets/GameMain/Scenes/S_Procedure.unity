@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8386063208308035328, guid: b59d7fa8d461a17429908972341c75f7, type: 3}
+      propertyPath: startScene
+      value: S_Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 8386063208308035330, guid: b59d7fa8d461a17429908972341c75f7, type: 3}
       propertyPath: m_Name
       value: Scheduler
