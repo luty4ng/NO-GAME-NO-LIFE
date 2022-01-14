@@ -11,6 +11,7 @@ public class Beats : MonoBehaviour
     TrackController trackController;
     RhythmController rhythmController;
     Sequence tweenSeq;
+    RectTransform rectTransform;
     #region Methods
     public void Initialize(KoreographyEvent evt, TrackController trackCtrl, RhythmController rhythmCtrl)
     {
@@ -18,7 +19,7 @@ public class Beats : MonoBehaviour
         trackController = trackCtrl;
         rhythmController = rhythmCtrl;
 
-        RectTransform rectTransform = this.GetComponent<RectTransform>();
+        rectTransform = this.GetComponent<RectTransform>();
         rectTransform.SetParent(trackCtrl.transform);
         rectTransform.anchoredPosition = trackCtrl.spawn.anchoredPosition;
 
@@ -27,7 +28,7 @@ public class Beats : MonoBehaviour
         {
             rectTransform.DOLocalMoveX(trackCtrl.hitter.anchoredPosition.x * 1.1f, rhythmCtrl.beatTravelTime * 0.1f).OnComplete(() =>
             {
-                ReturnToPool();
+                SelfDestroy();
             });
         }));
 
@@ -69,14 +70,21 @@ public class Beats : MonoBehaviour
         Reset();
     }
 
+    void SelfDestroy()
+    {
+        tweenSeq.Kill();
+        tweenSeq = null;
+        Destroy(this.gameObject);
+    }
+
     public void OnHit()
     {
         Debug.Log("Hit");
-        ReturnToPool();
+        SelfDestroy();
     }
     public void OnClear()
     {
-        ReturnToPool();
+        SelfDestroy();
     }
 
     #endregion

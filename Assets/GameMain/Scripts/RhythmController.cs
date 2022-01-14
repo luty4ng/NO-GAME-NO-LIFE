@@ -61,13 +61,6 @@ public class RhythmController : MonoBehaviour
         }
     }
 
-    // public float WindowSizeInUnits
-    // {
-    //     get
-    //     {
-    //         return beatSpeed * (hitWindowRangeInMS * 0.001f);
-    //     }
-    // }
     public int SampleRate
     {
         get
@@ -153,19 +146,19 @@ public class RhythmController : MonoBehaviour
 
     public Beats GetFreshBeats()
     {
-        Beats beat;
-        if (BeatsPool.Count > 0)
-        {
-            beat = BeatsPool.Pop();
-        }
-        else
-        {
-            beat = GameObject.Instantiate<Beats>(BeatsArchetype);
-        }
-
+        // Beats beat;
+        // Debug.Log("Try Get");
+        // if (BeatsPool.Count > 1)
+        // {
+        //     beat = BeatsPool.Pop();
+        // }
+        // else
+        // {
+        //     beat = GameObject.Instantiate<Beats>(BeatsArchetype);
+        // }
+        Beats beat = GameObject.Instantiate<Beats>(BeatsArchetype);
         beat.gameObject.SetActive(true);
         beat.enabled = true;
-
         return beat;
     }
     public void ReturnBeatsToPool(Beats obj)
@@ -189,7 +182,6 @@ public class RhythmController : MonoBehaviour
         }
         InitializeLeadIn();
     }
-
     #endregion
 }
 

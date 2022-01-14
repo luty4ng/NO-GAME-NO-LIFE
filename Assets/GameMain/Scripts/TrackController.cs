@@ -71,7 +71,6 @@ public class TrackController : MonoBehaviour
         int currentTime = rhythmController.DelayedSampleTime;
         while (pendingEventIdx < trackEvents.Count && trackEvents[pendingEventIdx].StartSample < currentTime + offsetTime)
         {
-
             KoreographyEvent evt = trackEvents[pendingEventIdx];
             Beats beat = rhythmController.GetFreshBeats();
             beat.Initialize(evt, this, rhythmController);

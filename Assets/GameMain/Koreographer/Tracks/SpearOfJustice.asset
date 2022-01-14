@@ -24,6 +24,36 @@ MonoBehaviour:
     mEndSample: 211680
   - mStartSample: 242550
     mEndSample: 242550
+  - mStartSample: 304290
+    mEndSample: 304290
+  - mStartSample: 363825
+    mEndSample: 363825
+  - mStartSample: 423360
+    mEndSample: 423360
+  - mStartSample: 454230
+    mEndSample: 454230
+  - mStartSample: 480690
+    mEndSample: 480690
+  - mStartSample: 544635
+    mEndSample: 544635
+  - mStartSample: 606375
+    mEndSample: 606375
+  - mStartSample: 665910
+    mEndSample: 665910
+  - mStartSample: 696780
+    mEndSample: 696780
+  - mStartSample: 725445
+    mEndSample: 725445
+  - mStartSample: 787185
+    mEndSample: 787185
+  - mStartSample: 846720
+    mEndSample: 846720
+  - mStartSample: 906255
+    mEndSample: 906255
+  - mStartSample: 937125
+    mEndSample: 937125
+  - mStartSample: 965790
+    mEndSample: 965790
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -46,6 +76,21 @@ MonoBehaviour:
   - mTextVal: D_Hit
   - mTextVal: D_Hit
   - mTextVal: D_Hit
-  _TextPayloadIdxs: 0000000001000000020000000300000004000000
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000
   _MaterialPayloads: []
   _MaterialPayloadIdxs: 
