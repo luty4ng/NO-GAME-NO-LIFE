@@ -23,8 +23,6 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_S_Procedure_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Procedure.unity"); }
     [MenuItem("Scenes/S_Select")]
     public static void Assets_GameMain_Scenes_S_Select_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Select.unity"); }
-    [MenuItem("Scenes/RhythmGame")]
-    public static void Assets_Koreographer_Demos_Rhythm_Game_Demo_Scenes_RhythmGame_unity() { ScenesUpdate.OpenScene("Assets/Koreographer/Demos/Rhythm Game Demo/Scenes/RhythmGame.unity"); }
     [MenuItem("Scenes/Demo1")]
     public static void Assets_Koreographer_Demos_Scenes_Demo1_unity() { ScenesUpdate.OpenScene("Assets/Koreographer/Demos/Scenes/Demo1.unity"); }
     [MenuItem("Scenes/Demo2")]
