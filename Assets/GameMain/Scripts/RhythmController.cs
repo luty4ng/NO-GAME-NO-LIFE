@@ -11,28 +11,13 @@ using GameKit;
 public class RhythmController : MonoBehaviour
 {
     #region Fields
-
-    [Tooltip("The Event ID of the track to use for target generation.")]
     [EventID]
     public string eventID;
-
-    [Tooltip("The number of milliseconds (both early and late) within which input will be detected as a Hit.")]
     [Range(8f, 150f)]
     public float hitWindowRangeInMS = 80;
-
-    [Tooltip("The number of units traversed per second by Note Objects.")]
     public float beatTravelTime = 2.5f;
-
-    [Tooltip("The archetype (blueprints) to use for generating notes.  Can be a prefab.")]
-    public Beats BeatsArchetype;
-
-    [Tooltip("The list of Lane Controller objects that represent a lane for an event to travel down.")]
     public List<TrackController> tracks = new List<TrackController>();
-
-    [Tooltip("The amount of time in seconds to provide before playback of the audio begins.  Changes to this value are not immediately handled during the lead-in phase while playing in the Editor.")]
     public float leadInTime;
-
-    [Tooltip("The Audio Source through which the Koreographed audio will be played.  Be sure to disable 'Auto Play On Awake' in the Music Player.")]
     public AudioSource audioCom;
 
     // The amount of leadInTime left before the audio is audible.
@@ -48,8 +33,6 @@ public class RhythmController : MonoBehaviour
     //  calculations throughout.
     int hitWindowRangeInSamples;    // The sample range within which a viable event may be hit.
 
-    // The pool for containing note objects to reduce unnecessary Instantiation/Destruction.
-    Stack<Beats> BeatsPool = new Stack<Beats>();
 
     #endregion
     #region Properties
@@ -61,11 +44,35 @@ public class RhythmController : MonoBehaviour
         }
     }
 
+    public float WindowSizeInUnits
+    {
+        get
+        {
+            return (1830 / beatTravelTime) * (hitWindowRangeInMS * 0.001f);
+        }
+    }
+
     public int SampleRate
     {
         get
         {
             return playingKoreo.SampleRate;
+        }
+    }
+
+    public double TimePerSnap
+    {
+        get
+        {
+            return 0.5f;
+        }
+    }
+
+    public double SamplesPerBeat
+    {
+        get
+        {
+            return playingKoreo.GetSamplesPerBeat(1);
         }
     }
 
@@ -117,7 +124,7 @@ public class RhythmController : MonoBehaviour
             audioCom.time = -leadInTime;
             audioCom.Play();
         }
-        
+
     }
 
     void Update()
@@ -144,32 +151,6 @@ public class RhythmController : MonoBehaviour
         hitWindowRangeInSamples = (int)(0.001f * hitWindowRangeInMS * SampleRate);
     }
 
-    public Beats GetFreshBeats()
-    {
-        // Beats beat;
-        // Debug.Log("Try Get");
-        // if (BeatsPool.Count > 1)
-        // {
-        //     beat = BeatsPool.Pop();
-        // }
-        // else
-        // {
-        //     beat = GameObject.Instantiate<Beats>(BeatsArchetype);
-        // }
-        Beats beat = GameObject.Instantiate<Beats>(BeatsArchetype);
-        beat.gameObject.SetActive(true);
-        beat.enabled = true;
-        return beat;
-    }
-    public void ReturnBeatsToPool(Beats obj)
-    {
-        if (obj != null)
-        {
-            obj.enabled = false;
-            obj.gameObject.SetActive(false);
-            BeatsPool.Push(obj);
-        }
-    }
     public void Restart()
     {
         audioCom.Stop();

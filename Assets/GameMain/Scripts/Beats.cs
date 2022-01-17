@@ -4,14 +4,26 @@ using DG.Tweening;
 using GameKit;
 using SonicBloom.Koreo;
 
+public enum BeatType
+{
+    Attack,
+    Defense
+}
+[RequireComponent(typeof(Image))]
 public class Beats : MonoBehaviour
 {
-
+    public BeatType beatType;
+    Image visual;
     KoreographyEvent trackedEvent;
     TrackController trackController;
     RhythmController rhythmController;
     Sequence tweenSeq;
     RectTransform rectTransform;
+    float offsetWidth = 0;
+    private void Start()
+    {
+        visual = GetComponent<Image>();
+    }
     #region Methods
     public void Initialize(KoreographyEvent evt, TrackController trackCtrl, RhythmController rhythmCtrl)
     {
@@ -22,16 +34,32 @@ public class Beats : MonoBehaviour
         rectTransform = this.GetComponent<RectTransform>();
         rectTransform.SetParent(trackCtrl.transform);
         rectTransform.anchoredPosition = trackCtrl.spawn.anchoredPosition;
+    }
 
+    public void SetWidth(float diff)
+    {
+        float snap = (float)(diff / rhythmController.SamplesPerBeat);
+        float speed = (trackController.spawn.anchoredPosition.x - trackController.hitter.anchoredPosition.x) / rhythmController.beatTravelTime;
+        float disPerSnap = (float)(speed * rhythmController.TimePerSnap);
+        rectTransform.sizeDelta = new Vector2(snap * disPerSnap, rectTransform.sizeDelta.y);
+        offsetWidth = rectTransform.sizeDelta.x;
+    }
+
+    public void SetInitialMovement()
+    {
         tweenSeq = DOTween.Sequence();
-        tweenSeq.Append(rectTransform.DOLocalMoveX(trackCtrl.hitter.anchoredPosition.x, rhythmCtrl.beatTravelTime).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            rectTransform.DOLocalMoveX(trackCtrl.hitter.anchoredPosition.x * 1.1f, rhythmCtrl.beatTravelTime * 0.1f).OnComplete(() =>
-            {
-                SelfDestroy();
-            });
-        }));
-
+        float targetPosX = trackController.hitter.anchoredPosition.x - offsetWidth;
+        float dis = Mathf.Abs(trackController.spawn.anchoredPosition.x - trackController.hitter.anchoredPosition.x);
+        float moveTime = rhythmController.beatTravelTime + rhythmController.beatTravelTime * (offsetWidth / dis);
+        // Debug.Log();
+        tweenSeq.Append(rectTransform.DOLocalMoveX(targetPosX, moveTime).SetEase(Ease.Linear).OnComplete(() =>
+         {
+             trackController.isSpreaking = false;
+             rectTransform.DOLocalMoveX(targetPosX * 1.1f, moveTime * 0.1f).OnComplete(() =>
+             {
+                 SelfDestroy();
+             });
+         }));
     }
 
     void Reset()
@@ -40,34 +68,38 @@ public class Beats : MonoBehaviour
         trackController = null;
         rhythmController = null;
     }
+
+
     public bool IsBeatHittable()
     {
-        int noteTime = trackedEvent.StartSample;
+        int beatTime = trackedEvent.StartSample;
         int curTime = rhythmController.DelayedSampleTime;
         int hitWindow = rhythmController.HitWindowSampleWidth;
-        return (Mathf.Abs(noteTime - curTime) <= hitWindow);
+        return (Mathf.Abs(beatTime - curTime) <= hitWindow);
+    }
+
+    public bool IsBeatSpreakable()
+    {
+        if (trackedEvent.IsOneOff())
+            return false;
+        int startTime = trackedEvent.StartSample;
+        int endTime = trackedEvent.EndSample;
+        int curTime = rhythmController.DelayedSampleTime;
+        int hitWindow = rhythmController.HitWindowSampleWidth;
+        return (Mathf.Abs(startTime - curTime) <= hitWindow);
     }
 
     public bool IsBeatMissed()
     {
         bool bMissed = true;
-
         if (enabled)
         {
-            int noteTime = trackedEvent.StartSample;
+            int beatTime = trackedEvent.StartSample;
             int curTime = rhythmController.DelayedSampleTime;
             int hitWindow = rhythmController.HitWindowSampleWidth;
-
-            bMissed = (curTime - noteTime > hitWindow);
+            bMissed = (curTime - beatTime > hitWindow);
         }
         return bMissed;
-    }
-    void ReturnToPool()
-    {
-        tweenSeq.Kill();
-        tweenSeq = null;
-        rhythmController.ReturnBeatsToPool(this);
-        Reset();
     }
 
     void SelfDestroy()
@@ -79,8 +111,62 @@ public class Beats : MonoBehaviour
 
     public void OnHit()
     {
-        Debug.Log("Hit");
-        SelfDestroy();
+        if (beatType == BeatType.Attack)
+        {
+            EventManager.instance.EventTrigger(EventConfig.P_Attack);
+            EventManager.instance.EventTrigger(EventConfig.E_BeAttacked);
+        }
+        else if (beatType == BeatType.Defense)
+        {
+            EventManager.instance.EventTrigger(EventConfig.E_Attack);
+            EventManager.instance.EventTrigger(EventConfig.P_Defense);
+        }
+        SetHitted();
+        // SelfDestroy();
+    }
+
+    public void OnStreakEnter()
+    {
+        Debug.Log("OnStreakEnter");
+        SetHitted();
+        if (beatType == BeatType.Attack)
+        {
+            EventManager.instance.EventTrigger(EventConfig.P_Streak);
+            EventManager.instance.EventTrigger(EventConfig.E_BeAttacked);
+        }
+        else if (beatType == BeatType.Defense)
+        {
+            EventManager.instance.EventTrigger(EventConfig.E_Streak);
+            EventManager.instance.EventTrigger(EventConfig.P_Defense);
+        }
+    }
+    public void OnStreakExit()
+    {
+        Debug.Log("OnStreakExit");
+    }
+
+    public void OnStreakUpdate()
+    {
+        Debug.Log("OnStreakUpdate");
+    }
+    private void SetHitted() => visual.color = Color.Lerp(visual.color, Color.black, 0.3f);
+
+    public void OnMiss()
+    {
+        Debug.Log("IsMissing");
+        if (beatType == BeatType.Attack)
+            return;
+        else if (beatType == BeatType.Defense)
+        {
+            EventManager.instance.EventTrigger(EventConfig.E_Attack);
+            EventManager.instance.EventTrigger(EventConfig.P_BeAttacked);
+        }
+    }
+
+    private void CheckAccuracy()
+    {
+
+
     }
     public void OnClear()
     {
