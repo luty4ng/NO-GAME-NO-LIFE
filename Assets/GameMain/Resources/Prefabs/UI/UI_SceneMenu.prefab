@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6412284621619951238}
   - component: {fileID: 6412284621619951235}
   m_Layer: 5
-  m_Name: Bnt_Settings
+  m_Name: Bnt_Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3256925556657350662, guid: 68a867b8aa3bfaf4fad488f9270b130a, type: 3}
+  m_Sprite: {fileID: 4179824587198283991, guid: 68a867b8aa3bfaf4fad488f9270b130a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 6412284621913853747}
   - component: {fileID: 6412284621913853756}
   m_Layer: 5
-  m_Name: Bnt_Return
+  m_Name: Bnt_Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4179824587198283991, guid: 68a867b8aa3bfaf4fad488f9270b130a, type: 3}
+  m_Sprite: {fileID: -5884737247973293422, guid: 68a867b8aa3bfaf4fad488f9270b130a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

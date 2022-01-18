@@ -1,6 +1,6 @@
 namespace GameKit
 {
-    public static class EventConfig
+    public class EventConfig
     {
         public enum InputEvent
         {

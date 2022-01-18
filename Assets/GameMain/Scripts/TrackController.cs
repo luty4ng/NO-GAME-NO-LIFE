@@ -38,6 +38,8 @@ public class TrackController : MonoBehaviour
 
     void Update()
     {
+        if (Timer.isPause)
+            return;
         while (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatMissed())
         {
             Beats beats = trackedBeats.Dequeue();

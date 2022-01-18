@@ -11,4 +11,5 @@ public static class EventConfig
     public static string E_BeAttacked = "Enemy_BeAttacked";
     public static string E_Streak = "Enemy_Streak";
     public static string E_StopStreak = "Enemy_StopStreak";
+    public static string Game_Pase = "Game_Pase";
 }

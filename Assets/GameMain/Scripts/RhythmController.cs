@@ -111,7 +111,18 @@ public class RhythmController : MonoBehaviour
                 }
             }
         }
+
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, PauseAudio);
     }
+
+    void PauseAudio(bool isPause)
+    {
+        if (isPause)
+            audioCom.Pause();
+        else
+            audioCom.Play();
+    }
+
     void InitializeLeadIn()
     {
         if (leadInTime > 0f)
@@ -129,15 +140,18 @@ public class RhythmController : MonoBehaviour
 
     void Update()
     {
+        if (Timer.isPause)
+            return;
+
         UpdateInternalValues();
         if (leadInTimeLeft > 0f)
         {
-            leadInTimeLeft = Mathf.Max(leadInTimeLeft - Time.unscaledDeltaTime, 0f);
+            leadInTimeLeft = Mathf.Max(leadInTimeLeft - Timer.currentTime, 0f);
         }
 
         if (timeLeftToPlay > 0f)
         {
-            timeLeftToPlay -= Time.unscaledDeltaTime;
+            timeLeftToPlay -= Timer.currentTime;
             if (timeLeftToPlay <= 0f)
             {
                 audioCom.time = -timeLeftToPlay;
@@ -162,6 +176,11 @@ public class RhythmController : MonoBehaviour
             tracks[i].Restart();
         }
         InitializeLeadIn();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.RemoveEventListener<bool>(EventConfig.Game_Pase, PauseAudio);
     }
     #endregion
 }

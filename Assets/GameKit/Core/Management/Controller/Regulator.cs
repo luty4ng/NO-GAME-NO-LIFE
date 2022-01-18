@@ -6,35 +6,27 @@ using UnityEngine.Events;
 
 namespace GameKit
 {
-    public class Regulator : MonoBehaviour
+    public class Regulator<T> : MonoBehaviour where T : Regulator<T>
     {
-        public static Regulator current;
+        public static T current;
         private void Awake()
         {
             if (current == null)
-                current = this;
+                current = this as T;
         }
 
         private void OnDestroy()
         {
-            current = null;
+            current = default(T);
         }
 
         public void Quit()
         {
             Application.Quit();
         }
-
-        public void ShowPanel(string name)
-        {
-            UIManager.instance.GetPanel(name).Show();
-        }
-
-        public void HidePanel(string name)
-        {
-            UIManager.instance.GetPanel(name).Hide();
-        }
-
+        public UIGroup GetUI(string name) => UIManager.instance.GetPanel(name);
+        public void ShowUI(string name) => GetUI(name).Show();
+        public void HideUI(string name) => GetUI(name).Hide();
         public void SwitchSceneSwipe(string name) => Scheduler.instance.SwitchSceneSwipe(name);
         public void SwitchScene(string name) => Scheduler.instance.SwitchScene(name);
     }

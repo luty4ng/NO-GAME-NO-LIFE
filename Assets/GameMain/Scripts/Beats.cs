@@ -60,6 +60,8 @@ public class Beats : MonoBehaviour
                  SelfDestroy();
              });
          }));
+
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, Pause);
     }
 
     void Reset()
@@ -67,6 +69,16 @@ public class Beats : MonoBehaviour
         trackedEvent = null;
         trackController = null;
         rhythmController = null;
+    }
+
+    void Pause(bool isPause)
+    {
+        if (tweenSeq == null)
+            return;
+        if (isPause)
+            tweenSeq.Pause();
+        else
+            tweenSeq.Play();
     }
 
 

@@ -160,13 +160,13 @@ namespace SonicBloom.Koreo.Demos
 			// Count down some of our lead-in-time.
 			if (leadInTimeLeft > 0f)
 			{
-				leadInTimeLeft = Mathf.Max(leadInTimeLeft - Time.unscaledDeltaTime, 0f);
+				leadInTimeLeft = Mathf.Max(leadInTimeLeft - Time.deltaTime, 0f);
 			}
 
 			// Count down the time left to play, if necessary.
 			if (timeLeftToPlay > 0f)
 			{
-				timeLeftToPlay -= Time.unscaledDeltaTime;
+				timeLeftToPlay -= Time.deltaTime;
 
 				// Check if it is time to begin playback.
 				if (timeLeftToPlay <= 0f)

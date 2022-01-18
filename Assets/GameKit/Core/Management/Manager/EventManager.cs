@@ -60,7 +60,7 @@ namespace GameKit
             {
                 if ((events[name] as EventInfo<T>).actions != null)
                 {
-                    (events[name] as EventInfo<T>).actions.Invoke(info);
+                    (events[name] as EventInfo<T>).actions?.Invoke(info);
                 }
             }
         }
