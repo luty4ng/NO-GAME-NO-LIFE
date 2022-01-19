@@ -2232,7 +2232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b9a82a2074a0469dad0a1974a9e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: SpearOfJustice
+  eventID: Skyline(Stage1)
   hitWindowRangeInMS: 80
   beatTravelTime: 2.5
   tracks:
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlayOnAwake: 0
-  koreography: {fileID: 11400000, guid: 21eb443c3e65fb041aa4ffca7564fb67, type: 2}
+  koreography: {fileID: 11400000, guid: da4f595fa365b1d4fa93857977a0a683, type: 2}
   targetKoreographer: {fileID: 0}
 --- !u!82 &1624531646
 AudioSource:
