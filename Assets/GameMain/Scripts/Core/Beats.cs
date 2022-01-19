@@ -20,6 +20,7 @@ public class Beats : MonoBehaviour
     RhythmController rhythmController;
     Sequence tweenSeq;
     RectTransform rectTransform;
+    Animator animator;
     float offsetWidth = 0;
     float damageMultipier = 1;
     private bool IsStreak
@@ -32,6 +33,7 @@ public class Beats : MonoBehaviour
     private void Start()
     {
         visual = GetComponent<Image>();
+        animator = GetComponent<Animator>();
     }
     #region Methods
     public void Initialize(KoreographyEvent evt, TrackController trackCtrl, RhythmController rhythmCtrl)
@@ -70,7 +72,7 @@ public class Beats : MonoBehaviour
                  else
                      EventManager.instance.EventTrigger(EventConfig.E_Attack);
              }
-             rectTransform.DOLocalMoveX(targetPosX * 1.1f, moveTime * 0.1f).OnComplete(() =>
+             rectTransform.DOLocalMoveX(targetPosX * 1.5f, moveTime * 0.5f).OnComplete(() =>
              {
                  tweenSeq.Kill();
              });
@@ -130,6 +132,10 @@ public class Beats : MonoBehaviour
     {
         OnHitted();
         CheckAccuracy();
+        if (!IsStreak)
+            animator.SetTrigger("Collapse");
+
+
         if (beatType == BeatType.Attack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_Attack);
@@ -138,6 +144,20 @@ public class Beats : MonoBehaviour
         else if (beatType == BeatType.Defense)
         {
             EventManager.instance.EventTrigger(EventConfig.P_Defense);
+        }
+    }
+
+    private void Update()
+    {
+        if (!IsBeatHittable())
+            return;
+        if (!IsStreak)
+        {
+            trackController.LaneMask.enabled = false;
+        }
+        else
+        {
+            trackController.LaneMask.enabled = true;
         }
     }
 
@@ -184,7 +204,10 @@ public class Beats : MonoBehaviour
     {
         Debug.Log("OnStreakUpdate");
     }
-    private void OnHitted() => visual.color = Color.Lerp(visual.color, Color.black, 0.3f);
+    private void OnHitted()
+    {
+        visual.color = Color.Lerp(visual.color, Color.black, 0.3f);
+    }
 
     public void OnMiss()
     {

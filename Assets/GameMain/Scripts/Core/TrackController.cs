@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using SonicBloom.Koreo;
 using GameKit;
+using UnityEngine.UI;
 
 public class TrackController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class TrackController : MonoBehaviour
     public RectTransform spawn;
     public RectTransform hitter;
     public Beats BeatsArchetype;
+    public Mask LaneMask;
     [SerializeField] List<KoreographyEvent> trackEvents = new List<KoreographyEvent>();
     [SerializeField] Queue<Beats> trackedBeats = new Queue<Beats>();
     RhythmController rhythmController;
@@ -25,7 +27,11 @@ public class TrackController : MonoBehaviour
     #endregion
 
     #region Methods
-    public void Initialize(RhythmController controller) => rhythmController = controller;
+    public void Initialize(RhythmController controller)
+    {
+        rhythmController = controller;
+        LaneMask.enabled = false;
+    }
     void Update()
     {
         if (Timer.isPause)
@@ -56,6 +62,7 @@ public class TrackController : MonoBehaviour
     Beats GetFreshBeats()
     {
         Beats beat = GameObject.Instantiate<Beats>(BeatsArchetype);
+        beat.transform.SetParent(LaneMask.transform);
         beat.gameObject.SetActive(true);
         beat.enabled = true;
         return beat;
