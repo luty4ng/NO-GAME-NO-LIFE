@@ -15,13 +15,13 @@ MonoBehaviour:
   mEventID: HitTest
   mEventList:
   - mStartSample: 61740
-    mEndSample: 105840
-  - mStartSample: 123480
-    mEndSample: 167580
+    mEndSample: 110250
+  - mStartSample: 121275
+    mEndSample: 171990
   - mStartSample: 183015
-    mEndSample: 209475
-  - mStartSample: 242550
-    mEndSample: 269010
+    mEndSample: 227115
+  - mStartSample: 231525
+    mEndSample: 275625
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -39,10 +39,10 @@ MonoBehaviour:
   _SpectrumPayloads: []
   _SpectrumPayloadIdxs: 
   _TextPayloads:
-  - mTextVal: A_Streak
-  - mTextVal: A_Streak
   - mTextVal: D_Streak
   - mTextVal: D_Streak
+  - mTextVal: A_Streak
+  - mTextVal: A_Streak
   _TextPayloadIdxs: 00000000010000000200000003000000
   _MaterialPayloads: []
   _MaterialPayloadIdxs: 

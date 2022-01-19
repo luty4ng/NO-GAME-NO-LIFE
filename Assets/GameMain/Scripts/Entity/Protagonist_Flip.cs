@@ -21,6 +21,7 @@ public class Protagonist_Flip : BattleEntity
 
         EventManager.instance.AddEventListener(EventConfig.E_Streak, () =>
         {
+            Debug.Log("E_Streak");
             animator.SetTrigger("Streak");
         });
 

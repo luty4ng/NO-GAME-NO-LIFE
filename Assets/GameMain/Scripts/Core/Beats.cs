@@ -21,7 +21,7 @@ public class Beats : MonoBehaviour
     Sequence tweenSeq;
     RectTransform rectTransform;
     Animator animator;
-    
+
     float offsetWidth = 0;
     float damageMultipier = 1;
     private bool IsStreak
@@ -29,6 +29,14 @@ public class Beats : MonoBehaviour
         get
         {
             return rectTransform.sizeDelta.x > 50;
+        }
+    }
+
+    private bool IsAttack
+    {
+        get
+        {
+            return beatType == BeatType.Attack;
         }
     }
     private void Start()
@@ -65,14 +73,12 @@ public class Beats : MonoBehaviour
         float moveTime = rhythmController.beatTravelTime + rhythmController.beatTravelTime * (offsetWidth / dis);
         tweenSeq.Append(rectTransform.DOLocalMoveX(targetPosX, moveTime).SetEase(Ease.Linear).OnComplete(() =>
          {
+
+             if (beatType == BeatType.Defense && !IsStreak)
+                 EventManager.instance.EventTrigger(EventConfig.E_Attack);
+             if (trackController.isSpreaking && beatType == BeatType.Defense)
+                 EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
              trackController.isSpreaking = false;
-             if (beatType == BeatType.Defense)
-             {
-                 if (IsStreak)
-                     EventManager.instance.EventTrigger(EventConfig.E_Streak);
-                 else
-                     EventManager.instance.EventTrigger(EventConfig.E_Attack);
-             }
              rectTransform.DOLocalMoveX(targetPosX * 1.5f, moveTime * 0.5f).OnComplete(() =>
              {
                  tweenSeq.Kill();
@@ -104,11 +110,7 @@ public class Beats : MonoBehaviour
     {
         if (trackedEvent.IsOneOff())
             return false;
-        int startTime = trackedEvent.StartSample;
-        int endTime = trackedEvent.EndSample;
-        int curTime = rhythmController.DelayedSampleTime;
-        int hitWindow = rhythmController.HitWindowSampleWidth;
-        return (Mathf.Abs(startTime - curTime) <= hitWindow);
+        return IsBeatHittable();
     }
 
     public bool IsBeatMissed()
@@ -135,7 +137,7 @@ public class Beats : MonoBehaviour
         CheckAccuracy();
         if (!IsStreak)
             animator.SetTrigger("Collapse");
-        
+
 
         if (beatType == BeatType.Attack)
         {
@@ -150,8 +152,14 @@ public class Beats : MonoBehaviour
 
     private void Update()
     {
-        if (!IsBeatHittable())
-            return;
+        // if (!IsBeatHittable())
+        //     return;
+
+        if (IsBeatSpreakable() && beatType == BeatType.Defense && IsStreak && !trackController.isSpreaking)
+        {
+            EventManager.instance.EventTrigger(EventConfig.E_Streak);
+            trackController.isSpreaking = true;
+        }
         // if (!IsStreak)
         // {
         //     trackController.LaneMask.enabled = false;
@@ -195,6 +203,7 @@ public class Beats : MonoBehaviour
     public void OnStreakInterrupt()
     {
         Debug.Log("OnStreakInterrupt");
+        trackController.hitterAnimator.SetTrigger("UnHold");
         if (beatType == BeatType.Attack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);

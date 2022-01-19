@@ -51,10 +51,8 @@ public class Protagonist : BattleEntity
 
     protected override void BeAttack(float multipier)
     {
-        // Debug.Log(enemy.damage * multipier);
         health = Mathf.Max(health - enemy.damage / multipier, 0);
         healthBar.fillAmount = (health / initHealth);
-        Debug.Log(health);
     }
 
 
