@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6887526149834984920}
   - component: {fileID: 4049888058849950353}
   - component: {fileID: 6693360777803663894}
+  - component: {fileID: 5852384818838499005}
   m_Layer: 5
   m_Name: Beats
   m_TagString: Untagged
@@ -109,3 +110,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &5852384818838499005
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887526149834984922}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

@@ -44,6 +44,13 @@ public sealed class UI_Counting : UIGroup
                 });
             });
         }));
+    }
 
+    private void Update()
+    {
+        if(Timer.isPause)
+            mySeq.Pause();
+        else
+            mySeq.Play();
     }
 }

@@ -19,19 +19,10 @@ public class RhythmController : MonoBehaviour
     public List<TrackController> tracks = new List<TrackController>();
     public float leadInTime;
     public AudioSource audioCom;
-
-    // The amount of leadInTime left before the audio is audible.
     public float leadInTimeLeft;
-
-    // The amount of time left before we should play the audio (handles Event Delay).
     float timeLeftToPlay;
-
-    // Local cache of the Koreography loaded into the Koreographer component.
     Koreography playingKoreo;
-
-    // Koreographer works in samples.  Convert the user-facing values into sample-time.  This will simplify
-    //  calculations throughout.
-    int hitWindowRangeInSamples;    // The sample range within which a viable event may be hit.
+    int hitWindowRangeInSamples;
     int perfectWindowRangeInSamples;
 
 

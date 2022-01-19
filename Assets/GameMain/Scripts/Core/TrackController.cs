@@ -18,7 +18,7 @@ public class TrackController : MonoBehaviour
     [SerializeField] Queue<Beats> trackedBeats = new Queue<Beats>();
     RhythmController rhythmController;
     int pendingEventIdx = 0;
-    public bool isSpreaking = false;
+    public bool isPlayerSpreaking = false;
     public enum TrackType
     {
         Attack,
@@ -38,18 +38,7 @@ public class TrackController : MonoBehaviour
     {
         if (Timer.isPause)
             return;
-
-        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatMissed() && !isSpreaking)
-        {
-            Beats beats = trackedBeats.Dequeue();
-            beats.OnMiss();
-        }
         CheckSpawn();
-        // if (!AutoStreak())
-        //     AutoHit();
-
-        // if (!CheckSpreak())
-        //     CheckHit();
         if (Input.GetKeyDown(keyboardButton))
         {
             if (!CheckSpreak())
@@ -58,7 +47,16 @@ public class TrackController : MonoBehaviour
         if (Input.GetKeyUp(keyboardButton))
             CheckSpreakLose();
 
+        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatMissed() && !isPlayerSpreaking)
+        {
+            trackedBeats.Peek().OnMiss();
+            if (!trackedBeats.Peek().IsStreak)
+                trackedBeats.Dequeue();
+        }
         KeepSpreaking();
+
+        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatEnd() && trackedBeats.Peek().IsStreak)
+            trackedBeats.Dequeue();
     }
 
     Beats GetFreshBeats()
@@ -72,16 +70,16 @@ public class TrackController : MonoBehaviour
     {
         if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatHittable())
         {
-            Beats beat = trackedBeats.Dequeue();
-            beat.OnHit();
+            trackedBeats.Peek().OnHit();
+            if (!trackedBeats.Peek().IsStreak)
+                trackedBeats.Dequeue();
         }
     }
     bool CheckSpreak()
     {
-        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatSpreakable() && isSpreaking == false)
+        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatSpreakable() && !isPlayerSpreaking)
         {
-            isSpreaking = true;
-            trackedBeats.Peek().OnStreakEnter();
+            trackedBeats.Peek().OnPlayerStreakEnter();
             return true;
         }
         return false;
@@ -89,20 +87,20 @@ public class TrackController : MonoBehaviour
 
     void KeepSpreaking()
     {
-        if (trackedBeats.Count > 0 && isSpreaking)
-        {
-            Beats beats = trackedBeats.Peek();
-            beats.OnStreakUpdate();
-        }
+        if (trackedBeats.Count == 0)
+            return;
+        Beats beat = trackedBeats.Peek();
+
+        if (isPlayerSpreaking)
+            beat.OnPlayerStreakUpdate();
     }
 
     void CheckSpreakLose()
     {
-        if (trackedBeats.Count > 0 && isSpreaking)
+        if (trackedBeats.Count > 0 && isPlayerSpreaking)
         {
-            Beats beats = trackedBeats.Dequeue();
-            isSpreaking = false;
-            beats.OnStreakInterrupt();
+            Beats beats = trackedBeats.Peek();
+            beats.OnPlayerStreakInterrupt();
         }
     }
     void CheckSpawn()

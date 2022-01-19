@@ -37,16 +37,17 @@ public class Protagonist : BattleEntity
         EventManager.instance.AddEventListener(EventConfig.P_StopStreak, () =>
         {
             animator.SetTrigger("StopStreak");
-            // StartCoroutine(DelayTigger("StopStreak", 0.1f));
+        });
+        EventManager.instance.AddEventListener(EventConfig.P_StreakDefense, () =>
+        {
+            animator.SetTrigger("StreakDefense");
+        });
+        EventManager.instance.AddEventListener(EventConfig.P_StopStreakDefense, () =>
+        {
+            animator.SetTrigger("StopStreakDefense");
         });
 
-        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, (bool isPause) =>
-        {
-            if (isPause)
-                animator.speed = 0;
-            else
-                animator.speed = 1;
-        });
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, PauseAnimator);
     }
 
     protected override void BeAttack(float multipier)
@@ -55,5 +56,25 @@ public class Protagonist : BattleEntity
         healthBar.fillAmount = (health / initHealth);
     }
 
+    private void PauseAnimator(bool isPause)
+    {
+        if (isPause)
+            animator.speed = 0;
+        else
+            animator.speed = 1;
+    }
+
+
+    private void OnDestroy()
+    {
+        EventManager.instance.RemoveEventListener<bool>(EventConfig.Game_Pase, PauseAnimator);
+        EventManager.instance.ClearEventListener(EventConfig.P_StopStreakDefense);
+        EventManager.instance.ClearEventListener(EventConfig.P_StopStreak);
+        EventManager.instance.ClearEventListener(EventConfig.P_Streak);
+        EventManager.instance.ClearEventListener(EventConfig.P_StreakDefense);
+        EventManager.instance.ClearEventListener(EventConfig.P_Attack);
+        EventManager.instance.ClearEventListener(EventConfig.P_Defense);
+        EventManager.instance.ClearEventListener<float>(EventConfig.P_BeAttacked);
+    }
 
 }

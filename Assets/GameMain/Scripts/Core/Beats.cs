@@ -21,30 +21,48 @@ public class Beats : MonoBehaviour
     Sequence tweenSeq;
     RectTransform rectTransform;
     Animator animator;
-
+    CanvasGroup canvasGroup;
     float offsetWidth = 0;
     float damageMultipier = 1;
-    private bool IsStreak
+    bool isEnemyStreak = false;
+    bool hasCheckMiss = false;
+
+    public bool IsStreak
     {
         get
         {
-            return rectTransform.sizeDelta.x > 50;
+            return !trackedEvent.IsOneOff();
         }
     }
 
-    private bool IsAttack
+    public bool IsAttack
     {
         get
         {
             return beatType == BeatType.Attack;
         }
     }
+
+    #region Methods
     private void Start()
     {
         visual = GetComponent<Image>();
         animator = GetComponent<Animator>();
+        canvasGroup = GetComponent<CanvasGroup>();
     }
-    #region Methods
+
+    private void Update()
+    {
+        // Debug.Log(IsBeatSpreakable() && !IsAttack && IsStreak);
+        if (IsBeatSpreakable() && !IsAttack && IsStreak && !isEnemyStreak)
+        {
+            isEnemyStreak = true;
+            EventManager.instance.EventTrigger(EventConfig.E_Streak);
+        }
+
+        if (IsBeatHittable() && !IsAttack && !IsStreak)
+            EventManager.instance.EventTrigger(EventConfig.E_Attack);
+    }
     public void Initialize(KoreographyEvent evt, TrackController trackCtrl, RhythmController rhythmCtrl)
     {
         trackedEvent = evt;
@@ -71,21 +89,19 @@ public class Beats : MonoBehaviour
         float targetPosX = trackController.hitter.anchoredPosition.x - offsetWidth;
         float dis = Mathf.Abs(trackController.spawn.anchoredPosition.x - trackController.hitter.anchoredPosition.x);
         float moveTime = rhythmController.beatTravelTime + rhythmController.beatTravelTime * (offsetWidth / dis);
-        tweenSeq.Append(rectTransform.DOLocalMoveX(targetPosX, moveTime).SetEase(Ease.Linear).OnComplete(() =>
-         {
-
-             if (beatType == BeatType.Defense && !IsStreak)
-                 EventManager.instance.EventTrigger(EventConfig.E_Attack);
-             if (trackController.isSpreaking && beatType == BeatType.Defense)
-                 EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
-             trackController.isSpreaking = false;
-             rectTransform.DOLocalMoveX(targetPosX * 1.5f, moveTime * 0.5f).OnComplete(() =>
-             {
-                 tweenSeq.Kill();
-             });
-         }));
-
         EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, Pause);
+        tweenSeq.Append(rectTransform.DOLocalMoveX(targetPosX, moveTime).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            if (IsStreak)
+                OnPlayerStreakExit();
+            rectTransform.DOLocalMoveX(targetPosX * 1.5f, moveTime * 0.5f).OnComplete(() =>
+            {
+                tweenSeq.Kill();
+                Destroy(this.gameObject);
+            });
+        }));
+
+
     }
     void Pause(bool isPause)
     {
@@ -97,7 +113,6 @@ public class Beats : MonoBehaviour
             tweenSeq.Play();
     }
 
-
     public bool IsBeatHittable()
     {
         int beatTime = trackedEvent.StartSample;
@@ -108,22 +123,35 @@ public class Beats : MonoBehaviour
 
     public bool IsBeatSpreakable()
     {
-        if (trackedEvent.IsOneOff())
+        if (!IsStreak)
             return false;
         return IsBeatHittable();
     }
 
     public bool IsBeatMissed()
     {
-        bool bMissed = true;
-        int beatTime = trackedEvent.StartSample;
+
+        int startTime = trackedEvent.StartSample;
         int curTime = rhythmController.DelayedSampleTime;
         int hitWindow = rhythmController.HitWindowSampleWidth;
-        bMissed = (curTime - beatTime > hitWindow);
-        return bMissed;
+        bool isMiss = (curTime - startTime > hitWindow);
+        if (!IsStreak)
+        {
+            return isMiss;
+        }
+        else
+        {
+            if (!hasCheckMiss && isMiss)
+            {
+                hasCheckMiss = true;
+                return true;
+            }
+            return false;
+        }
+
     }
 
-    private bool IsBeatEnd()
+    public bool IsBeatEnd()
     {
         int endTime = trackedEvent.EndSample;
         int curTime = rhythmController.DelayedSampleTime;
@@ -133,103 +161,85 @@ public class Beats : MonoBehaviour
 
     public void OnHit()
     {
-        OnHitted();
-        CheckAccuracy();
-        if (!IsStreak)
-            animator.SetTrigger("Collapse");
-
-
-        if (beatType == BeatType.Attack)
+        OnVisualUpdate();
+        animator.SetTrigger("Collapse");
+        // trackController.LaneMask.enabled = false;
+        if (!IsStreak && IsAttack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_Attack);
             EventManager.instance.EventTrigger<float>(EventConfig.E_BeAttacked, damageMultipier);
         }
-        else if (beatType == BeatType.Defense)
-        {
-            EventManager.instance.EventTrigger(EventConfig.P_Defense);
-        }
-    }
-
-    private void Update()
-    {
-        // if (!IsBeatHittable())
-        //     return;
-
-        if (IsBeatSpreakable() && beatType == BeatType.Defense && IsStreak && !trackController.isSpreaking)
-        {
-            EventManager.instance.EventTrigger(EventConfig.E_Streak);
-            trackController.isSpreaking = true;
-        }
-        // if (!IsStreak)
-        // {
-        //     trackController.LaneMask.enabled = false;
-        // }
-        // else
-        // {
-        //     trackController.LaneMask.enabled = true;
-        // }
-    }
-
-    public void OnStreakEnter()
-    {
-        Debug.Log("OnStreakEnter");
-        OnHitted();
-        trackController.hitterAnimator.SetTrigger("Hold");
-        trackController.LaneMask.enabled = true;
-        if (beatType == BeatType.Attack)
-        {
-            EventManager.instance.EventTrigger(EventConfig.P_Streak);
-            EventManager.instance.EventTrigger<float>(EventConfig.E_BeAttacked, damageMultipier);
-        }
-        else if (beatType == BeatType.Defense)
+        else if (!IsStreak && !IsAttack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_Defense);
         }
         CheckAccuracy();
     }
-    public void OnStreakExit()
+
+    public void OnPlayerStreakEnter()
     {
-        Debug.Log("OnStreakExit");
+        Debug.Log("OnPlayerStreakEnter");
+        OnVisualUpdate();
+        trackController.isPlayerSpreaking = true;
+        trackController.LaneMask.enabled = true;
+        trackController.hitterAnimator.SetTrigger("Hold");
+
+        if (IsStreak && IsAttack)
+        {
+            EventManager.instance.EventTrigger(EventConfig.P_Streak);
+            EventManager.instance.EventTrigger<float>(EventConfig.E_BeAttacked, damageMultipier);
+        }
+        else if (IsStreak && !IsAttack)
+        {
+            EventManager.instance.EventTrigger(EventConfig.P_StreakDefense);
+        }
+        CheckAccuracy();
+    }
+    public void OnPlayerStreakExit()
+    {
+        Debug.Log("OnPlayerStreakExit");
+        if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
+            EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
+        else if (IsStreak && !IsAttack)
+        {
+            EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
+            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
+        }
+        trackController.isPlayerSpreaking = false;
         trackController.LaneMask.enabled = false;
         trackController.hitterAnimator.SetTrigger("UnHold");
-        if (IsStreak && beatType == BeatType.Attack)
-        {
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-        }
-        // EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-        // EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
+        isEnemyStreak = false;
+        canvasGroup.alpha = 0;
     }
 
-    public void OnStreakInterrupt()
+    public void OnPlayerStreakInterrupt()
     {
-        Debug.Log("OnStreakInterrupt");
-        trackController.hitterAnimator.SetTrigger("UnHold");
-        if (beatType == BeatType.Attack)
-        {
+        Debug.Log("OnPlayerStreakInterrupt");
+        if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-        }
-        else if (beatType == BeatType.Defense)
+        else if (IsStreak && !IsAttack)
         {
             EventManager.instance.EventTrigger<float>(EventConfig.P_BeAttacked, damageMultipier);
+            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
+        trackController.isPlayerSpreaking = false;
+        trackController.hitterAnimator.SetTrigger("UnHold");
     }
 
-    public void OnStreakUpdate()
+    public void OnPlayerStreakUpdate()
     {
-        Debug.Log("OnStreakUpdate");
+        Debug.Log("OnPlayerStreakUpdate");
     }
-    private void OnHitted()
+    private void OnVisualUpdate()
     {
         visual.color = Color.Lerp(visual.color, Color.black, 0.3f);
     }
 
     public void OnMiss()
     {
-        OnStreakExit();
-        if (IsBeatEnd())
-            return;
+        Debug.Log("IsMissing");
         UIManager.instance.GetPanel<UI_Accuracy>("UI_Accuracy").ShowAccuracy("Missing");
-        if (beatType == BeatType.Defense)
+        if (!IsAttack)
         {
             EventManager.instance.EventTrigger<float>(EventConfig.P_BeAttacked, damageMultipier);
         }

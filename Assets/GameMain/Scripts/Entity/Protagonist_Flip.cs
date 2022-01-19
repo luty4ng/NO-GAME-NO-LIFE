@@ -21,7 +21,6 @@ public class Protagonist_Flip : BattleEntity
 
         EventManager.instance.AddEventListener(EventConfig.E_Streak, () =>
         {
-            Debug.Log("E_Streak");
             animator.SetTrigger("Streak");
         });
 
@@ -30,13 +29,7 @@ public class Protagonist_Flip : BattleEntity
             animator.SetTrigger("StopStreak");
         });
 
-        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, (bool isPause) =>
-        {
-            if (isPause)
-                animator.speed = 0;
-            else
-                animator.speed = 1;
-        });
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, PauseAnimator);
     }
     protected override void Initialize()
     {
@@ -52,5 +45,22 @@ public class Protagonist_Flip : BattleEntity
     private void OnValidate()
     {
         protagonist.enemy = this;
+    }
+
+    private void PauseAnimator(bool isPause)
+    {
+        if (isPause)
+            animator.speed = 0;
+        else
+            animator.speed = 1;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.RemoveEventListener<bool>(EventConfig.Game_Pase, PauseAnimator);
+        EventManager.instance.ClearEventListener(EventConfig.E_StopStreak);
+        EventManager.instance.ClearEventListener(EventConfig.E_Streak);
+        EventManager.instance.ClearEventListener(EventConfig.E_Attack);
+        EventManager.instance.ClearEventListener<float>(EventConfig.E_BeAttacked);
     }
 }

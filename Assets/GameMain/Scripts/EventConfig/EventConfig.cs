@@ -7,6 +7,8 @@ public static class EventConfig
     public static string P_BeAttacked = "Player_BeAttacked";
     public static string P_Streak = "Player_Streak";
     public static string P_StopStreak = "Player_StopStreak";
+    public static string P_StreakDefense = "P_StreakDefense";
+    public static string P_StopStreakDefense = "P_StopStreakDefense";
     public static string E_Attack = "Enenmy_Attack";
     public static string E_BeAttacked = "Enemy_BeAttacked";
     public static string E_Streak = "Enemy_Streak";

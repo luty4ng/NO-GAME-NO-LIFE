@@ -29,5 +29,6 @@ namespace GameKit
         public void HideUI(string name) => GetUI(name).Hide();
         public void SwitchSceneSwipe(string name) => Scheduler.instance.SwitchSceneSwipe(name);
         public void SwitchScene(string name) => Scheduler.instance.SwitchScene(name);
+        public void ReloadCurrentSceneSwipe() => Scheduler.instance.ReloadCurrentSceneSwipe();
     }
 }

@@ -14,6 +14,14 @@ namespace GameKit
         {
             actions += action;
         }
+        public void Clear()
+        {
+            System.Delegate[] acts = actions.GetInvocationList();
+            for (int i = 0; i < acts.Length; i++)
+            {
+                actions -= acts[i] as UnityAction<T>;
+            }
+        }
     }
 
     public class EventInfo : IEventInfo
@@ -22,6 +30,14 @@ namespace GameKit
         public EventInfo(UnityAction action)
         {
             actions += action;
+        }
+        public void Clear()
+        {
+            System.Delegate[] acts = actions.GetInvocationList();
+            for (int i = 0; i < acts.Length; i++)
+            {
+                actions -= acts[i] as UnityAction;
+            }
         }
     }
     public class EventManager : SingletonBase<EventManager>
@@ -90,6 +106,22 @@ namespace GameKit
             if (events.ContainsKey(name))
             {
                 (events[name] as EventInfo).actions -= action;
+            }
+        }
+
+        public void ClearEventListener(string name)
+        {
+            if (events.ContainsKey(name))
+            {
+                (events[name] as EventInfo).Clear();
+            }
+        }
+
+        public void ClearEventListener<T>(string name)
+        {
+            if (events.ContainsKey(name))
+            {
+                (events[name] as EventInfo<T>).Clear();
             }
         }
         public void Clear()
