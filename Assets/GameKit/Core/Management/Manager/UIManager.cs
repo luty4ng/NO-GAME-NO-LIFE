@@ -23,7 +23,10 @@ namespace GameKit
             if (panels == null)
                 panels = new Dictionary<string, UIGroup>();
             // Debug.Log("Register UI: " + panel.gameObject.name);
-            panels.Add(panel.gameObject.name, panel);
+            if(!panels.ContainsKey(panel.gameObject.name))
+                panels.Add(panel.gameObject.name, panel);
+            else
+                panels[panel.gameObject.name] = panel;
         }
 
         public void RemoveUI(UIGroup panel)

@@ -510,6 +510,34 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1201495382}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPreviousSceneSwipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameKit.Scheduler, GameKit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621619951238, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6412284621913853745, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
       propertyPath: m_Name
       value: Bnt_Settings
@@ -525,6 +553,22 @@ PrefabInstance:
     - target: {fileID: 6412284621913853746, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621913853747, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621913853747, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1201495382}
+    - target: {fileID: 6412284621913853747, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadCurrentSceneSwipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412284621913853747, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameKit.Scheduler, GameKit
       objectReference: {fileID: 0}
     - target: {fileID: 6412284622154933395, guid: eebd69fbb8e99db4987f679a321c42c6, type: 3}
       propertyPath: m_Color.b
@@ -696,7 +740,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 1930, y: 750}
+  m_SizeDelta: {x: 1930, y: 1481.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762403615714893342
 MonoBehaviour:
