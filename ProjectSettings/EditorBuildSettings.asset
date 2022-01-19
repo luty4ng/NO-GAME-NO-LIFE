@@ -24,8 +24,8 @@ EditorBuildSettings:
     path: Assets/GameMain/Scenes/Level 3.unity
     guid: fac7f2a2879598d41a0c2cd63fd4899e
   - enabled: 1
-    path: Assets/GameMain/Scenes/Level_Calibration.unity
-    guid: c6b53eb4b630015468264ec3e6070e43
+    path: Assets/GameMain/Scenes/Level_HitTest.unity
+    guid: dfd9c8fcb1974604c806d17aecdf6a53
   - enabled: 1
     path: Assets/GameMain/Scenes/Level_Test.unity
     guid: 6c958da837f99d54ebc20f01cfbd3485

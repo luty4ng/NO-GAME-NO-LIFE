@@ -17,7 +17,7 @@ namespace GameKit
         }
         private Dictionary<string, List<UIBehaviour>> uiComponet = new Dictionary<string, List<UIBehaviour>>();
         protected virtual FindType findType { get { return FindType.All; } }
-        protected CanvasGroup panelCanvasGroup;
+        protected CanvasGroup canvasGroup;
         public virtual bool isActive { get { return this.gameObject.activeInHierarchy; } }
         protected override void Start()
         {
@@ -31,23 +31,23 @@ namespace GameKit
             FindChildrenByType<LayoutGroup>();
             if (findType == FindType.SubChildren)
                 FindChildrenByType<UIGroup>();
-            panelCanvasGroup = GetComponent<CanvasGroup>();
+            canvasGroup = GetComponent<CanvasGroup>();
             OnStart();
         }
 
         protected virtual void OnStart()
         {
-            panelCanvasGroup.alpha = 0;
+            canvasGroup.alpha = 0;
             this.gameObject.SetActive(false);
         }
         public virtual void Show(UnityAction callback = null)
         {
-            panelCanvasGroup.alpha = 1;
+            canvasGroup.alpha = 1;
             this.gameObject.SetActive(true);
         }
         public virtual void Hide(UnityAction callback = null)
         {
-            panelCanvasGroup.alpha = 0;
+            canvasGroup.alpha = 0;
             this.gameObject.SetActive(false);
         }
         public T GetUIComponent<T>(string name) where T : UIBehaviour
@@ -83,7 +83,6 @@ namespace GameKit
             T[] components = this.GetComponentsInChildren<T>(true);
             for (int i = 0; i < components.Length; ++i)
             {
-                // Debug.Log(components[i].transform.parent + "  " + );
                 if (this.findType != FindType.All && components[i].transform.parent != this.transform)
                     continue;
                 string objName = components[i].gameObject.name;

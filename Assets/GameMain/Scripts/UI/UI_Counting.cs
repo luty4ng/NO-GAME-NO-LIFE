@@ -8,15 +8,14 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public sealed class UI_Counting : UIForm
+public sealed class UI_Counting : UIGroup
 {
-    public TextMeshProUGUI textMeshPro;
+    private TextMeshProUGUI textMeshPro;
     private Sequence mySeq;
-    private CanvasGroup canvasGroup;
     protected override void Start()
     {
+        UIManager.instance.RegisterUI(this as UIGroup);
         mySeq = DOTween.Sequence();
-        // Debug.Log(MusicBattleRegulator.current.rhythmController);
         float duration = MusicBattleRegulator.current.rhythmController.beatTravelTime / 4;
         textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
         canvasGroup = GetComponent<CanvasGroup>();

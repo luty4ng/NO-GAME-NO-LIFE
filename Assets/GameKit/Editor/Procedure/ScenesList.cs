@@ -15,8 +15,8 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Level_2_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 2.unity"); }
     [MenuItem("Scenes/Level 3")]
     public static void Assets_GameMain_Scenes_Level_3_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 3.unity"); }
-    [MenuItem("Scenes/Level_Calibration")]
-    public static void Assets_GameMain_Scenes_Level_Calibration_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_Calibration.unity"); }
+    [MenuItem("Scenes/Level_HitTest")]
+    public static void Assets_GameMain_Scenes_Level_HitTest_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_HitTest.unity"); }
     [MenuItem("Scenes/Level_Test")]
     public static void Assets_GameMain_Scenes_Level_Test_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_Test.unity"); }
     [MenuItem("Scenes/S_Menu")]

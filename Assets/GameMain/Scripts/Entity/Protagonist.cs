@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class Protagonist : BattleEntity
 {
     private Image healthBar;
-    public float initHealth = 100;
+    public float initHealth = 1000;
+    public BattleEntity enemy;
     protected override void Initialize()
     {
         healthBar = GameObject.Find("MyHealth").GetComponent<Image>();
@@ -22,9 +23,10 @@ public class Protagonist : BattleEntity
             animator.SetTrigger("Defense");
         });
 
-        EventManager.instance.AddEventListener(EventConfig.P_BeAttacked, () =>
+        EventManager.instance.AddEventListener<float>(EventConfig.P_BeAttacked, (float damage) =>
         {
             animator.SetTrigger("BeAttacked");
+            BeAttack(damage);
         });
 
         EventManager.instance.AddEventListener(EventConfig.P_Streak, () =>
@@ -35,6 +37,7 @@ public class Protagonist : BattleEntity
         EventManager.instance.AddEventListener(EventConfig.P_StopStreak, () =>
         {
             animator.SetTrigger("StopStreak");
+            // StartCoroutine(DelayTigger("StopStreak", 0.1f));
         });
 
         EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, (bool isPause) =>
@@ -45,4 +48,14 @@ public class Protagonist : BattleEntity
                 animator.speed = 1;
         });
     }
+
+    protected override void BeAttack(float multipier)
+    {
+        // Debug.Log(enemy.damage * multipier);
+        health = Mathf.Max(health - enemy.damage / multipier, 0);
+        healthBar.fillAmount = (health / initHealth);
+        Debug.Log(health);
+    }
+
+
 }

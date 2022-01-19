@@ -22,7 +22,7 @@ namespace GameKit
         {
             if (panels == null)
                 panels = new Dictionary<string, UIGroup>();
-            Debug.Log("Register UI: " + panel.gameObject.name);
+            // Debug.Log("Register UI: " + panel.gameObject.name);
             panels.Add(panel.gameObject.name, panel);
         }
 

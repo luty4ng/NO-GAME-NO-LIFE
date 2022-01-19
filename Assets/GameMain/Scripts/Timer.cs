@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         if (!isPause)
-            currentTime = Time.deltaTime - pausedTime;
+            currentTime = Time.unscaledTime - pausedTime;
         else
             pausedTime += Time.deltaTime;
     }
