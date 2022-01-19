@@ -21,6 +21,7 @@ public class Beats : MonoBehaviour
     Sequence tweenSeq;
     RectTransform rectTransform;
     Animator animator;
+    
     float offsetWidth = 0;
     float damageMultipier = 1;
     private bool IsStreak
@@ -43,7 +44,7 @@ public class Beats : MonoBehaviour
         rhythmController = rhythmCtrl;
 
         rectTransform = this.GetComponent<RectTransform>();
-        rectTransform.SetParent(trackCtrl.transform);
+        rectTransform.SetParent(trackController.LaneMask.transform);
         rectTransform.anchoredPosition = trackCtrl.spawn.anchoredPosition;
     }
 
@@ -68,7 +69,7 @@ public class Beats : MonoBehaviour
              if (beatType == BeatType.Defense)
              {
                  if (IsStreak)
-                     EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
+                     EventManager.instance.EventTrigger(EventConfig.E_Streak);
                  else
                      EventManager.instance.EventTrigger(EventConfig.E_Attack);
              }
@@ -134,7 +135,7 @@ public class Beats : MonoBehaviour
         CheckAccuracy();
         if (!IsStreak)
             animator.SetTrigger("Collapse");
-
+        
 
         if (beatType == BeatType.Attack)
         {
@@ -151,20 +152,22 @@ public class Beats : MonoBehaviour
     {
         if (!IsBeatHittable())
             return;
-        if (!IsStreak)
-        {
-            trackController.LaneMask.enabled = false;
-        }
-        else
-        {
-            trackController.LaneMask.enabled = true;
-        }
+        // if (!IsStreak)
+        // {
+        //     trackController.LaneMask.enabled = false;
+        // }
+        // else
+        // {
+        //     trackController.LaneMask.enabled = true;
+        // }
     }
 
     public void OnStreakEnter()
     {
         Debug.Log("OnStreakEnter");
         OnHitted();
+        trackController.hitterAnimator.SetTrigger("Hold");
+        trackController.LaneMask.enabled = true;
         if (beatType == BeatType.Attack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_Streak);
@@ -179,6 +182,8 @@ public class Beats : MonoBehaviour
     public void OnStreakExit()
     {
         Debug.Log("OnStreakExit");
+        trackController.LaneMask.enabled = false;
+        trackController.hitterAnimator.SetTrigger("UnHold");
         if (IsStreak && beatType == BeatType.Attack)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);

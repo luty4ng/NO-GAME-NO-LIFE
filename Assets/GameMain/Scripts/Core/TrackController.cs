@@ -13,6 +13,7 @@ public class TrackController : MonoBehaviour
     public RectTransform hitter;
     public Beats BeatsArchetype;
     public Mask LaneMask;
+    public Animator hitterAnimator;
     [SerializeField] List<KoreographyEvent> trackEvents = new List<KoreographyEvent>();
     [SerializeField] Queue<Beats> trackedBeats = new Queue<Beats>();
     RhythmController rhythmController;
@@ -31,6 +32,7 @@ public class TrackController : MonoBehaviour
     {
         rhythmController = controller;
         LaneMask.enabled = false;
+        hitterAnimator = hitter.GetComponent<Animator>();
     }
     void Update()
     {
@@ -62,28 +64,10 @@ public class TrackController : MonoBehaviour
     Beats GetFreshBeats()
     {
         Beats beat = GameObject.Instantiate<Beats>(BeatsArchetype);
-        beat.transform.SetParent(LaneMask.transform);
         beat.gameObject.SetActive(true);
         beat.enabled = true;
         return beat;
     }
-
-
-    // bool AutoStreak()
-    // {
-    //     if (trackedBeats.Count > 0 && trackedBeats.Peek().beatType == BeatType.Defense && trackedBeats.Peek().IsBeatSpreakable())
-    //     {
-    //         EventManager.instance.EventTrigger(EventConfig.E_Streak);
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // void AutoHit()
-    // {
-    //     if (trackedBeats.Count > 0 && trackedBeats.Peek().beatType == BeatType.Defense && trackedBeats.Peek().IsBeatHittable())
-    //         EventManager.instance.EventTrigger(EventConfig.E_Attack);
-    // }
     void CheckHit()
     {
         if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatHittable())
@@ -137,6 +121,7 @@ public class TrackController : MonoBehaviour
                 beat.SetWidth(diff);
             }
             beat.SetInitialMovement();
+            hitter.SetSiblingIndex(LaneMask.transform.childCount - 1);
             pendingEventIdx++;
         }
     }

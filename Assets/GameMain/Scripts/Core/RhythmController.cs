@@ -129,7 +129,15 @@ public class RhythmController : MonoBehaviour
         if (isPause)
             audioCom.Pause();
         else
-            CheckAudioPlay();
+        {
+            if (timeLeftToPlay > 0f)
+            {
+                CheckAudioPlay();
+            }
+            else
+                audioCom.Play();
+        }
+
     }
 
     void InitializeLeadIn()
@@ -144,7 +152,6 @@ public class RhythmController : MonoBehaviour
             audioCom.time = -leadInTime;
             audioCom.Play();
         }
-
     }
 
     void Update()

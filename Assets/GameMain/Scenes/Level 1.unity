@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff4aa630ab11034588041bf928349e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   initHealth: 500
   protagonist: {fileID: 1905006964}
 --- !u!95 &165521495
@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 548385835}
   - component: {fileID: 548385837}
   - component: {fileID: 548385836}
+  - component: {fileID: 548385838}
   m_Layer: 5
   m_Name: Hitter
   m_TagString: Untagged
@@ -918,14 +919,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1517384922}
-  m_RootOrder: 2
+  m_Father: {fileID: 1080255358}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -770, y: 0}
-  m_SizeDelta: {x: 20, y: 170}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -867, y: -10}
+  m_SizeDelta: {x: 150, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548385836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4610077021999476762, guid: 25f5a9071d19c1941a37b80f08376914, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25f5a9071d19c1941a37b80f08376914, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -964,6 +965,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548385834}
   m_CullTransparentMesh: 1
+--- !u!95 &548385838
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548385834}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2437e45d30a0f2846a8deb990547ee9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &595660373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,13 +1362,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1350222776}
+  - {fileID: 1150532163}
   - {fileID: 724276469}
   m_Father: {fileID: 874809504}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1058, y: 0}
+  m_AnchoredPosition: {x: 1015, y: 0}
   m_SizeDelta: {x: 1800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751207525
@@ -1433,8 +1455,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963827956}
-  - {fileID: 1350222776}
-  - {fileID: 1150532163}
   - {fileID: 751207524}
   m_Father: {fileID: 595660374}
   m_RootOrder: 1
@@ -1502,6 +1522,7 @@ MonoBehaviour:
   hitter: {fileID: 1150532163}
   BeatsArchetype: {fileID: 724276470}
   LaneMask: {fileID: 751207527}
+  hitterAnimator: {fileID: 0}
   trackEvents: []
   isSpreaking: 0
   trackType: 0
@@ -1768,13 +1789,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1452424323}
+  - {fileID: 548385835}
   - {fileID: 11535614}
   m_Father: {fileID: 1517384922}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1058, y: 0}
+  m_AnchoredPosition: {x: 1015, y: 0}
   m_SizeDelta: {x: 1800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080255359
@@ -1913,6 +1936,7 @@ GameObject:
   - component: {fileID: 1150532163}
   - component: {fileID: 1150532165}
   - component: {fileID: 1150532164}
+  - component: {fileID: 1150532166}
   m_Layer: 5
   m_Name: Hitter
   m_TagString: Untagged
@@ -1931,14 +1955,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 874809504}
-  m_RootOrder: 2
+  m_Father: {fileID: 751207524}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -770, y: 0}
-  m_SizeDelta: {x: 20, y: 170}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -867, y: -10}
+  m_SizeDelta: {x: 150, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150532164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,7 +1983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7129717119640293711, guid: a3136cb8cff559843b0d19ad2e014bdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3136cb8cff559843b0d19ad2e014bdd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1977,6 +2001,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150532162}
   m_CullTransparentMesh: 1
+--- !u!95 &1150532166
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150532162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3aec205059e00434ebaf066758810b8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1225182369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,12 +2181,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 874809504}
-  m_RootOrder: 1
+  m_Father: {fileID: 751207524}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 920, y: 0}
+  m_AnchoredPosition: {x: 782, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1430573337
@@ -2225,12 +2268,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1517384922}
-  m_RootOrder: 1
+  m_Father: {fileID: 1080255358}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 920, y: 0}
+  m_AnchoredPosition: {x: 782, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1517384921
@@ -2264,8 +2307,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 514224775}
-  - {fileID: 1452424323}
-  - {fileID: 548385835}
   - {fileID: 1080255358}
   m_Father: {fileID: 595660374}
   m_RootOrder: 0
@@ -2333,6 +2374,7 @@ MonoBehaviour:
   hitter: {fileID: 548385835}
   BeatsArchetype: {fileID: 6887526149842323752}
   LaneMask: {fileID: 1080255359}
+  hitterAnimator: {fileID: 0}
   trackEvents: []
   isSpreaking: 0
   trackType: 0
@@ -2875,7 +2917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
-  initHealth: 600
+  initHealth: 300
   enemy: {fileID: 165521494}
 --- !u!1 &2014527353
 GameObject:
