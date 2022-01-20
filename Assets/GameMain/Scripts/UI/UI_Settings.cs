@@ -9,7 +9,13 @@ using UnityEngine.EventSystems;
 
 public sealed class UI_Settings : UIGroup
 {
-    protected override FindType findType { get { return FindType.SubChildren; } }
+    public Slider volumeSlider;
+    protected override void OnStart()
+    {
+        base.OnStart();
+        volumeSlider = GetUIComponent<Slider>("Sld_Volume");
+    }
+    protected override FindType findType { get { return FindType.All; } }
     public override void Show(UnityAction callback = null)
     {
         canvasGroup.alpha = 1;
@@ -26,5 +32,10 @@ public sealed class UI_Settings : UIGroup
         canvasGroup.alpha = 0;
         this.gameObject.SetActive(false);
         callback?.Invoke();
+    }
+
+    public void OnSliderValueChange()
+    {
+        MusicBattleRegulator.current.ChangeMasterVolume(volumeSlider.value);
     }
 }

@@ -44,11 +44,13 @@ public sealed class UI_Counting : UIGroup
                 });
             });
         }));
+
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, Pause);
     }
 
-    private void Update()
+    private void Pause(bool isPause)
     {
-        if(Timer.isPause)
+        if (isPause)
             mySeq.Pause();
         else
             mySeq.Play();

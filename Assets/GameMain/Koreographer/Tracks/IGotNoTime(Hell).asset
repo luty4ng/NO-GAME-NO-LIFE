@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaad1da5a69c4dbfbc7ccb4bcb08e95, type: 3}
+  m_Name: IGotNoTime(Hell)
+  m_EditorClassIdentifier: 
+  mEventID: IGotNoTime(Hell)
+  mEventList:
+  - mStartSample: 0
+    mEndSample: 0
+  - mStartSample: 24255
+    mEndSample: 24255
+  - mStartSample: 41895
+    mEndSample: 41895
+  - mStartSample: 59535
+    mEndSample: 59535
+  - mStartSample: 72765
+    mEndSample: 92610
+  - mStartSample: 94815
+    mEndSample: 94815
+  - mStartSample: 116865
+    mEndSample: 116865
+  - mStartSample: 134505
+    mEndSample: 134505
+  - mStartSample: 149940
+    mEndSample: 149940
+  - mStartSample: 165375
+    mEndSample: 185220
+  - mStartSample: 187425
+    mEndSample: 187425
+  - mStartSample: 209475
+    mEndSample: 209475
+  - mStartSample: 216090
+    mEndSample: 216090
+  - mStartSample: 227115
+    mEndSample: 238140
+  - mStartSample: 244755
+    mEndSample: 277830
+  - mStartSample: 280035
+    mEndSample: 352800
+  _SerializedPayloadTypes:
+  - SonicBloom.Koreo.TextPayload
+  _AssetPayloads: []
+  _AssetPayloadIdxs: 
+  _ColorPayloads: []
+  _ColorPayloadIdxs: 
+  _CurvePayloads: []
+  _CurvePayloadIdxs: 
+  _FloatPayloads: []
+  _FloatPayloadIdxs: 
+  _GradientPayloads: []
+  _GradientPayloadIdxs: 
+  _IntPayloads: []
+  _IntPayloadIdxs: 
+  _SpectrumPayloads: []
+  _SpectrumPayloadIdxs: 
+  _TextPayloads:
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: A_Streak
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Hit
+  - mTextVal: D_Streak
+  - mTextVal: A_Hit
+  - mTextVal: A_Hit
+  - mTextVal: D _Hit
+  - mTextVal: A_Streak
+  - mTextVal: A_Streak
+  - mTextVal: D_Streak
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  _MaterialPayloads: []
+  _MaterialPayloadIdxs: 

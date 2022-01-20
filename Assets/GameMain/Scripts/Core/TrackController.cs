@@ -39,6 +39,9 @@ public class TrackController : MonoBehaviour
         if (Timer.isPause)
             return;
         CheckSpawn();
+
+        // if (!CheckSpreak())
+        //     CheckHit();
         if (Input.GetKeyDown(keyboardButton))
         {
             if (!CheckSpreak())
