@@ -13,7 +13,8 @@ namespace GameKit
         protected enum FindType
         {
             All,
-            SubChildren
+            SubChildren,
+            None
         }
         private Dictionary<string, List<UIBehaviour>> uiComponet = new Dictionary<string, List<UIBehaviour>>();
         protected virtual FindType findType { get { return FindType.All; } }

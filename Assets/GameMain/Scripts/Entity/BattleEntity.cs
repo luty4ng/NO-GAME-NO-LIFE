@@ -7,7 +7,13 @@ public abstract class BattleEntity : MonoBehaviour
     protected float health = 100;
     public float damage = 8;
     protected Animator animator;
-
+    public float Health
+    {
+        get
+        {
+            return health;
+        }
+    }
     private void Start()
     {
         animator = GetComponent<Animator>();

@@ -30,5 +30,10 @@ namespace GameKit
         public void SwitchSceneSwipe(string name) => Scheduler.instance.SwitchSceneSwipe(name);
         public void SwitchScene(string name) => Scheduler.instance.SwitchScene(name);
         public void ReloadCurrentSceneSwipe() => Scheduler.instance.ReloadCurrentSceneSwipe();
+        protected IEnumerator DelayedExcute(UnityAction action, float t)
+        {
+            yield return new WaitForSeconds(t);
+            action?.Invoke();
+        }
     }
 }

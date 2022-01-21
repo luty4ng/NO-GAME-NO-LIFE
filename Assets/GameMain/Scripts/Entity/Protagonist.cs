@@ -1,11 +1,14 @@
 using UnityEngine;
 using GameKit;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.Events;
 public class Protagonist : BattleEntity
 {
     private Image healthBar;
     public float initHealth = 1000;
     public BattleEntity enemy;
+    private bool isLoop = false;
     protected override void Initialize()
     {
         healthBar = GameObject.Find("MyHealth").GetComponent<Image>();
@@ -23,17 +26,24 @@ public class Protagonist : BattleEntity
             animator.SetTrigger("Defense");
         });
 
-        EventManager.instance.AddEventListener<float>(EventConfig.P_BeAttacked, (float damage) =>
+        EventManager.instance.AddEventListener<float, bool>(EventConfig.P_BeAttacked, (float damage, bool isStreak) =>
         {
             animator.SetTrigger("BeAttacked");
             BeAttack(damage);
+            if (isStreak)
+            {
+                isLoop = true;
+                StartCoroutine(LoopByPeriod(() =>
+                {
+                    BeAttack(damage);
+                }));
+            }
         });
 
         EventManager.instance.AddEventListener(EventConfig.P_Streak, () =>
         {
             animator.SetTrigger("Streak");
         });
-
         EventManager.instance.AddEventListener(EventConfig.P_StopStreak, () =>
         {
             animator.SetTrigger("StopStreak");
@@ -45,6 +55,10 @@ public class Protagonist : BattleEntity
         EventManager.instance.AddEventListener(EventConfig.P_StopStreakDefense, () =>
         {
             animator.SetTrigger("StopStreakDefense");
+        });
+        EventManager.instance.AddEventListener(EventConfig.P_StopLoop, () =>
+        {
+            isLoop = false;
         });
 
         EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, PauseAnimator);
@@ -74,7 +88,17 @@ public class Protagonist : BattleEntity
         EventManager.instance.ClearEventListener(EventConfig.P_StreakDefense);
         EventManager.instance.ClearEventListener(EventConfig.P_Attack);
         EventManager.instance.ClearEventListener(EventConfig.P_Defense);
-        EventManager.instance.ClearEventListener<float>(EventConfig.P_BeAttacked);
+        EventManager.instance.ClearEventListener<float, bool>(EventConfig.P_BeAttacked);
+        EventManager.instance.ClearEventListener(EventConfig.P_StopLoop);
     }
 
+    private IEnumerator LoopByPeriod(UnityAction evt = null)
+    {
+        while (isLoop)
+        {
+            evt?.Invoke();
+            Debug.Log("Player Long BeAttack");
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
 }

@@ -84,6 +84,14 @@ public class RhythmController : MonoBehaviour
         }
     }
 
+    public bool MuiscStartPlay
+    {
+        get
+        {
+            return leadInTimeLeft == 0;
+        }
+    }
+
     #endregion
     #region Methods
 

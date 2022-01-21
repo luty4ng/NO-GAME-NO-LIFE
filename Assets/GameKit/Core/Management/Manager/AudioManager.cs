@@ -7,10 +7,10 @@ namespace GameKit
 {
     public class AudioManager : SingletonBase<AudioManager>
     {
-        private AudioSource BGM = null;
-        public float BGMVolume = 1;
+        private AudioSource globalMusicSource = null;
+        public float musicVolume = 1;
         public float soundVolume = 1;
-        private GameObject soundObj = null;
+        private GameObject GlobalAudio = null;
         private List<AudioSource> soundList = new List<AudioSource>();
 
         public AudioManager()
@@ -28,61 +28,57 @@ namespace GameKit
                 }
             }
         }
-        public void PlayBGM(string name)
+        public void PlayMusic(string name)
         {
-            if (BGM == null)
+            if (globalMusicSource != null)
+            {
+                globalMusicSource.Play();
+            }
+            else
             {
                 GameObject obj = new GameObject();
-                obj.name = "BGM";
-                BGM = obj.AddComponent<AudioSource>();
+                obj.name = "GlobalMusic";
+                globalMusicSource = obj.AddComponent<AudioSource>();
+                ResourceManager.instance.LoadAsync<AudioClip>("Audio/GlobalMusicSource/" + name, (clip) =>
+                {
+                    globalMusicSource.clip = clip;
+                    globalMusicSource.loop = true;
+                    globalMusicSource.volume = musicVolume;
+                    globalMusicSource.Play();
+                });
             }
-
-            ResourceManager.instance.LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) =>
-            {
-                BGM.clip = clip;
-                BGM.loop = true;
-                BGM.volume = BGMVolume;
-                BGM.Play();
-            });
-        }
-
-        public void ChangeBGMVolume(float v)
-        {
-            BGMVolume = v;
-            if (BGM == null)
-                return;
-            BGM.volume = BGMVolume;
-        }
-        public void PauseBGM()
-        {
-            if (BGM == null)
-                return;
-            BGM.Pause();
-        }
-        public void StopBGM()
-        {
-            if (BGM == null)
-                return;
-            BGM.Stop();
         }
 
         public void PlaySound(string name, UnityAction<AudioSource> callback)
         {
-            if (soundObj == null)
+            if (globalMusicSource != null)
             {
-                soundObj = new GameObject();
-                soundObj.name = "Sound";
+                globalMusicSource.Play();
             }
-            ResourceManager.instance.LoadAsync<AudioClip>("Audio/Sound/" + name, (clip) =>
+            else
             {
-                AudioSource source = soundObj.AddComponent<AudioSource>();
-                source.clip = clip;
-                source.volume = soundVolume;
-                source.Play();
-                soundList.Add(source);
-                if (callback != null)
-                    callback(source);
-            });
+                GlobalAudio = new GameObject();
+                GlobalAudio.name = "Sound";
+                ResourceManager.instance.LoadAsync<AudioClip>("Audio/Sound/" + name, (clip) =>
+                {
+                    AudioSource source = GlobalAudio.AddComponent<AudioSource>();
+                    source.clip = clip;
+                    source.volume = soundVolume;
+                    source.Play();
+                    soundList.Add(source);
+                    if (callback != null)
+                        callback(source);
+                });
+            }
+
+        }
+
+        public void ChangeMusicVolume(float v)
+        {
+            musicVolume = v;
+            if (globalMusicSource == null)
+                return;
+            globalMusicSource.volume = musicVolume;
         }
 
         public void ChangeSoundVolume(float v)
@@ -91,6 +87,25 @@ namespace GameKit
             for (int i = 0; i < soundList.Count; ++i)
                 soundList[i].volume = v;
         }
+
+        public void ChangeMasterVolume(float v)
+        {
+            ChangeSoundVolume(v);
+            ChangeMusicVolume(v);
+        }
+        public void PauseGlobalMusic()
+        {
+            if (globalMusicSource == null)
+                return;
+            globalMusicSource.Pause();
+        }
+        public void StopGlobalMusic()
+        {
+            if (globalMusicSource == null)
+                return;
+            globalMusicSource.Stop();
+        }
+
         public void StopSound(AudioSource source)
         {
             if (soundList.Contains(source))
@@ -99,6 +114,18 @@ namespace GameKit
                 source.Stop();
                 GameObject.Destroy(source);
             }
+        }
+
+        public void RegisterSound(AudioSource source)
+        {
+            if (!soundList.Contains(source))
+                soundList.Add(source);
+        }
+
+        public void RegisterMusic(AudioSource source)
+        {
+            if (globalMusicSource != null && !globalMusicSource.isPlaying)
+                globalMusicSource = source;
         }
 
         public List<AudioSource> GetSoundList()
