@@ -17,4 +17,7 @@ public static class EventConfig
     public static string E_StopStreak = "Enemy_StopStreak";
     public static string Game_Pase = "Game_Pase";
     public static string Game_End = "Game_End";
+
+    public static string SHOW_INTERACT_MESSAGE = "Show_Interact_Message";
+    public static string HIDE_INTERACT_MESSAGE = "Hide_Interact_Message";
 }
