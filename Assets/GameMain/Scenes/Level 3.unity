@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b9a82a2074a0469dad0a1974a9e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Skyline(Stage1)
+  eventID: Aquarium(Stage3)
   hitWindowRangeInMS: 80
   beatTravelTime: 2.5
   tracks:
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlayOnAwake: 0
-  koreography: {fileID: 11400000, guid: da4f595fa365b1d4fa93857977a0a683, type: 2}
+  koreography: {fileID: 11400000, guid: 8a8bd8e24cb8cd747b73f8f18ebc1a31, type: 2}
   targetKoreographer: {fileID: 0}
 --- !u!82 &2097212203
 AudioSource:

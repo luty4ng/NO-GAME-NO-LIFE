@@ -3788,7 +3788,7 @@ MonoBehaviour:
   rhythmController: {fileID: 1430573340}
   globalSoundSource: {fileID: 2067117460}
   protagonist: {fileID: 1905006964}
-  battleEnd: 0
+  finishScene: S_Select
 --- !u!82 &2067117460
 AudioSource:
   m_ObjectHideFlags: 0

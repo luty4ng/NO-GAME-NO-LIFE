@@ -520,10 +520,10 @@ MonoBehaviour:
   - mTextVal: D_Hit
   - mTextVal: A_Hit
   - mTextVal: A_Hit
-  - mTextVal: 'D_Streak '
+  - mTextVal: D_Streak
   - mTextVal: A_Hit
   - mTextVal: D_Hit
-  - mTextVal: 'D_Hit '
+  - mTextVal: D_Hit
   - mTextVal: A_Streak
   - mTextVal: A_Hit
   - mTextVal: D_Hit
@@ -570,7 +570,7 @@ MonoBehaviour:
   - mTextVal: D_Hit
   - mTextVal: A_Hit
   - mTextVal: D_Hit
-  - mTextVal: 'A_Hit '
+  - mTextVal: A_Hit
   - mTextVal: A_Hit
   - mTextVal: A_Hit
   - mTextVal: D_Hit
@@ -667,7 +667,7 @@ MonoBehaviour:
   - mTextVal: D_Hit
   - mTextVal: A_Hit
   - mTextVal: A_Hit
-  - mTextVal: 'D_Streak '
+  - mTextVal: D_Streak
   - mTextVal: A_Hit
   - mTextVal: A_Hit
   - mTextVal: D_Streak
@@ -699,7 +699,7 @@ MonoBehaviour:
   - mTextVal: D_Hit
   - mTextVal: A_Hit
   - mTextVal: D_Hit
-  - mTextVal: 'A_Hit '
+  - mTextVal: A_Hit
   - mTextVal: A_Hit
   - mTextVal: D_Hit
   - mTextVal: D_Hit
@@ -744,7 +744,7 @@ MonoBehaviour:
   - mTextVal: D_Streak
   - mTextVal: D_Hit
   - mTextVal: A_Hit
-  - mTextVal: 'D_Streak '
+  - mTextVal: D_Streak
   - mTextVal: D_Hit
   - mTextVal: A_Hit
   - mTextVal: A_Hit
