@@ -216,10 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHealth: {fileID: 904481319}
-  myVirtual: {fileID: 1866498865}
   enemyHealth: {fileID: 1784211344}
-  enemyVirtual: {fileID: 498467629}
-  reduceSpeed: 100
 --- !u!225 &67555351
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1524,7 +1521,7 @@ MonoBehaviour:
   LaneMask: {fileID: 751207527}
   hitterAnimator: {fileID: 0}
   trackEvents: []
-  isSpreaking: 0
+  isPlayerSpreaking: 0
   trackType: 0
 --- !u!1 &904481317
 GameObject:
@@ -2232,7 +2229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b9a82a2074a0469dad0a1974a9e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Skyline(Stage1)
+  eventID: Vice(FinalStage)
   hitWindowRangeInMS: 80
   beatTravelTime: 2.5
   tracks:
@@ -2376,7 +2373,7 @@ MonoBehaviour:
   LaneMask: {fileID: 1080255359}
   hitterAnimator: {fileID: 0}
   trackEvents: []
-  isSpreaking: 0
+  isPlayerSpreaking: 0
   trackType: 0
 --- !u!1 &1624531642
 GameObject:
@@ -2438,7 +2435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlayOnAwake: 0
-  koreography: {fileID: 11400000, guid: da4f595fa365b1d4fa93857977a0a683, type: 2}
+  koreography: {fileID: 11400000, guid: 818c9cce134c7eb4e8dcc4a589de9042, type: 2}
   targetKoreographer: {fileID: 0}
 --- !u!82 &1624531646
 AudioSource:
@@ -3032,6 +3029,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanelName: UI_Settings
   rhythmController: {fileID: 1430573340}
+  globalSoundSource: {fileID: 0}
+  protagonist: {fileID: 0}
+  finishScene: S_Select
 --- !u!1001 &6887526149842323751
 PrefabInstance:
   m_ObjectHideFlags: 0
