@@ -8,10 +8,16 @@ public class PopupController : MonoBehaviour
     public GameObject panel;  // the panel to be shown / hidden, should be inactive by default
     public string showEvent;  // the name of the event to triggers the popup
 
+    private AudioSource _audioSource;
     private bool _toShow;
 
     private void Start()
     {
+        var sources = GetComponents<AudioSource>();
+        if (sources.Length > 0)
+        {
+            _audioSource = sources[0];
+        }
         EventManager.instance.AddEventListener(showEvent, OnShowPanel);
     }
 
@@ -32,6 +38,7 @@ public class PopupController : MonoBehaviour
     {
         if (_toShow)
         {
+            _audioSource.Play();
             panel.SetActive(true);
             MapGlobals.DialogUIActive = true;
             _toShow = false;
