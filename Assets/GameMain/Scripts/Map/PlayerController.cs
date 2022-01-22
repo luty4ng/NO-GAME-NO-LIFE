@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _defaultScale = transform.localScale.x;
+        _defaultScale = transform.localScale.x;  // used for changing character direction
     }
 
     private void Update()
@@ -28,17 +28,28 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePlayerMovement()
     {
-        float direction = Input.GetAxisRaw("Horizontal");
-        _rigidbody2D.velocity = new Vector2(speed * direction, 0);
-        if (direction != 0)
+        if (MapGlobalStatus.DialogUIActive)
         {
-            float newXScale = _defaultScale * direction;
-            transform.localScale = new Vector3(newXScale, _defaultScale, 1);
-            _animator.SetTrigger("Walk");
+            _rigidbody2D.velocity = new Vector2(0, 0);
         }
         else
         {
-            _animator.SetTrigger("Stand");
+            float direction = Input.GetAxisRaw("Horizontal");  // get input direction
+            _rigidbody2D.velocity = new Vector2(speed * direction, 0);  // set horizontal movement
+            if (direction != 0)
+            {
+                // change face direction
+                float newXScale = _defaultScale * direction;
+                transform.localScale = new Vector3(newXScale, _defaultScale, 1);
+            
+                // trigger animation
+                _animator.SetTrigger("Walk");
+            }
+            else
+            {
+                // trigger animation
+                _animator.SetTrigger("Stand");
+            }
         }
     }
     
@@ -47,7 +58,7 @@ public class PlayerController : MonoBehaviour
         Interactable interactableComponent = other.GetComponent<Interactable>();
         if (interactableComponent != null)
         {
-            EventManager.instance.EventTrigger<string>(EventConfig.SHOW_INTERACT_MESSAGE, interactableComponent.message);
+            EventManager.instance.EventTrigger<Interactable>(EventConfig.SHOW_INTERACT_MESSAGE, interactableComponent);
 
             // colliders.Add(other);
             // if (colliders.Count == 1)

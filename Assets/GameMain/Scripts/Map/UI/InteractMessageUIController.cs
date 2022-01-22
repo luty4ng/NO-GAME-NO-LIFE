@@ -6,21 +6,36 @@ using UnityEngine.UI;
 public class InteractMessageUIController : MonoBehaviour
 {
     public GameObject interactMessagePanel;
+
+    private Interactable _currentInteractable;
     
     private void Start()
     {
-        EventManager.instance.AddEventListener<string>(EventConfig.SHOW_INTERACT_MESSAGE, ShowInteractMessage);
+        EventManager.instance.AddEventListener<Interactable>(EventConfig.SHOW_INTERACT_MESSAGE, ShowInteractMessage);
         EventManager.instance.AddEventListener(EventConfig.HIDE_INTERACT_MESSAGE, HideInteractMessage);
     }
 
-    private void ShowInteractMessage(string message)
+    private void ShowInteractMessage(Interactable interactable)
     {
         interactMessagePanel.gameObject.SetActive(true);
-        GetComponentInChildren<Text>().text = message;
+        GetComponentInChildren<Text>().text = interactable.message;
+        _currentInteractable = interactable;
     }
     
     private void HideInteractMessage()
     {
         interactMessagePanel.gameObject.SetActive(false);
+        _currentInteractable = null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (_currentInteractable != null)
+            {
+                _currentInteractable.Action();
+            }
+        }
     }
 }
