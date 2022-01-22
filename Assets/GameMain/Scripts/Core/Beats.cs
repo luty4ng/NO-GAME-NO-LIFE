@@ -163,6 +163,7 @@ public class Beats : MonoBehaviour
     {
         OnVisualUpdate();
         animator.SetTrigger("Collapse");
+        // trackController.isPlayerSpreaking = false;
         trackController.hitterAnimator.SetTrigger("Hit");
         // trackController.LaneMask.enabled = false;
         if (!IsStreak && IsAttack)
@@ -202,17 +203,18 @@ public class Beats : MonoBehaviour
         if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
+            EventManager.instance.EventTrigger(EventConfig.E_StopLoop); 
         }
-        else if (IsStreak && !IsAttack)
+        else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
             EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
+            
         }
+        trackController.hitterAnimator.SetTrigger("UnHold");
         trackController.isPlayerSpreaking = false;
         trackController.LaneMask.enabled = false;
-        trackController.hitterAnimator.SetTrigger("UnHold");
         isEnemyStreak = false;
         canvasGroup.alpha = 0;
     }
@@ -225,13 +227,13 @@ public class Beats : MonoBehaviour
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
             EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
         }
-        else if (IsStreak && !IsAttack)
+        else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
-            EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
+            EventManager.instance.EventTrigger(EventConfig.P_StopLoop);       
         }
-        trackController.isPlayerSpreaking = false;
         trackController.hitterAnimator.SetTrigger("UnHold");
+        trackController.isPlayerSpreaking = false;
     }
 
     public void OnPlayerStreakUpdate()

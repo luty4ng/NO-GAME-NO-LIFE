@@ -15,10 +15,14 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Level_2_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 2.unity"); }
     [MenuItem("Scenes/Level 3")]
     public static void Assets_GameMain_Scenes_Level_3_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 3.unity"); }
+    [MenuItem("Scenes/Level 4")]
+    public static void Assets_GameMain_Scenes_Level_4_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 4.unity"); }
     [MenuItem("Scenes/Level_HitTest")]
     public static void Assets_GameMain_Scenes_Level_HitTest_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_HitTest.unity"); }
     [MenuItem("Scenes/Level_Test")]
     public static void Assets_GameMain_Scenes_Level_Test_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_Test.unity"); }
+    [MenuItem("Scenes/Map 1")]
+    public static void Assets_GameMain_Scenes_Map_1_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 1.unity"); }
     [MenuItem("Scenes/S_Menu")]
     public static void Assets_GameMain_Scenes_S_Menu_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Menu.unity"); }
     [MenuItem("Scenes/S_Procedure")]
