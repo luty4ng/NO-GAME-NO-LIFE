@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private float _defaultScale;
-
-    private List<Collision2D> colliders = new List<Collision2D>();
     
     private void Start()
     {
@@ -34,7 +32,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float direction = Input.GetAxisRaw("Horizontal");  // get input direction
+            var direction = Input.GetAxisRaw("Horizontal");  // get input direction
             _rigidbody2D.velocity = new Vector2(speed * direction, 0);  // set horizontal movement
             if (direction != 0)
             {

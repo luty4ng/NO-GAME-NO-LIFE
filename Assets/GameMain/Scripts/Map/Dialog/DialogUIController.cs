@@ -78,7 +78,6 @@ public class DialogUIController : MonoBehaviour
             if (phase.Type == BattleEntry.PhaseType)
             {
                 _switchScene = ((BattleEntry) phase).BattleScene;
-                Debug.Log(_switchScene);
                 SetShowButtons(true);
             }
             else
@@ -116,28 +115,32 @@ public class DialogUIController : MonoBehaviour
         cancelButton.SetActive(show);
     }
 
-    private void LateUpdate()
+    private void AttemptSwitchScene()
+    {
+        if (_switchScene != null)
+        {
+            Scheduler.instance.SwitchSceneSwipe(_switchScene);
+        }
+    }
+
+    private void LateUpdate()  // use late to make sure this happens after possible new feed
     {
         if (_currentList != null)
         {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                AttemptSwitchScene();
+            }
             if (Input.GetKeyDown(KeyCode.L))
             {
                 DisplayNext();
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Debug.Log(_switchScene);
-                if (_switchScene != null)
-                {
-                    MapRegulator.current.SwitchSceneSwipe(_switchScene);
-                }
             }
         }
     }
 
     public void OnConfirmButtonClicked()
     {
-        
+        AttemptSwitchScene();
     }
     
     public void OnCancelButtonClicked()

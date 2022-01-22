@@ -3,7 +3,7 @@ using GameKit;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractMessageUIController : MonoBehaviour
+public class InteractMessageUIController : MonoBehaviour  // this class is temporarily not in use
 {
     public GameObject interactMessagePanel;
 
