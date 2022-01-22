@@ -23,6 +23,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     private void Start()
     {
+        Timer.isPause = false;
         globalSoundSource = GetComponent<AudioSource>();
         globalMusicSource = rhythmController.audioCom;
         globalMusicSource.volume = 1;
@@ -31,7 +32,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void Pause()
     {
-        MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.GAME_PAUSE);
+        PlaySoundClip(audioMono.GAME_PAUSE);
         GetUI(pausePanelName).Show();
         Timer.isPause = true;
         EventManager.instance.EventTrigger<bool>(EventConfig.Game_Pase, true);
@@ -39,7 +40,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void Continue()
     {
-        MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.GAME_CONT);
+        PlaySoundClip(audioMono.GAME_CONT);
         GetUI(pausePanelName).Hide();
         Timer.isPause = false;
         EventManager.instance.EventTrigger<bool>(EventConfig.Game_Pase, false);
@@ -73,11 +74,12 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void BattleEnding()
     {
+        Debug.Log(Timer.isPause);
         if (Timer.isPause)
             return;
         if (battleEnd)
             return;
-        if (rhythmController.MuiscStartPlay && !rhythmController.audioCom.isPlaying)
+        if (rhythmController.MuiscStartPlay && !rhythmController.audioCom.isPlaying && !Timer.isPause)
         {
             Debug.Log(UIManager.instance.GetPanel<UI_Ending>("UI_Ending"));
             bool isWin = (protagonist.Health > protagonist.enemy.Health);
@@ -87,7 +89,6 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
             StartCoroutine(DelayedExcute(() =>
             {
                 UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Hide();
-                // Pause();
                 if (isWin)
                     MusicBattleRegulator.current.SwitchSceneSwipe(finishScene);
                 else

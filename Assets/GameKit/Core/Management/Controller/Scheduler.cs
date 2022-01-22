@@ -33,7 +33,6 @@ namespace GameKit
 
         public void SwitchSceneSwipe(string name, UnityAction callback = null)
         {
-            Timer.isPause = false;
             swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
             {
                 LoadSceneAsyn(name, () =>
@@ -53,7 +52,6 @@ namespace GameKit
 
         public void SwitchScene(string name, UnityAction callback = null)
         {
-            Timer.isPause = false;
             LoadSceneAsyn(name, () =>
             {
                 currentScene = name;
@@ -63,7 +61,6 @@ namespace GameKit
 
         public void ReloadCurrentSceneSwipe()
         {
-            Timer.isPause = false;
             swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
             {
                 UnloadSceneAsyn(currentScene, () =>
