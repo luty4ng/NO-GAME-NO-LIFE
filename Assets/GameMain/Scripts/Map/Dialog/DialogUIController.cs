@@ -39,6 +39,10 @@ public class DialogUIController : MonoBehaviour
     public GameObject confirmButton;
     public GameObject cancelButton;
 
+    private AudioSource[] _audioSources;
+    private AudioSource GetClickOpenSource() => _audioSources[0];
+    private AudioSource GetPageFlipSource() => _audioSources[1];
+    
     private List<Phase> _currentList;
     private int _currentIndex;
     private string _switchScene = null;
@@ -49,6 +53,8 @@ public class DialogUIController : MonoBehaviour
         _windowAnimator = window.GetComponent<Animator>();
         _leftImageController = new ImageController(leftImage);
         _rightImageController = new ImageController(rightImage);
+
+        _audioSources = GetComponents<AudioSource>();
         
         EventManager.instance.AddEventListener<List<Phase>>(EventConfig.SHOW_DIALOG, ShowDialog);
     }
@@ -62,6 +68,7 @@ public class DialogUIController : MonoBehaviour
     {
         if (_currentList == null)
         {
+            GetClickOpenSource().Play();
             _currentList = phases;
             _currentIndex = 0;
             SetDialogActive(true);
@@ -72,6 +79,10 @@ public class DialogUIController : MonoBehaviour
 
     private void DisplayNext()
     {
+        if (_currentIndex != 0)  // avoid play together with ClickOpen effect
+        {
+            GetPageFlipSource().Play();
+        }
         if (_currentIndex < _currentList.Count)
         {
             var phase = _currentList[_currentIndex];
