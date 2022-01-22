@@ -49,7 +49,13 @@ public class DialogUIController : MonoBehaviour
         _windowAnimator = window.GetComponent<Animator>();
         _leftImageController = new ImageController(leftImage);
         _rightImageController = new ImageController(rightImage);
+        
         EventManager.instance.AddEventListener<List<Phase>>(EventConfig.SHOW_DIALOG, ShowDialog);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.RemoveEventListener<List<Phase>>(EventConfig.SHOW_DIALOG, ShowDialog);
     }
 
     private void ShowDialog(List<Phase> phases)
