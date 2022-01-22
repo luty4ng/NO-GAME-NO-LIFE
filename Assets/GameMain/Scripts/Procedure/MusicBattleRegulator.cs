@@ -74,7 +74,6 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void BattleEnding()
     {
-        Debug.Log(Timer.isPause);
         if (Timer.isPause)
             return;
         if (battleEnd)

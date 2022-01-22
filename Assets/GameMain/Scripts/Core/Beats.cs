@@ -184,7 +184,8 @@ public class Beats : MonoBehaviour
         OnVisualUpdate();
         trackController.isPlayerSpreaking = true;
         trackController.LaneMask.enabled = true;
-        trackController.hitterAnimator.SetTrigger("Hold");
+        // trackController.hitterAnimator.SetTrigger("Hold");
+        trackController.hitterAnimator.SetBool("Streaking", true);
 
         if (IsStreak && IsAttack)
         {
@@ -211,7 +212,7 @@ public class Beats : MonoBehaviour
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense); 
         }
         EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
-        trackController.hitterAnimator.SetTrigger("UnHold");
+        trackController.hitterAnimator.SetBool("Streaking", false);
         trackController.isPlayerSpreaking = false;
         trackController.LaneMask.enabled = false;
         isEnemyStreak = false;
@@ -231,7 +232,7 @@ public class Beats : MonoBehaviour
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
         EventManager.instance.EventTrigger(EventConfig.P_StopLoop);  
-        trackController.hitterAnimator.SetTrigger("UnHold");
+        trackController.hitterAnimator.SetBool("Streaking", false);
         trackController.isPlayerSpreaking = false;
     }
 
