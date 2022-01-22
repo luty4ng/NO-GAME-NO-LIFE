@@ -208,10 +208,9 @@ public class Beats : MonoBehaviour
         else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
-            EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
-            
+            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense); 
         }
+        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetTrigger("UnHold");
         trackController.isPlayerSpreaking = false;
         trackController.LaneMask.enabled = false;
@@ -230,8 +229,8 @@ public class Beats : MonoBehaviour
         else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
-            EventManager.instance.EventTrigger(EventConfig.P_StopLoop);       
         }
+        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);  
         trackController.hitterAnimator.SetTrigger("UnHold");
         trackController.isPlayerSpreaking = false;
     }
