@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 21300000, guid: 72e1b8a91527140a0abe5291a7617ce2, type: 3}
-  guardianSprite: {fileID: 21300000, guid: 0bf49c3d024064bf8bc39247c28d5655, type: 3}
+  dogSprite: {fileID: 21300000, guid: 0bf49c3d024064bf8bc39247c28d5655, type: 3}
 --- !u!4 &1945411009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1008522869320520391, guid: f2637111d9510442982c48d29c16219e, type: 3}
