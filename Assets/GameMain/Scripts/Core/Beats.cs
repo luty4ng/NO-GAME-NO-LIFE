@@ -26,6 +26,7 @@ public class Beats : MonoBehaviour
     float damageMultipier = 1;
     bool isEnemyStreak = false;
     bool hasCheckMiss = false;
+    bool hasHitAttack = false;
 
     public bool IsStreak
     {
@@ -53,15 +54,17 @@ public class Beats : MonoBehaviour
 
     private void Update()
     {
-        // Debug.Log(IsBeatSpreakable() && !IsAttack && IsStreak);
         if (IsBeatSpreakable() && !IsAttack && IsStreak && !isEnemyStreak)
         {
             isEnemyStreak = true;
             EventManager.instance.EventTrigger(EventConfig.E_Streak);
         }
 
-        if (IsBeatHittable() && !IsAttack && !IsStreak)
+        if (IsBeatHittable() && !IsAttack && !IsStreak && !hasHitAttack)
+        {
             EventManager.instance.EventTrigger(EventConfig.E_Attack);
+            hasHitAttack = true;
+        }
     }
     public void Initialize(KoreographyEvent evt, TrackController trackCtrl, RhythmController rhythmCtrl)
     {
@@ -137,6 +140,8 @@ public class Beats : MonoBehaviour
         bool isMiss = (curTime - startTime > hitWindow);
         if (!IsStreak)
         {
+            if (isMiss)
+                hasHitAttack = false;
             return isMiss;
         }
         else
@@ -163,7 +168,7 @@ public class Beats : MonoBehaviour
     {
         OnVisualUpdate();
         animator.SetTrigger("Collapse");
-        // trackController.isPlayerSpreaking = false;
+        hasHitAttack = false;
         trackController.hitterAnimator.SetTrigger("Hit");
         // trackController.LaneMask.enabled = false;
         if (!IsStreak && IsAttack)
@@ -204,12 +209,12 @@ public class Beats : MonoBehaviour
         if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.E_StopLoop); 
+            EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
         }
         else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
             EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense); 
+            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
         EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetBool("Streaking", false);
@@ -231,7 +236,7 @@ public class Beats : MonoBehaviour
         {
             EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
-        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);  
+        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetBool("Streaking", false);
         trackController.isPlayerSpreaking = false;
     }
