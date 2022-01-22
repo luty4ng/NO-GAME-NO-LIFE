@@ -8,7 +8,7 @@ public class Protagonist : BattleEntity
     private Image healthBar;
     public float initHealth = 1000;
     public BattleEntity enemy;
-    private bool isLoop = false;
+    [SerializeField] private bool isLoop = false;
     protected override void Initialize()
     {
         healthBar = GameObject.Find("MyHealth").GetComponent<Image>();
