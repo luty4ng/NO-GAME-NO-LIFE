@@ -21,8 +21,12 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Level_HitTest_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_HitTest.unity"); }
     [MenuItem("Scenes/Level_Test")]
     public static void Assets_GameMain_Scenes_Level_Test_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_Test.unity"); }
-    [MenuItem("Scenes/Map 1")]
-    public static void Assets_GameMain_Scenes_Map_1_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 1.unity"); }
+    [MenuItem("Scenes/Map 1 Inner")]
+    public static void Assets_GameMain_Scenes_Map_1_Inner_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 1 Inner.unity"); }
+    [MenuItem("Scenes/Map 1 Outer")]
+    public static void Assets_GameMain_Scenes_Map_1_Outer_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 1 Outer.unity"); }
+    [MenuItem("Scenes/Map 2 Inner")]
+    public static void Assets_GameMain_Scenes_Map_2_Inner_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 2 Inner.unity"); }
     [MenuItem("Scenes/S_Menu")]
     public static void Assets_GameMain_Scenes_S_Menu_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Menu.unity"); }
     [MenuItem("Scenes/S_Procedure")]

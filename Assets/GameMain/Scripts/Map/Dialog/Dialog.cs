@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Dialog : Phase
 {
-    public Dialog(string text) : base("Dialog")
+    public static string PhaseType = "Dialog";
+    public Dialog(string text) : base(PhaseType)
     {
         Text = text;
     }

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePlayerMovement()
     {
-        if (MapGlobalStatus.DialogUIActive)
+        if (MapGlobals.DialogUIActive)
         {
             _rigidbody2D.velocity = new Vector2(0, 0);
         }
@@ -50,40 +50,6 @@ public class PlayerController : MonoBehaviour
                 // trigger animation
                 _animator.SetTrigger("Stand");
             }
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
-        if (interactableComponent != null)
-        {
-            EventManager.instance.EventTrigger<Interactable>(EventConfig.SHOW_INTERACT_MESSAGE, interactableComponent);
-
-            // colliders.Add(other);
-            // if (colliders.Count == 1)
-            // {
-            //     EventManager.instance.EventTrigger<string>(EventConfig.SHOW_INTERACT_MESSAGE, interactableComponent.message);
-            // }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
-        if (interactableComponent != null)
-        {
-            EventManager.instance.EventTrigger(EventConfig.HIDE_INTERACT_MESSAGE);
-            // if (other == colliders[0])
-            // {
-            //     EventManager.instance.EventTrigger(EventConfig.HIDE_INTERACT_MESSAGE);
-            // }
-            // else
-            // {
-            //     EventManager.instance.EventTrigger<string>(EventConfig.SHOW_INTERACT_MESSAGE, interactableComponent.message);
-            // }
-            //
-            // colliders.Remove(other);
         }
     }
 }

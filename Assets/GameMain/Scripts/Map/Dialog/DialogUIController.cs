@@ -4,6 +4,28 @@ using GameKit;
 using UnityEngine;
 using UnityEngine.UI;
 
+class ImageController
+{
+    private Image _imageComponent;
+    public ImageController(GameObject imageObject)
+    {
+        _imageComponent = imageObject.GetComponent<Image>();
+    }
+
+    public void SetImage(Sprite sprite)
+    {
+        if (sprite != null)
+        {
+            _imageComponent.enabled = true;
+            _imageComponent.sprite = sprite;
+        }
+        else
+        {
+            _imageComponent.enabled = false;
+        }
+    }
+}
+
 public class DialogUIController : MonoBehaviour
 {
     public GameObject window;
@@ -14,34 +36,16 @@ public class DialogUIController : MonoBehaviour
     private ImageController _rightImageController;
     public GameObject text;
     public GameObject overlay;
+    public GameObject confirmButton;
+    public GameObject cancelButton;
 
     private List<Phase> _currentList;
     private int _currentIndex;
-    
-    private class ImageController
-    {
-        private Image _imageComponent;
-        public ImageController(GameObject imageObject)
-        {
-            _imageComponent = imageObject.GetComponent<Image>();
-        }
+    private string _switchScene = null;
 
-        public void SetImage(Sprite sprite)
-        {
-            if (sprite != null)
-            {
-                _imageComponent.enabled = true;
-                _imageComponent.sprite = sprite;
-            }
-            else
-            {
-                _imageComponent.enabled = false;
-            }
-        }
-    }
-    
     private void Start()
     {
+        window.SetActive(true);  // to aid debugging, window is often set to inactive during development
         _windowAnimator = window.GetComponent<Animator>();
         _leftImageController = new ImageController(leftImage);
         _rightImageController = new ImageController(rightImage);
@@ -56,7 +60,7 @@ public class DialogUIController : MonoBehaviour
             _currentIndex = 0;
             SetDialogActive(true);
             _windowAnimator.SetTrigger("Show");
-            MapGlobalStatus.DialogUIActive = true;
+            MapGlobals.DialogUIActive = true;
         }
     }
 
@@ -66,15 +70,29 @@ public class DialogUIController : MonoBehaviour
         {
             var phase = _currentList[_currentIndex];
             _currentIndex += 1;
+            
             text.GetComponent<Text>().text = phase.Text;
             _leftImageController.SetImage(phase.LeftImage);
             _rightImageController.SetImage(phase.RightImage);
+            
+            if (phase.Type == BattleEntry.PhaseType)
+            {
+                _switchScene = ((BattleEntry) phase).BattleScene;
+                Debug.Log(_switchScene);
+                SetShowButtons(true);
+            }
+            else
+            {
+                _switchScene = null;
+                SetShowButtons(false);
+            }
         }
         else
         {
+            _switchScene = null;
             _currentList = null;
             SetDialogActive(false);
-            MapGlobalStatus.DialogUIActive = false;
+            MapGlobals.DialogUIActive = false;
         }
     }
 
@@ -85,13 +103,45 @@ public class DialogUIController : MonoBehaviour
         text.SetActive(active);
         overlay.SetActive(active);
         window.GetComponent<Animator>().SetTrigger(active ? "Show" : "Hide");
+        if (active == false)  // only disable buttons when close
+        {
+            confirmButton.SetActive(false);
+            cancelButton.SetActive(false);
+        }
+    }
+
+    private void SetShowButtons(bool show)
+    {
+        confirmButton.SetActive(show);
+        cancelButton.SetActive(show);
     }
 
     private void LateUpdate()
     {
-        if (_currentList != null && Input.GetKeyDown(KeyCode.L))
+        if (_currentList != null)
         {
-            DisplayNext();
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                DisplayNext();
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Debug.Log(_switchScene);
+                if (_switchScene != null)
+                {
+                    MapRegulator.current.SwitchSceneSwipe(_switchScene);
+                }
+            }
         }
+    }
+
+    public void OnConfirmButtonClicked()
+    {
+        
+    }
+    
+    public void OnCancelButtonClicked()
+    {
+        DisplayNext();
     }
 }

@@ -18,7 +18,7 @@ public class InteractMessageUIController : MonoBehaviour
     private void ShowInteractMessage(Interactable interactable)
     {
         interactMessagePanel.gameObject.SetActive(true);
-        GetComponentInChildren<Text>().text = interactable.message;
+        // GetComponentInChildren<Text>().text = interactable.message;
         _currentInteractable = interactable;
     }
     

@@ -1,11 +1,12 @@
+using GameKit;
 using UnityEngine;
 
 public class Portal : Interactable
 {
     public string sceneName;
     
-    public override void Action()
+    public override void OnEnter()
     {
-        MapRegulator.current.SwitchSceneSwipe(sceneName);
+        Scheduler.instance.SwitchSceneSwipe(sceneName);
     }
 }
