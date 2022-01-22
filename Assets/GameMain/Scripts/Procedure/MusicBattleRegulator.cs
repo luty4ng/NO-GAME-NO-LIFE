@@ -1,6 +1,5 @@
 using UnityEngine;
 using GameKit;
-
 public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 {
     public string pausePanelName = "UI_Settings";
@@ -9,6 +8,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     public Protagonist protagonist;
     public string finishScene = "S_Select";
     private AudioSource globalMusicSource;
+    public AudioMono audioMono;
     private bool battleEnd = false;
     private void CheckPause()
     {
@@ -31,6 +31,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void Pause()
     {
+        MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.GAME_PAUSE);
         GetUI(pausePanelName).Show();
         Timer.isPause = true;
         EventManager.instance.EventTrigger<bool>(EventConfig.Game_Pase, true);
@@ -38,6 +39,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void Continue()
     {
+        MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.GAME_CONT);
         GetUI(pausePanelName).Hide();
         Timer.isPause = false;
         EventManager.instance.EventTrigger<bool>(EventConfig.Game_Pase, false);
@@ -86,11 +88,19 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
             {
                 UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Hide();
                 // Pause();
-                if(isWin)
+                if (isWin)
                     MusicBattleRegulator.current.SwitchSceneSwipe(finishScene);
                 else
                     Pause();
             }, 5f));
         }
+    }
+
+    public void PlaySoundClip(AudioClip clip)
+    {
+        if (globalSoundSource.isPlaying)
+            globalSoundSource.Stop();
+        globalSoundSource.clip = clip;
+        globalSoundSource.Play();
     }
 }

@@ -22,6 +22,7 @@ public sealed class UI_Ending : UIGroup
     public override void Show(UnityAction callback = null)
     {
         CheckWin();
+        
         canvasGroup.alpha = 1;
         this.transform.localScale = Vector3.one * 0.5f;
         this.transform.DOScale(Vector3.one, 0.5f);
@@ -43,8 +44,14 @@ public sealed class UI_Ending : UIGroup
     private void CheckWin()
     {
         if (isWin)
+        {
+            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.BATTLE_WIN);
             victory.SetActive(true);
+        }
         else
+        {
+            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.BATTLE_LOST);
             defeat.SetActive(true);
+        }
     }
 }
