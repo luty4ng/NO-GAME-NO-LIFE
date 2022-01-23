@@ -31,6 +31,12 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Map_2_Outer_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 2 Outer.unity"); }
     [MenuItem("Scenes/Map 3 Inner")]
     public static void Assets_GameMain_Scenes_Map_3_Inner_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 3 Inner.unity"); }
+    [MenuItem("Scenes/Map 3 Outer")]
+    public static void Assets_GameMain_Scenes_Map_3_Outer_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 3 Outer.unity"); }
+    [MenuItem("Scenes/Map 4 Inner")]
+    public static void Assets_GameMain_Scenes_Map_4_Inner_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 4 Inner.unity"); }
+    [MenuItem("Scenes/Map 4 Outer")]
+    public static void Assets_GameMain_Scenes_Map_4_Outer_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 4 Outer.unity"); }
     [MenuItem("Scenes/S_Menu")]
     public static void Assets_GameMain_Scenes_S_Menu_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Menu.unity"); }
     [MenuItem("Scenes/S_Procedure")]
