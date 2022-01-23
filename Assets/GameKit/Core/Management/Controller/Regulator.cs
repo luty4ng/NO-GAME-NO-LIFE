@@ -11,13 +11,7 @@ namespace GameKit
         public static T current;
         private void Awake()
         {
-            if (current == null)
-                current = this as T;
-        }
-
-        private void OnDestroy()
-        {
-            current = default(T);
+            current = this as T;
         }
 
         public void Quit()

@@ -73,7 +73,7 @@ public class DialogUIController : MonoBehaviour
             _currentIndex = 0;
             SetDialogActive(true);
             _windowAnimator.SetTrigger("Show");
-            MapGlobals.DialogUIActive = true;
+            MapRegulator.current.DialogIn();
         }
     }
 
@@ -108,7 +108,7 @@ public class DialogUIController : MonoBehaviour
             _switchScene = null;
             _currentList = null;
             SetDialogActive(false);
-            MapGlobals.DialogUIActive = false;
+            MapRegulator.current.DialogOut();
         }
     }
 
@@ -142,7 +142,7 @@ public class DialogUIController : MonoBehaviour
 
     private void LateUpdate()  // use late to make sure this happens after possible new feed
     {
-        if (_currentList != null)
+        if (!MapGlobals.GamePaused && _currentList != null)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {

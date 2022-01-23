@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Portal : Interactable
 {
-    public string sceneName;
-
     private AudioSource _audioSource;
 
     private void Start()
@@ -20,6 +18,5 @@ public class Portal : Interactable
     public override void OnEnter()
     {
         _audioSource?.Play();
-        Scheduler.instance.SwitchSceneSwipe(sceneName);
     }
 }

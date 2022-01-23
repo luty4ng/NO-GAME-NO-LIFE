@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameMain/Scenes/S_Procedure.unity
     guid: 6d652a1357b896648a2614563c4ddace
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameKit/Core/UGUI/Demo/Demo_UI.unity
     guid: 2abebf3f9f5a3564780ebfc27ace7e36
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameKit/Prototype/CharacterControl/TopdownMove/Scene/Demo_TopdownMove.unity
     guid: 1beb8c4e8c3a18948923435210f20fda
   - enabled: 1
@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameMain/Scenes/Level 4.unity
     guid: 23a79c3f6bdf5634fa5cb42d017ce3a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Level_HitTest.unity
     guid: 1f4c4d1c47f5024449f6778cd516475a
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Level_Test.unity
     guid: 6c958da837f99d54ebc20f01cfbd3485
   - enabled: 1
@@ -45,39 +45,54 @@ EditorBuildSettings:
     path: Assets/GameMain/Scenes/Map 2 Outer.unity
     guid: 44cdde9fad5e1464b9aa88d9c235317b
   - enabled: 1
+    path: Assets/GameMain/Scenes/Map 3 Inner.unity
+    guid: 42336cd2ebfe0431995838d493f88922
+  - enabled: 1
+    path: Assets/GameMain/Scenes/Map 3 Outer.unity
+    guid: 0ab20ef3a6cfd4235a36af3b92f6a09f
+  - enabled: 1
+    path: Assets/GameMain/Scenes/Map 4 Inner.unity
+    guid: 29f28517a0794579a49bfac28c092f4b
+  - enabled: 1
+    path: Assets/GameMain/Scenes/Map 4 Outer.unity
+    guid: bfb6c1f71b60546c7a78697058862b07
+  - enabled: 0
     path: Assets/GameMain/Scenes/S_Menu.unity
     guid: b9374986be6e4c8488c8121429dceaee
   - enabled: 1
+    path: Assets/GameMain/Scenes/S_Menu_New.unity
+    guid: 1f64dcf703a9c4baa83580c9736a92d6
+  - enabled: 0
     path: Assets/Externals/Modern UI Pack/Scenes/Demo.unity
     guid: ac2a90141e0c9e94a9da39fbf04d5580
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/S_Select.unity
     guid: bcdda5d18c5adb4479cd62d5099139c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Rhythm Game Demo/Scenes/RhythmGame.unity
     guid: bd61fba363f9344808c9869b456519a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo1.unity
     guid: 1b4e56fd579ff41fa8716d98f6578f21
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo2.unity
     guid: ec9fd5fe2560e457bab78f7f49a5aaf4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo3.unity
     guid: 70690d7de2e6240c692f9ad1525b77ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo4.unity
     guid: f646be9c42a604dbfa0749524a2b3356
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo5.unity
     guid: a449b71514bc945ba9de2272e2af6f5f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/Demo6.unity
     guid: e2e75190d5aaa4fb4b87495789e61241
-  - enabled: 1
+  - enabled: 0
     path: Assets/Koreographer/Demos/Scenes/FullDemo.unity
     guid: f8b1122ade5a94ed7a8e3965959b5b5a
-  - enabled: 1
+  - enabled: 0
     path: Assets/QuickStart/Scenes/QuickStart_Koreographer.unity
     guid: 38cd2a2dddce72444a812bf5539ff782
   m_configObjects: {}

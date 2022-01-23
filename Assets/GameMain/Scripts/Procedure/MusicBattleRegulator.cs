@@ -6,7 +6,9 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     public RhythmController rhythmController;
     public AudioSource globalSoundSource;
     public Protagonist protagonist;
-    public string finishScene = "S_Select";
+    public string lastScene;
+    public string finishScene;
+    public int levelClear;
     private AudioSource globalMusicSource;
     public AudioMono audioMono;
     private bool battleEnd = false;
@@ -89,11 +91,27 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
             {
                 UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Hide();
                 if (isWin)
-                    MusicBattleRegulator.current.SwitchSceneSwipe(finishScene);
+                    CompleteLevel();
                 else
                     Pause();
             }, 5f));
         }
+    }
+
+    public void ReturnToPrevious()
+    {
+        current.SwitchSceneSwipe(lastScene);
+    }
+
+    public void CompleteLevel()
+    {
+        MapGlobals.CurrentLevel = levelClear;
+        current.SwitchSceneSwipe(finishScene);
+    }
+
+    public void ReturnToMain()
+    {
+        MapGlobals.SwitchToMain();
     }
 
     public void PlaySoundClip(AudioClip clip)
