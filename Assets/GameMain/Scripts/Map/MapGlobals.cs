@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class MapGlobals
 {
+    public static bool GamePaused = false;
+    
     private static readonly string GAME_SAVE_LOCATION = "GameSave";
     private static readonly string CURRENT_LEVEL_KEY = "CurrentLevel";
     private static readonly int DEFAULT_LEVEL = 0;  // the level that the player have went through (0-4)
-    
-    public static bool DialogUIActive = false;
+
+    private static int _dialogUICount = 0;
+    public static bool DialogUIActive => _dialogUICount > 0;
+    public static void DialogIn() => _dialogUICount += 1;
+    public static void DialogOut() => _dialogUICount -= 1;
+    public static void ReportDialogSetActive(bool active) => _dialogUICount += active ? 1 : -1;
 
     public static void FeedDialog(List<Phase> phases)
     {

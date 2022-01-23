@@ -40,13 +40,13 @@ public class PopupController : MonoBehaviour
         {
             _audioSource.Play();
             panel.SetActive(true);
-            MapGlobals.DialogUIActive = true;
+            MapGlobals.DialogIn();
             _toShow = false;
         }
         else if (panel.activeSelf && Input.GetKeyDown(KeyCode.L))
         {
             panel.SetActive(false);
-            MapGlobals.DialogUIActive = false;
+            MapGlobals.DialogOut();
         }
     }
 }
