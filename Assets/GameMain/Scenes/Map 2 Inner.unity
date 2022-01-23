@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae476f9742874615a508205e3c889a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSprite: {fileID: 0}
-  monsterSprite: {fileID: 0}
+  playerSprite: {fileID: 21300000, guid: 72e1b8a91527140a0abe5291a7617ce2, type: 3}
+  monsterSprite: {fileID: 21300000, guid: e60ca3128c2ea4f11a3fd7e0313283e9, type: 3}
 --- !u!61 &1255137087
 BoxCollider2D:
   m_ObjectHideFlags: 0
