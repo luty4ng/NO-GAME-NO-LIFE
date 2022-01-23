@@ -1,17 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardianCharacter : Character
+public class GuardianCharacter : DialogCharacter
 {
     public Sprite playerSprite;
     public Sprite guardianSprite;
 
-    public override void Action()
+    public override void AddFirstTimePhases(List<Phase> phases)
     {
-        var phases = new List<Phase>();
-        phases.Add(new Dialog("咱不废话了，直接开打吧。").SetRightImage(guardianSprite));
-        phases.Add(new Dialog("行。").SetLeftImage(playerSprite));
-        phases.Add(new BattleEntry("是否接受战斗？", "Level 3").SetRightImage(guardianSprite));
-        MapGlobals.FeedDialog(phases);
+        phases.Add(new Dialog("你——不应该——在这里").SetRightImage(guardianSprite));
+        phases.Add(new Dialog("禁止——通过——").SetRightImage(guardianSprite));
+        phases.Add(new Dialog("必须——守护...").SetRightImage(guardianSprite));
+    }
+
+    public override void AddRepeatPhases(List<Phase> phases)
+    {
+        phases.Add(new Dialog("这———都是为了你好....").SetRightImage(guardianSprite));
+    }
+
+    public override void AddCommonEndPhases(List<Phase> phases)
+    {
+        phases.Add(new BattleEntry("让我过去！（接受战斗）", "Level 3").SetRightImage(guardianSprite));
     }
 }
