@@ -1,10 +1,9 @@
 using GameKit;
 
-public class PortalToMap3 : Portal
+public class PortalToMap3 : Character
 {
-    public override void OnEnter()
+    public override void Action()
     {
-        base.OnEnter();
         string switchTo;
         if (MapGlobals.CurrentLevel < 3)
         {

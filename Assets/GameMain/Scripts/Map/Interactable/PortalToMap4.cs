@@ -4,6 +4,10 @@ public class PortalToMap4 : Portal
 {
     public override void OnEnter()
     {
+        if (MapGlobals.CurrentLevel < 3)
+        {
+            return;
+        }
         base.OnEnter();
         string switchTo;
         if (MapGlobals.CurrentLevel < 4)
