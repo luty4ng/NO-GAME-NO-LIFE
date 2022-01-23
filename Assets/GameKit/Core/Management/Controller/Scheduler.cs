@@ -7,7 +7,6 @@ using DG.Tweening;
 
 namespace GameKit
 {
-
     public class Scheduler : MonoBehaviour
     {
         public enum SceneSwitchType
@@ -18,6 +17,7 @@ namespace GameKit
         }
         public static Scheduler instance;
         public string startScene = "S_Menu";
+        public Animator animator;
         private string loadingScene = "S_Loading";
         public string currentScene { get; private set; }
         private Transform swipePanel;
@@ -33,6 +33,7 @@ namespace GameKit
 
         public void SwitchSceneSwipe(string name, UnityAction callback = null)
         {
+            animator.SetTrigger("Move");
             swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
             {
                 LoadSceneAsyn(name, () =>
@@ -41,9 +42,10 @@ namespace GameKit
                     currentScene = name;
                     UnloadSceneAsyn(tmpScene, () =>
                     {
-                        swipePanel.DOLocalMoveX(-1920, 0.5f).OnComplete(() =>
+                        swipePanel.DOLocalMoveX(-2420f, 0.5f).OnComplete(() =>
                         {
-                            swipePanel.localPosition = new Vector3(1920, swipePanel.localPosition.y, swipePanel.localPosition.z);
+                            animator.SetTrigger("DeMove");
+                            swipePanel.localPosition = new Vector3(2420f, swipePanel.localPosition.y, swipePanel.localPosition.z);
                         });
                     });
                 });
@@ -61,15 +63,17 @@ namespace GameKit
 
         public void ReloadCurrentSceneSwipe()
         {
+            animator.SetTrigger("Move");
             swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
             {
                 UnloadSceneAsyn(currentScene, () =>
                 {
                     LoadSceneAsyn(currentScene, () =>
                     {
-                        swipePanel.DOLocalMoveX(-1920, 0.5f).OnComplete(() =>
+                        animator.SetTrigger("DeMove");
+                        swipePanel.DOLocalMoveX(-2420f, 0.5f).OnComplete(() =>
                         {
-                            swipePanel.localPosition = new Vector3(1920, swipePanel.localPosition.y, swipePanel.localPosition.z);
+                            swipePanel.localPosition = new Vector3(2420f, swipePanel.localPosition.y, swipePanel.localPosition.z);
                         });
                     });
                 });

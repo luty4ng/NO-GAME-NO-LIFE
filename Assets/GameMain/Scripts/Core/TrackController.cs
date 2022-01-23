@@ -73,6 +73,7 @@ public class TrackController : MonoBehaviour
     {
         if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatHittable())
         {
+            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.HIT_SOUND);
             trackedBeats.Peek().OnHit();
             if (!trackedBeats.Peek().IsStreak)
                 trackedBeats.Dequeue();
@@ -82,6 +83,7 @@ public class TrackController : MonoBehaviour
     {
         if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatSpreakable() && !isPlayerSpreaking)
         {
+            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.HIT_SOUND);
             trackedBeats.Peek().OnPlayerStreakEnter();
             return true;
         }
