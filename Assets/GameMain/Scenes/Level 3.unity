@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff4aa630ab11034588041bf928349e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
-  initHealth: 500
+  damage: 10
+  initHealth: 1500
   protagonist: {fileID: 1905006964}
 --- !u!95 &165521495
 Animator:
@@ -3717,6 +3717,14 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 165521494}
+    - target: {fileID: 4744209759383518702, guid: 03b1a5f5696e57c41b03c9197af2a2fb, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744209759383518702, guid: 03b1a5f5696e57c41b03c9197af2a2fb, type: 3}
+      propertyPath: initHealth
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03b1a5f5696e57c41b03c9197af2a2fb, type: 3}
 --- !u!1001 &6875436401057017592
