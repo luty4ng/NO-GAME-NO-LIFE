@@ -16,7 +16,14 @@ public class MapGlobals
         EventManager.instance.EventTrigger<List<Phase>>(EventConfig.SHOW_DIALOG, phases);
     }
 
-    public static bool HasSave => JsonManager.instance.CheckJsonExist(GAME_SAVE_LOCATION);
+    public static bool HasSave
+    {
+        get
+        {
+            if (!JsonManager.instance.CheckJsonExist(GAME_SAVE_LOCATION)) return false;
+            return JsonManager.instance.LoadJsonDict<string, int>(GAME_SAVE_LOCATION)[CURRENT_LEVEL_KEY] >= 0;
+        }
+    }
 
     private static int _currentLevelCache = -1;
 

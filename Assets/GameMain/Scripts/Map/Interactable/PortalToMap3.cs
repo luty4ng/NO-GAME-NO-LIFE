@@ -1,9 +1,11 @@
 using GameKit;
+using UnityEngine;
 
 public class PortalToMap3 : Character
 {
     public override void Action()
     {
+        GetComponent<AudioSource>()?.Play();
         string switchTo;
         if (MapGlobals.CurrentLevel < 3)
         {

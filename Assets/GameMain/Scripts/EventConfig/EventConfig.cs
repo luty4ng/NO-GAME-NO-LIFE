@@ -21,4 +21,6 @@ public static class EventConfig
     public static string SHOW_INTERACT_MESSAGE = "Show_Interact_Message";
     public static string HIDE_INTERACT_MESSAGE = "Hide_Interact_Message";
     public static string SHOW_DIALOG = "Show_Dialog";
+    
+    public static string SHOW_END_CREDIT = "Show_End_Credit";
 }
