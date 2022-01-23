@@ -2686,7 +2686,8 @@ MonoBehaviour:
   rhythmController: {fileID: 1430573340}
   globalSoundSource: {fileID: 2067117460}
   protagonist: {fileID: 1905006964}
-  finishScene: S_Select
+  finishScene: Map 4 Outer
+  levelClear: 4
   audioMono: {fileID: 243610980}
 --- !u!82 &2067117460
 AudioSource:

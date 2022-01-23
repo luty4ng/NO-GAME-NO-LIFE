@@ -73,7 +73,7 @@ public class DialogUIController : MonoBehaviour
             _currentIndex = 0;
             SetDialogActive(true);
             _windowAnimator.SetTrigger("Show");
-            MapGlobals.DialogIn();
+            MapRegulator.current.DialogIn();
         }
     }
 
@@ -108,7 +108,7 @@ public class DialogUIController : MonoBehaviour
             _switchScene = null;
             _currentList = null;
             SetDialogActive(false);
-            MapGlobals.DialogOut();
+            MapRegulator.current.DialogOut();
         }
     }
 

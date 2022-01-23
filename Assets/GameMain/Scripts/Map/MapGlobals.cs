@@ -11,12 +11,6 @@ public class MapGlobals
     private static readonly string CURRENT_LEVEL_KEY = "CurrentLevel";
     private static readonly int DEFAULT_LEVEL = 0;  // the level that the player have went through (0-4)
 
-    private static int _dialogUICount = 0;
-    public static bool DialogUIActive => _dialogUICount > 0;
-    public static void DialogIn() => _dialogUICount += 1;
-    public static void DialogOut() => _dialogUICount -= 1;
-    public static void ReportDialogSetActive(bool active) => _dialogUICount += active ? 1 : -1;
-
     public static void FeedDialog(List<Phase> phases)
     {
         EventManager.instance.EventTrigger<List<Phase>>(EventConfig.SHOW_DIALOG, phases);
@@ -74,5 +68,10 @@ public class MapGlobals
     {
         CurrentLevel = 0;
         Scheduler.instance.SwitchSceneSwipe("Map 1 Inner");
+    }
+
+    public static void SwitchToMain()
+    {
+        Scheduler.instance.SwitchSceneSwipe("S_Menu_New");
     }
 }

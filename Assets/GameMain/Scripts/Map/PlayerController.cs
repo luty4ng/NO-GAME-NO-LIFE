@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePlayerMovement()
     {
-        if (MapGlobals.DialogUIActive)
+        if (MapRegulator.current.DialogUIActive)
         {
             _rigidbody2D.velocity = new Vector2(0, 0);
         }

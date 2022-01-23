@@ -6,10 +6,18 @@ public class PauseMenuController : MonoBehaviour
 {
     public GameObject panel;
 
+    private AudioSource[] _audioSources;
+
+    private void Start()
+    {
+        _audioSources = GetComponents<AudioSource>();
+    }
+
     private void SetDialogActive(bool active)
     {
+        _audioSources[active ? 0 : 1].Play();
         panel.SetActive(active);
-        MapGlobals.ReportDialogSetActive(active);
+        MapRegulator.current.ReportDialogSetActive(active);
         MapGlobals.GamePaused = active;
     }
 
@@ -20,7 +28,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void ExitToMain()
     {
-        Scheduler.instance.SwitchSceneSwipe("S_Menu_New");
+        MapGlobals.SwitchToMain();
     }
 
     private void Update()
