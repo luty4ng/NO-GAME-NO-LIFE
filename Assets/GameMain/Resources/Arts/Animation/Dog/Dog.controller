@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_Streak
+  m_Name: Dog_Streak
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 59c570c1f9d16ed4c96abc9ac5037040, type: 2}
+  m_Motion: {fileID: 7400000, guid: 14014c473642b1d4c9466440cd1511a3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -41,7 +41,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8922660702491806028}
-    m_Position: {x: 330, y: -80, z: 0}
+    m_Position: {x: 320, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5135679217946901227}
     m_Position: {x: 320, y: 20, z: 0}
@@ -58,7 +58,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 620, y: -190, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 850, y: 170, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -625021734660889787}
 --- !u!1101 &-5465064511378588075
@@ -140,7 +140,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_Idle
+  m_Name: Dog_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -153,7 +153,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5e077b01d6ff05642949a3e1caf9787d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 19d4586584d69ea4a82e4bdcae74253d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -284,7 +284,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_BeAttack
+  m_Name: Dog_BeAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -298,7 +298,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 70ab73480828ddc44be71737ab90acac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1e8deba3374d53f40a8ddb19e433298e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -311,7 +311,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_Attack
+  m_Name: Dog_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -325,7 +325,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 06985416eb03cf140817b859fc53ca7d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3960403d099731444b3467e9379edd44, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

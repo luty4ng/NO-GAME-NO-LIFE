@@ -32,18 +32,27 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/GameMain/Scenes/Level_Test.unity
     guid: 6c958da837f99d54ebc20f01cfbd3485
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Map 1 Inner.unity
     guid: 523a9127f0084c57b3ee7751b4dc717d
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Map 1 Outer.unity
     guid: abc748c5ee4e249219ea9be66a845228
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Map 2 Inner.unity
     guid: f9dd7bd83dced4282b96f52aa8b97ffe
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameMain/Scenes/Map 2 Outer.unity
     guid: 44cdde9fad5e1464b9aa88d9c235317b
+  - enabled: 0
+    path: Assets/GameMain/Scenes/Map 3 Inner.unity
+    guid: 42336cd2ebfe0431995838d493f88922
+  - enabled: 0
+    path: Assets/GameMain/Scenes/Map 3 Outer.unity
+    guid: 0ab20ef3a6cfd4235a36af3b92f6a09f
+  - enabled: 0
+    path: Assets/GameMain/Scenes/Map 4 Outer.unity
+    guid: bfb6c1f71b60546c7a78697058862b07
   - enabled: 1
     path: Assets/GameMain/Scenes/Map 3 Inner.unity
     guid: 42336cd2ebfe0431995838d493f88922

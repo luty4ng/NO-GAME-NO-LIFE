@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_Streak
+  m_Name: Monster_Streak
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 59c570c1f9d16ed4c96abc9ac5037040, type: 2}
+  m_Motion: {fileID: 7400000, guid: ffb2b1058326f25429325fa2f3f0f188, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -38,16 +38,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -625021734660889787}
-    m_Position: {x: 600, y: -10, z: 0}
+    m_Position: {x: 600, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8922660702491806028}
     m_Position: {x: 330, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5135679217946901227}
-    m_Position: {x: 320, y: 20, z: 0}
+    m_Position: {x: 330, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7372689979844407780}
-    m_Position: {x: 310, y: 130, z: 0}
+    m_Position: {x: 330, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -110611201526626974}
@@ -56,7 +56,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 90, y: 0, z: 0}
   m_EntryPosition: {x: 620, y: -190, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -153,7 +153,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5e077b01d6ff05642949a3e1caf9787d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 55bb2b091f6e088418a13613f28ea630, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -284,7 +284,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_BeAttack
+  m_Name: Monster_BeAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -298,7 +298,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 70ab73480828ddc44be71737ab90acac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 47e3641e4b9532247a50a896c0de16ca, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -311,7 +311,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gaint_Attack
+  m_Name: Monster_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -325,7 +325,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 06985416eb03cf140817b859fc53ca7d, type: 2}
+  m_Motion: {fileID: 7400000, guid: d34032d06a661564f8049f7d3e953c5c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
