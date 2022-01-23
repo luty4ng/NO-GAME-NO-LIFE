@@ -39,6 +39,8 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Map_4_Outer_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Map 4 Outer.unity"); }
     [MenuItem("Scenes/S_Menu")]
     public static void Assets_GameMain_Scenes_S_Menu_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Menu.unity"); }
+    [MenuItem("Scenes/S_Menu_New")]
+    public static void Assets_GameMain_Scenes_S_Menu_New_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Menu_New.unity"); }
     [MenuItem("Scenes/S_Procedure")]
     public static void Assets_GameMain_Scenes_S_Procedure_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/S_Procedure.unity"); }
     [MenuItem("Scenes/S_Select")]

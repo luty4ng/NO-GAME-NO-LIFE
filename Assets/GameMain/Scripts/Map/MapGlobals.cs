@@ -49,7 +49,7 @@ public class MapGlobals
         }
     }
 
-    public static void SwitchToStartScene()
+    public static void SwitchToSceneUsingSave()
     {
         string switchTo;
         switch (CurrentLevel)
@@ -62,5 +62,11 @@ public class MapGlobals
             default: throw new ApplicationException("Invalid level code.");
         }
         Scheduler.instance.SwitchSceneSwipe(switchTo);
+    }
+    
+    public static void SwitchToStartSceneAndOverrideSave()
+    {
+        CurrentLevel = 0;
+        Scheduler.instance.SwitchSceneSwipe("Map 1 Inner");
     }
 }
