@@ -157,7 +157,9 @@ public class RhythmController : MonoBehaviour
     {
         if (Timer.isPause)
             return;
-
+        
+        if (MusicBattleRegulator.current.IsDialoging)
+            return;
         UpdateInternalValues();
         if (leadInTimeLeft > 0f)
         {

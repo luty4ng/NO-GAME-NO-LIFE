@@ -12,6 +12,19 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     private AudioSource globalMusicSource;
     public AudioMono audioMono;
     private bool battleEnd = false;
+    public DialogSet dialogSet;
+    public MusicDialogUIController dialogUIController;
+    public bool IsDialoging
+    {
+        get
+        {
+            if (dialogSet != null)
+                return dialogUIController.isActive;
+            else
+                return false;
+        }
+
+    }
     private void CheckPause()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

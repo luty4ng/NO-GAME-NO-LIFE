@@ -12,9 +12,18 @@ public sealed class UI_Counting : UIGroup
 {
     private TextMeshProUGUI textMeshPro;
     private Sequence mySeq;
+    private bool hasCount = false;
     protected override void Start()
     {
         UIManager.instance.RegisterUI(this as UIGroup);
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, Pause);
+    }
+
+    private void StartCounting()
+    {
+        if (hasCount)
+            return;
+        hasCount = true;
         mySeq = DOTween.Sequence();
         float duration = MusicBattleRegulator.current.rhythmController.beatTravelTime / 4;
         textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
@@ -44,8 +53,6 @@ public sealed class UI_Counting : UIGroup
                 });
             });
         }));
-
-        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, Pause);
     }
 
     private void Pause(bool isPause)
@@ -54,5 +61,13 @@ public sealed class UI_Counting : UIGroup
             mySeq.Pause();
         else
             mySeq.Play();
+    }
+
+    private void Update()
+    {
+        if (!MusicBattleRegulator.current.IsDialoging)
+        {
+            StartCounting();
+        }
     }
 }

@@ -36,8 +36,14 @@ public class TrackController : MonoBehaviour
     }
     void Update()
     {
+        if (MusicBattleRegulator.current.IsDialoging)
+            return;
+
         if (Timer.isPause)
             return;
+
+
+
         CheckSpawn();
 
         // if (!CheckSpreak())
