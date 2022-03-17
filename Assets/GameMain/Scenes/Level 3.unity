@@ -2336,9 +2336,11 @@ MonoBehaviour:
   globalSoundSource: {fileID: 2067117460}
   protagonist: {fileID: 1905006964}
   lastScene: Map 3 Inner
-  finishScene: Map 3 Outer
+  finishScene: Map 3 Inner
   levelClear: 3
   audioMono: {fileID: 1507337727}
+  dialogSet: {fileID: 0}
+  dialogUIController: {fileID: 0}
 --- !u!82 &2067117460
 AudioSource:
   m_ObjectHideFlags: 0

@@ -532,6 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a518d7a4adf34eaeaaee794c530969a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  letterSprite: {fileID: 21300000, guid: 6d53f5c0a254141498c631913c677ea6, type: 3}
 --- !u!1 &372347234
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +785,14 @@ PrefabInstance:
     - target: {fileID: 5076092495671894467, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}
       propertyPath: m_Name
       value: Map Common Canvas Components
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076092496441984882, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076092497582813693, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}

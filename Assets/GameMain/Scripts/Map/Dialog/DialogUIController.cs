@@ -17,6 +17,7 @@ class ImageController
         if (sprite != null)
         {
             _imageComponent.enabled = true;
+            _imageComponent.preserveAspect = true;
             _imageComponent.sprite = sprite;
         }
         else
@@ -47,6 +48,8 @@ public class DialogUIController : MonoBehaviour
     private int _currentIndex;
     private string _switchScene = null;
 
+    private bool skipNext = false;
+
     private void Start()
     {
         window.SetActive(true);  // to aid debugging, window is often set to inactive during development
@@ -74,6 +77,8 @@ public class DialogUIController : MonoBehaviour
             SetDialogActive(true);
             _windowAnimator.SetTrigger("Show");
             MapRegulator.current.DialogIn();
+            DisplayNext();
+            skipNext = true;
         }
     }
 
@@ -82,6 +87,7 @@ public class DialogUIController : MonoBehaviour
         if (_currentIndex != 0)  // avoid play together with ClickOpen effect
         {
             GetPageFlipSource().Play();
+            _currentList[_currentIndex - 1].callback();
         }
         if (_currentIndex < _currentList.Count)
         {
@@ -148,7 +154,11 @@ public class DialogUIController : MonoBehaviour
             {
                 AttemptSwitchScene();
             }
-            if (Input.GetKeyDown(KeyCode.L))
+            if (skipNext)
+            {
+                skipNext = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
             {
                 DisplayNext();
             }

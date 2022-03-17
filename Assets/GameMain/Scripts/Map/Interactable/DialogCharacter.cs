@@ -1,15 +1,16 @@
+using System;
 using System.Collections.Generic;
 
 public abstract class DialogCharacter : Character
 {
-    private bool _visited = false;
-    
+    private bool visited = false;
+
     public override void Action()
     {
         var phases = new List<Phase>();
-        if (!_visited)
+        if (!visited)
         {
-            _visited = true;
+            visited = true;
             AddFirstTimePhases(phases);
         }
         else

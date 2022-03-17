@@ -2363,7 +2363,7 @@ MonoBehaviour:
   globalSoundSource: {fileID: 2067117460}
   protagonist: {fileID: 1905006964}
   lastScene: Map 1 Inner
-  finishScene: Map 1 Outer
+  finishScene: Map 1 Inner
   levelClear: 1
   audioMono: {fileID: 39017179}
   dialogSet: {fileID: 2067117461}

@@ -1,10 +1,31 @@
 using System.Collections.Generic;
+using GameKit;
 using UnityEngine;
 
 public class KnightCharacter : DialogCharacter
 {
     public Sprite playerSprite;
     public Sprite knightSprite;
+    
+    private void Start()
+    {
+        if (MapGlobals.CurrentLevel == 4)
+        {
+            var phases = new List<Phase>();
+            phases.Add(new Dialog("很不愿意承认，你变得不一样了。").SetRightImage(knightSprite));
+            phases.Add(new Dialog("你打败了我。").SetRightImage(knightSprite));
+            phases.Add(new Dialog("你知道出去之后你要面对什么。").SetRightImage(knightSprite));
+            phases.Add(new Dialog("即便这样，你还是要走吗？").SetRightImage(knightSprite));
+            phases.Add(new Dialog("...").SetRightImage(knightSprite));
+            phases.Add(new Dialog("好吧。如果你已经准备好接受一切、面对一切的话，我会和你一起。").SetRightImage(knightSprite));
+            phases.Add(new Dialog("我真羡慕你的勇气啊。").SetRightImage(knightSprite));
+            phases.Add(new Dialog("出门去吧。").SetRightImage(knightSprite).SetCallback(() =>
+            {
+                Scheduler.instance.SwitchSceneSwipe("Map 4 Outer");
+            }));
+            MapGlobals.FeedDialog(phases);
+        }
+    }
 
     public override void AddFirstTimePhases(List<Phase> phases)
     {

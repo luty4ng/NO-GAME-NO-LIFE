@@ -1,10 +1,24 @@
 using System.Collections.Generic;
+using GameKit;
 using UnityEngine;
 
 public class MonsterCharacter : DialogCharacter
 {
     public Sprite playerSprite;
     public Sprite monsterSprite;
+    
+    private void Start()
+    {
+        if (MapGlobals.CurrentLevel == 2)
+        {
+            var phases = new List<Phase>();
+            phases.Add(new Dialog("...").SetRightImage(monsterSprite).SetCallback(() =>
+            {
+                Scheduler.instance.SwitchSceneSwipe("Map 2 Outer");
+            }));
+            MapGlobals.FeedDialog(phases);
+        }
+    }
 
     public override void AddFirstTimePhases(List<Phase> phases)
     {

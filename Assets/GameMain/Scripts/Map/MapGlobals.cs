@@ -31,17 +31,10 @@ public class MapGlobals
     {
         get
         {
-            if (_currentLevelCache == -1)
+            if (_currentLevelCache == -1 && HasSave)
             {
-                if (HasSave)
-                {
-                    var json = JsonManager.instance.LoadJsonDict<string, int>(GAME_SAVE_LOCATION);
-                    _currentLevelCache = json[CURRENT_LEVEL_KEY];
-                }
-                else
-                {
-                    CurrentLevel = DEFAULT_LEVEL;
-                }
+                var json = JsonManager.instance.LoadJsonDict<string, int>(GAME_SAVE_LOCATION);
+                _currentLevelCache = json[CURRENT_LEVEL_KEY];
             }
 
             return _currentLevelCache;
@@ -73,7 +66,7 @@ public class MapGlobals
     
     public static void SwitchToStartSceneAndOverrideSave()
     {
-        CurrentLevel = 0;
+        CurrentLevel = -1;
         Scheduler.instance.SwitchSceneSwipe("Map 1 Inner");
     }
 
