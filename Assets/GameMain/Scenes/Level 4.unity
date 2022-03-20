@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
-  initHealth: 2000
+  initHealth: 1
   protagonist: {fileID: 1905006964}
 --- !u!95 &165521495
 Animator:

@@ -15,6 +15,7 @@ public static class EventConfig
     public static string P_StopLoop = "P_StopLoop";
     public static string E_Streak = "Enemy_Streak";
     public static string E_StopStreak = "Enemy_StopStreak";
+    public static string E_Failed = "E_Failed";
     public static string Game_Pase = "Game_Pase";
     public static string Game_End = "Game_End";
 
