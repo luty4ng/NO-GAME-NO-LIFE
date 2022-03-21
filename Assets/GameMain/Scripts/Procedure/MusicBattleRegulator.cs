@@ -93,6 +93,7 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
             return;
         if (battleEnd)
             return;
+            
         if (rhythmController.MuiscStartPlay && !rhythmController.audioCom.isPlaying && !Timer.isPause)
         {
             Debug.Log(UIManager.instance.GetPanel<UI_Ending>("UI_Ending"));

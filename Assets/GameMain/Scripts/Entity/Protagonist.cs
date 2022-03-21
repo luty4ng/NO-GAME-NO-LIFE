@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Protagonist : BattleEntity
 {
     private Image healthBar;
+    private bool isEnemyFail = false;
     public float initHealth = 1000;
     public BattleEntity enemy;
     [SerializeField] private bool isLoop = false;
@@ -26,9 +27,15 @@ public class Protagonist : BattleEntity
             animator.SetTrigger("Defense");
         });
 
+        EventManager.instance.AddEventListener(EventConfig.E_Failed, () =>
+        {
+            isEnemyFail = true;
+        });
+
         EventManager.instance.AddEventListener<float, bool>(EventConfig.P_BeAttacked, (float damage, bool isStreak) =>
         {
             animator.SetTrigger("BeAttacked");
+
             BeAttack(damage);
             if (isStreak)
             {
@@ -66,7 +73,10 @@ public class Protagonist : BattleEntity
 
     protected override void BeAttack(float multipier)
     {
-        health = Mathf.Max(health - enemy.damage / multipier, 0);
+        if (!isEnemyFail)
+        {
+            health = Mathf.Max(health - enemy.damage / multipier, 0);
+        }
         healthBar.fillAmount = (health / initHealth);
     }
 

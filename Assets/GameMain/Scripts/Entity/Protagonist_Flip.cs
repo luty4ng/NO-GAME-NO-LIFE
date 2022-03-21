@@ -16,6 +16,8 @@ public class Protagonist_Flip : BattleEntity
             animator.SetTrigger("Attack");
         });
 
+
+
         EventManager.instance.AddEventListener<float, bool>(EventConfig.E_BeAttacked, (float damage, bool isStreak) =>
         {
             animator.SetTrigger("BeAttacked");
@@ -56,6 +58,8 @@ public class Protagonist_Flip : BattleEntity
     {
         health = Mathf.Max(health - protagonist.damage * multipier, 0);
         healthBar.fillAmount = (health / initHealth);
+        if (health <= 0)
+            EventManager.instance.EventTrigger(EventConfig.E_Failed);
     }
     private void OnValidate()
     {
