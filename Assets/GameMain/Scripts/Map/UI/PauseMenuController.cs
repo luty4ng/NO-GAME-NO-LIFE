@@ -13,17 +13,21 @@ public class PauseMenuController : MonoBehaviour
         _audioSources = GetComponents<AudioSource>();
     }
 
-    private void SetDialogActive(bool active)
+    private void ToggleDialogActive()
     {
+        bool active = !panel.activeSelf;
         _audioSources[active ? 0 : 1].Play();
         panel.SetActive(active);
         MapRegulator.current.ReportDialogSetActive(active);
-        MapGlobals.GamePaused = active;
+        MapRegulator.current.gamePaused = active;
     }
 
     public void ContinueGame()
     {
-        SetDialogActive(false);
+        if (panel.activeSelf)
+        {
+            ToggleDialogActive();
+        }
     }
 
     public void ExitToMain()
@@ -35,7 +39,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SetDialogActive(!panel.activeSelf);
+            ToggleDialogActive();
         }
     }
 }

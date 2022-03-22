@@ -8,11 +8,11 @@ public class EndCreditController : MonoBehaviour
 {
     public GameObject panel;
     
-    private Animator _animator;
+    private Animator animator;
 
     private void Start()
     {
-        _animator = panel.GetComponent<Animator>();
+        animator = panel.GetComponent<Animator>();
         EventManager.instance.AddEventListener(EventConfig.SHOW_END_CREDIT, Show);
     }
 
@@ -28,10 +28,10 @@ public class EndCreditController : MonoBehaviour
 
     private void Update()
     {
-        if (panel.activeSelf && Input.anyKeyDown)
+        if (Input.anyKeyDown && panel.activeSelf && animator.GetCurrentAnimatorStateInfo(0).IsName("End_Credit_Sustain"))
         {
-            _animator.SetTrigger("Hide");
-            StartCoroutine(DelayedExcute(() =>
+            animator.SetTrigger("Hide");
+            StartCoroutine(DelayedExecute(() =>
             {
                 MapGlobals.CurrentLevel = -1;
                 MapGlobals.SwitchToMain();
@@ -39,7 +39,7 @@ public class EndCreditController : MonoBehaviour
         }
     }
     
-    protected IEnumerator DelayedExcute(UnityAction action, float t)
+    protected IEnumerator DelayedExecute(UnityAction action, float t)
     {
         yield return new WaitForSeconds(t);
         action?.Invoke();
