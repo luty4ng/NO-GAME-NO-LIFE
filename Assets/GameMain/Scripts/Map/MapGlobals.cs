@@ -38,11 +38,11 @@ public class MapGlobals
         }
         set
         {
+            _currentLevelCache = value;
             JsonManager.instance.SaveJsonDict(GAME_SAVE_LOCATION, new Dictionary<string, int>()
             {
                 {CURRENT_LEVEL_KEY, value}
             });
-            _currentLevelCache = value;
         }
     }
 

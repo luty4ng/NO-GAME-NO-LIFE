@@ -6,17 +6,17 @@ public class PauseMenuController : MonoBehaviour
 {
     public GameObject panel;
 
-    private AudioSource[] _audioSources;
+    private AudioSource[] audioSources;
 
     private void Start()
     {
-        _audioSources = GetComponents<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
     }
 
     private void ToggleDialogActive()
     {
         bool active = !panel.activeSelf;
-        _audioSources[active ? 0 : 1].Play();
+        audioSources[active ? 0 : 1].Play();
         panel.SetActive(active);
         MapRegulator.current.ReportDialogSetActive(active);
         MapRegulator.current.gamePaused = active;

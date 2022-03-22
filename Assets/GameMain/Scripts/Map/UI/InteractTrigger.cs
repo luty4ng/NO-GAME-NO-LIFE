@@ -7,18 +7,15 @@ public class InteractTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && currentInteractable != null)
         {
-            if (currentInteractable != null)
-            {
-                currentInteractable.Action();
-            }
+            currentInteractable.Action();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
+        var interactableComponent = other.GetComponent<Interactable>();
         if (interactableComponent != null)
         {
             interactableComponent.OnEnter();
@@ -32,11 +29,11 @@ public class InteractTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
-        if (interactableComponent != null)
+        var interactableComponent = other.GetComponent<Interactable>();
+        if (interactableComponent != null && interactableComponent == currentInteractable)
         {
             interactableComponent.OnExit();
+            currentInteractable = null;
         }
-        currentInteractable = null;
     }
 }
