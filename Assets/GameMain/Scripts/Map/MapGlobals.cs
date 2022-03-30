@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class MapGlobals
 {
-    public static bool GamePaused = false;
-    
     private static readonly string GAME_SAVE_LOCATION = "GameSave";
     private static readonly string CURRENT_LEVEL_KEY = "CurrentLevel";
-    private static readonly int DEFAULT_LEVEL = 0;  // the level that the player have went through (0-4)
 
     public static void FeedDialog(List<Phase> phases)
     {
@@ -41,11 +38,11 @@ public class MapGlobals
         }
         set
         {
+            _currentLevelCache = value;
             JsonManager.instance.SaveJsonDict(GAME_SAVE_LOCATION, new Dictionary<string, int>()
             {
                 {CURRENT_LEVEL_KEY, value}
             });
-            _currentLevelCache = value;
         }
     }
 
@@ -54,6 +51,7 @@ public class MapGlobals
         string switchTo;
         switch (CurrentLevel)
         {
+            case -1:  // fallback to case 0
             case 0: switchTo = "Map 1 Inner"; break;
             case 1: switchTo = "Map 1 Outer"; break;
             case 2: switchTo = "Map 2 Outer"; break;

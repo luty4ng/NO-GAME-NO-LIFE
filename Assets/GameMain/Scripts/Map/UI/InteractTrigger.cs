@@ -3,36 +3,37 @@ using UnityEngine;
 
 public class InteractTrigger : MonoBehaviour
 {
-    private Interactable _currentInteractable;
+    private Interactable currentInteractable;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && currentInteractable != null)
         {
-            if (_currentInteractable != null)
-            {
-                _currentInteractable.Action();
-            }
+            currentInteractable.Action();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
+        var interactableComponent = other.GetComponent<Interactable>();
         if (interactableComponent != null)
         {
             interactableComponent.OnEnter();
-            _currentInteractable = interactableComponent;
+            if (currentInteractable != null)
+            {
+                Debug.LogWarning("Warning: Two interact triggers enter at the same time.");
+            }
+            currentInteractable = interactableComponent;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Interactable interactableComponent = other.GetComponent<Interactable>();
-        if (interactableComponent != null)
+        var interactableComponent = other.GetComponent<Interactable>();
+        if (interactableComponent != null && interactableComponent == currentInteractable)
         {
             interactableComponent.OnExit();
-            _currentInteractable = null;
+            currentInteractable = null;
         }
     }
 }

@@ -1,9 +1,11 @@
 using GameKit;
+using UnityEngine;
 
 public class PortalToMap4 : Portal
 {
     public override void OnEnter()
     {
+        Debug.Log("Portal to map 4 triggered");
         if (MapGlobals.CurrentLevel < 3)
         {
             return;

@@ -30,34 +30,34 @@ class ImageController
 public class DialogUIController : MonoBehaviour
 {
     public GameObject window;
-    private Animator _windowAnimator;
+    private Animator windowAnimator;
     public GameObject leftImage;
-    private ImageController _leftImageController;
+    private ImageController leftImageController;
     public GameObject rightImage;
-    private ImageController _rightImageController;
+    private ImageController rightImageController;
     public GameObject text;
     public GameObject overlay;
     public GameObject confirmButton;
     public GameObject cancelButton;
 
-    private AudioSource[] _audioSources;
-    private AudioSource GetClickOpenSource() => _audioSources[0];
-    private AudioSource GetPageFlipSource() => _audioSources[1];
+    private AudioSource[] audioSources;
+    private AudioSource GetClickOpenSource() => audioSources[0];
+    private AudioSource GetPageFlipSource() => audioSources[1];
     
-    private List<Phase> _currentList;
-    private int _currentIndex;
-    private string _switchScene = null;
+    private List<Phase> currentList;
+    private int currentIndex;
+    private string switchScene = null;
 
     private bool skipNext = false;
 
     private void Start()
     {
         window.SetActive(true);  // to aid debugging, window is often set to inactive during development
-        _windowAnimator = window.GetComponent<Animator>();
-        _leftImageController = new ImageController(leftImage);
-        _rightImageController = new ImageController(rightImage);
+        windowAnimator = window.GetComponent<Animator>();
+        leftImageController = new ImageController(leftImage);
+        rightImageController = new ImageController(rightImage);
 
-        _audioSources = GetComponents<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
         
         EventManager.instance.AddEventListener<List<Phase>>(EventConfig.SHOW_DIALOG, ShowDialog);
     }
@@ -69,13 +69,13 @@ public class DialogUIController : MonoBehaviour
 
     private void ShowDialog(List<Phase> phases)
     {
-        if (_currentList == null)
+        if (currentList == null)
         {
             GetClickOpenSource().Play();
-            _currentList = phases;
-            _currentIndex = 0;
+            currentList = phases;
+            currentIndex = 0;
             SetDialogActive(true);
-            _windowAnimator.SetTrigger("Show");
+            windowAnimator.SetTrigger("Show");
             MapRegulator.current.DialogIn();
             DisplayNext();
             skipNext = true;
@@ -84,35 +84,35 @@ public class DialogUIController : MonoBehaviour
 
     private void DisplayNext()
     {
-        if (_currentIndex != 0)  // avoid play together with ClickOpen effect
+        if (currentIndex != 0)  // avoid play together with ClickOpen effect
         {
             GetPageFlipSource().Play();
-            _currentList[_currentIndex - 1].callback();
+            currentList[currentIndex - 1].callback();
         }
-        if (_currentIndex < _currentList.Count)
+        if (currentIndex < currentList.Count)
         {
-            var phase = _currentList[_currentIndex];
-            _currentIndex += 1;
+            var phase = currentList[currentIndex];
+            currentIndex += 1;
             
             text.GetComponent<Text>().text = phase.Text;
-            _leftImageController.SetImage(phase.LeftImage);
-            _rightImageController.SetImage(phase.RightImage);
+            leftImageController.SetImage(phase.LeftImage);
+            rightImageController.SetImage(phase.RightImage);
             
             if (phase.Type == BattleEntry.PhaseType)
             {
-                _switchScene = ((BattleEntry) phase).BattleScene;
+                switchScene = ((BattleEntry) phase).BattleScene;
                 SetShowButtons(true);
             }
             else
             {
-                _switchScene = null;
+                switchScene = null;
                 SetShowButtons(false);
             }
         }
         else
         {
-            _switchScene = null;
-            _currentList = null;
+            switchScene = null;
+            currentList = null;
             SetDialogActive(false);
             MapRegulator.current.DialogOut();
         }
@@ -140,15 +140,15 @@ public class DialogUIController : MonoBehaviour
 
     private void AttemptSwitchScene()
     {
-        if (_switchScene != null)
+        if (switchScene != null)
         {
-            Scheduler.instance.SwitchSceneSwipe(_switchScene);
+            Scheduler.instance.SwitchSceneSwipe(switchScene);
         }
     }
 
     private void LateUpdate()  // use late to make sure this happens after possible new feed
     {
-        if (!MapGlobals.GamePaused && _currentList != null)
+        if (!MapRegulator.current.gamePaused && currentList != null)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
