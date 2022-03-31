@@ -13,6 +13,11 @@ namespace GameKit
         {
             return SceneManager.GetActiveScene();
         }
+
+        public Scene GetSceneAt(int index)
+        {
+            return SceneManager.GetSceneAt(index);
+        }
         public void LoadScene(string name, UnityAction callback)
         {
             SceneManager.LoadScene(name);

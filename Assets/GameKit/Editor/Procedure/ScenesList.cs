@@ -17,6 +17,8 @@ public static class ScenesList
     public static void Assets_GameMain_Scenes_Level_3_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 3.unity"); }
     [MenuItem("Scenes/Level 4")]
     public static void Assets_GameMain_Scenes_Level_4_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level 4.unity"); }
+    [MenuItem("Scenes/Level Correction")]
+    public static void Assets_GameMain_Scenes_Level_Correction_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level Correction.unity"); }
     [MenuItem("Scenes/Level_HitTest")]
     public static void Assets_GameMain_Scenes_Level_HitTest_unity() { ScenesUpdate.OpenScene("Assets/GameMain/Scenes/Level_HitTest.unity"); }
     [MenuItem("Scenes/Level_Test")]

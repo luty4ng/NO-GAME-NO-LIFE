@@ -52,6 +52,37 @@ namespace GameKit
             });
         }
 
+        public void LoadSceneSwipe(string name, UnityAction callback = null)
+        {
+            animator.SetTrigger("Move");
+            swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
+            {
+                LoadSceneAsyn(name, () =>
+                {
+                    swipePanel.DOLocalMoveX(-2420f, 0.5f).OnComplete(() =>
+                    {
+                        animator.SetTrigger("DeMove");
+                        swipePanel.localPosition = new Vector3(2420f, swipePanel.localPosition.y, swipePanel.localPosition.z);
+                    });
+                });
+            });
+        }
+        public void UnloadSceneSwipe(string name, UnityAction callback = null)
+        {
+            animator.SetTrigger("Move");
+            swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
+            {
+                UnloadSceneAsyn(name, () =>
+                {
+                    swipePanel.DOLocalMoveX(-2420f, 0.5f).OnComplete(() =>
+                    {
+                        animator.SetTrigger("DeMove");
+                        swipePanel.localPosition = new Vector3(2420f, swipePanel.localPosition.y, swipePanel.localPosition.z);
+                    });
+                });
+            });
+        }
+
         public void SwitchScene(string name, UnityAction callback = null)
         {
             LoadSceneAsyn(name, () =>

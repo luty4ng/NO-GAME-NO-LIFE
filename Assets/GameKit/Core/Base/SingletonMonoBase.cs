@@ -14,8 +14,7 @@ namespace GameKit
                 current = (this as T);
             OnAwake();
         }
-        protected abstract void OnAwake();
-
+        protected virtual void OnAwake() { }
     }
 }
 

@@ -6,7 +6,7 @@ using System.IO;
 public class SpriteSave
 {
 
-    [MenuItem("Tools/SpriteSave")]
+    [MenuItem("Assets/GameKit Tools/SpriteSave")]
     public static void DoSplitTexture()
     {
         Texture2D selectedImg = Selection.activeObject as Texture2D;
