@@ -1,8 +1,3 @@
-//----------------------------------------------
-//            	   Koreographer                 
-//    Copyright © 2014-2020 Sonic Bloom, LLC    
-//----------------------------------------------
-
 using UnityEngine;
 using System.Collections.Generic;
 using SonicBloom.Koreo;
@@ -13,14 +8,14 @@ public class RhythmController : MonoBehaviour
     #region Fields
     [EventID]
     public string eventID;
-    [Range(8f, 150f)]
-    public float hitWindowRangeInMS = 80;
     public float beatTravelTime = 2.5f;
+    public TrackController attackTrack;
+    public TrackController defenseTrack;
     public List<TrackController> tracks = new List<TrackController>();
     public float leadInTime;
     public AudioSource audioCom;
     public float leadInTimeLeft;
-    float timeLeftToPlay;
+    public float timeLeftToPlay;
     Koreography playingKoreo;
     int hitWindowRangeInSamples;
     int perfectWindowRangeInSamples;
@@ -48,7 +43,7 @@ public class RhythmController : MonoBehaviour
     {
         get
         {
-            return (1830 / beatTravelTime) * (hitWindowRangeInMS * 0.001f);
+            return (1830 / beatTravelTime) * (Rhythm.rhythmOffset * 0.001f);
         }
     }
 
@@ -97,6 +92,20 @@ public class RhythmController : MonoBehaviour
 
     void Start()
     {
+        attackTrack = tracks[0];
+        defenseTrack = tracks[1];
+
+        EventManager.instance.AddEventListener(EventConfig.UPDATE_KEYBIND, () =>
+        {
+            attackTrack.keyboardButton = KeyBind.ATTACK_KEY;
+            defenseTrack.keyboardButton = KeyBind.DEFENSE_KEY;
+        });
+
+        EventManager.instance.AddEventListener<KeyCode>(EventConfig.CHANGE_KEYBIND_DEFENSE, (KeyCode key) =>
+        {
+            defenseTrack.keyboardButton = key;
+        });
+
         InitializeLeadIn();
         for (int i = 0; i < tracks.Count; ++i)
             tracks[i].Initialize(this);
@@ -157,7 +166,7 @@ public class RhythmController : MonoBehaviour
     {
         if (Timer.isPause)
             return;
-        
+
         if (MusicBattleRegulator.current.IsDialoging)
             return;
         UpdateInternalValues();
@@ -183,8 +192,8 @@ public class RhythmController : MonoBehaviour
     }
     void UpdateInternalValues()
     {
-        hitWindowRangeInSamples = (int)(0.001f * hitWindowRangeInMS * SampleRate);
-        perfectWindowRangeInSamples = (int)(0.001f * (hitWindowRangeInMS / 2) * SampleRate);
+        hitWindowRangeInSamples = (int)(0.001f * Rhythm.rhythmOffset * SampleRate);
+        perfectWindowRangeInSamples = (int)(0.001f * (Rhythm.rhythmOffset / 2) * SampleRate);
     }
 
 

@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaad1da5a69c4dbfbc7ccb4bcb08e95, type: 3}
+  m_Name: Correction
+  m_EditorClassIdentifier: 
+  mEventID: Correction
+  mEventList:
+  - mStartSample: 37485
+    mEndSample: 37485
+  - mStartSample: 74970
+    mEndSample: 74970
+  - mStartSample: 112455
+    mEndSample: 112455
+  - mStartSample: 149940
+    mEndSample: 149940
+  - mStartSample: 187425
+    mEndSample: 187425
+  - mStartSample: 224910
+    mEndSample: 224910
+  - mStartSample: 264600
+    mEndSample: 264600
+  - mStartSample: 302085
+    mEndSample: 302085
+  - mStartSample: 337365
+    mEndSample: 337365
+  - mStartSample: 377055
+    mEndSample: 377055
+  - mStartSample: 414540
+    mEndSample: 414540
+  - mStartSample: 454230
+    mEndSample: 454230
+  - mStartSample: 489510
+    mEndSample: 489510
+  - mStartSample: 529200
+    mEndSample: 529200
+  - mStartSample: 566685
+    mEndSample: 566685
+  - mStartSample: 604170
+    mEndSample: 604170
+  - mStartSample: 641655
+    mEndSample: 641655
+  - mStartSample: 679140
+    mEndSample: 679140
+  - mStartSample: 716625
+    mEndSample: 716625
+  - mStartSample: 756315
+    mEndSample: 756315
+  - mStartSample: 793800
+    mEndSample: 793800
+  - mStartSample: 831285
+    mEndSample: 831285
+  - mStartSample: 866565
+    mEndSample: 866565
+  - mStartSample: 906255
+    mEndSample: 906255
+  - mStartSample: 926100
+    mEndSample: 926100
+  - mStartSample: 963585
+    mEndSample: 963585
+  - mStartSample: 1001070
+    mEndSample: 1001070
+  - mStartSample: 1038555
+    mEndSample: 1038555
+  - mStartSample: 1058400
+    mEndSample: 1058400
+  - mStartSample: 1095885
+    mEndSample: 1095885
+  - mStartSample: 1133370
+    mEndSample: 1133370
+  - mStartSample: 1170855
+    mEndSample: 1170855
+  - mStartSample: 1208340
+    mEndSample: 1208340
+  _SerializedPayloadTypes:
+  - SonicBloom.Koreo.TextPayload
+  _AssetPayloads: []
+  _AssetPayloadIdxs: 
+  _ColorPayloads: []
+  _ColorPayloadIdxs: 
+  _CurvePayloads: []
+  _CurvePayloadIdxs: 
+  _FloatPayloads: []
+  _FloatPayloadIdxs: 
+  _GradientPayloads: []
+  _GradientPayloadIdxs: 
+  _IntPayloads: []
+  _IntPayloadIdxs: 
+  _SpectrumPayloads: []
+  _SpectrumPayloadIdxs: 
+  _TextPayloads:
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  - mTextVal: A
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f00000020000000
+  _MaterialPayloads: []
+  _MaterialPayloadIdxs: 

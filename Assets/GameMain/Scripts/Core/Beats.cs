@@ -22,10 +22,14 @@ public class Beats : MonoBehaviour
     RectTransform rectTransform;
     Animator animator;
     CanvasGroup canvasGroup;
+    Protagonist protagonist;
+    Enemy enemy;
     float offsetWidth = 0;
     float damageMultipier = 1;
-    bool isEnemyStreak = false;
-    bool hasCheckMiss = false;
+    public bool isEnemyStreak = false;
+    bool missed = false;
+    bool passed = false;
+    bool entered = false;
     bool hasHitAttack = false;
 
     public bool IsStreak
@@ -54,15 +58,18 @@ public class Beats : MonoBehaviour
 
     private void Update()
     {
-        if (IsBeatSpreakable() && !IsAttack && IsStreak && !isEnemyStreak)
+        if (IsBeatEnter() && !IsAttack && IsStreak && !isEnemyStreak)
         {
             isEnemyStreak = true;
-            EventManager.instance.EventTrigger(EventConfig.E_Streak);
+            enemy.Streak();
+            // EventManager.instance.EventTrigger(EventConfig.E_Streak);
         }
 
-        if (IsBeatHittable() && !IsAttack && !IsStreak && !hasHitAttack)
+        if (IsBeatCenter() && !IsAttack && !IsStreak && !hasHitAttack && !isEnemyStreak)
         {
-            EventManager.instance.EventTrigger(EventConfig.E_Attack);
+
+            enemy.Attack();
+            // EventManager.instance.EventTrigger(EventConfig.E_Attack);
             hasHitAttack = true;
         }
     }
@@ -75,6 +82,9 @@ public class Beats : MonoBehaviour
         rectTransform = this.GetComponent<RectTransform>();
         rectTransform.SetParent(trackController.LaneMask.transform);
         rectTransform.anchoredPosition = trackCtrl.spawn.anchoredPosition;
+
+        protagonist = trackController.protagonist;
+        enemy = trackController.enemy;
     }
 
     public void SetWidth(float diff)
@@ -116,19 +126,35 @@ public class Beats : MonoBehaviour
             tweenSeq.Play();
     }
 
-    public bool IsBeatHittable()
+    public bool IsBeatEnter()
     {
-        int beatTime = trackedEvent.StartSample;
+        int startTime = trackedEvent.StartSample;
         int curTime = rhythmController.DelayedSampleTime;
         int hitWindow = rhythmController.HitWindowSampleWidth;
-        return (Mathf.Abs(beatTime - curTime) <= hitWindow);
+        return (Mathf.Abs(startTime - curTime) <= hitWindow);
+    }
+
+    public bool IsBeatEnd()
+    {
+        int endTime = trackedEvent.EndSample;
+        int curTime = rhythmController.DelayedSampleTime;
+        int hitWindow = rhythmController.HitWindowSampleWidth;
+        return (Mathf.Abs(endTime - curTime) <= hitWindow / 4);
+    }
+
+    public bool IsBeatCenter()
+    {
+        int startTime = trackedEvent.StartSample;
+        int curTime = rhythmController.DelayedSampleTime;
+        int hitWindow = rhythmController.HitWindowSampleWidth;
+        return (Mathf.Abs(startTime - curTime) <= hitWindow / 4);
     }
 
     public bool IsBeatSpreakable()
     {
         if (!IsStreak)
             return false;
-        return IsBeatHittable();
+        return IsBeatEnter();
     }
 
     public bool IsBeatMissed()
@@ -146,9 +172,9 @@ public class Beats : MonoBehaviour
         }
         else
         {
-            if (!hasCheckMiss && isMiss)
+            if (!missed && isMiss)
             {
-                hasCheckMiss = true;
+                missed = true;
                 return true;
             }
             return false;
@@ -156,12 +182,13 @@ public class Beats : MonoBehaviour
 
     }
 
-    public bool IsBeatEnd()
+
+
+    public bool IsBeatPass()
     {
         int endTime = trackedEvent.EndSample;
         int curTime = rhythmController.DelayedSampleTime;
-        int hitWindow = rhythmController.HitWindowSampleWidth;
-        return (Mathf.Abs(endTime - curTime) <= hitWindow);
+        return curTime >= endTime;
     }
 
     public void OnHit()
@@ -173,12 +200,15 @@ public class Beats : MonoBehaviour
         // trackController.LaneMask.enabled = false;
         if (!IsStreak && IsAttack)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_Attack);
-            EventManager.instance.EventTrigger<float, bool>(EventConfig.E_BeAttacked, damageMultipier, IsStreak);
+            protagonist.Attack();
+            enemy.BeAttack(damageMultipier);
+            // EventManager.instance.EventTrigger(EventConfig.P_Attack);
+            // EventManager.instance.EventTrigger<float, bool>(EventConfig.E_BeAttacked, damageMultipier, IsStreak);
         }
         else if (!IsStreak && !IsAttack)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_Defense);
+            protagonist.Defense();
+            // EventManager.instance.EventTrigger(EventConfig.P_Defense);
         }
         CheckAccuracy();
     }
@@ -194,33 +224,49 @@ public class Beats : MonoBehaviour
 
         if (IsStreak && IsAttack)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_Streak);
-            EventManager.instance.EventTrigger<float, bool>(EventConfig.E_BeAttacked, damageMultipier, IsStreak);
+            protagonist.Streak();
+            enemy.BeStreak(damageMultipier);
+
+            // EventManager.instance.EventTrigger(EventConfig.P_Streak);
+            // EventManager.instance.EventTrigger<float, bool>(EventConfig.E_BeAttacked, damageMultipier, IsStreak);
         }
         else if (IsStreak && !IsAttack)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_StreakDefense);
+            protagonist.DefenseStreak();
+            // EventManager.instance.EventTrigger(EventConfig.P_StreakDefense);
         }
         CheckAccuracy();
     }
     public void OnPlayerStreakExit()
     {
         Debug.Log("OnPlayerStreakExit");
-        if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
+        if (IsAttack && trackController.isPlayerSpreaking)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
+            protagonist.StopStreak();
+            enemy.StopBeStreak();
+            // EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
+            // EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
         }
-        else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
+        else if (!IsAttack && trackController.isPlayerSpreaking)
         {
-            EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
+            enemy.StopStreak();
+            protagonist.StopDefenseStreak();
+            // EventManager.instance.EventTrigger(EventConfig.E_StopStreak);
+            // EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
-        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
+        protagonist.StopBeStreak();
+
+        if (isEnemyStreak)
+        {
+            enemy.StopStreak();
+            isEnemyStreak = false;
+        }
+
+
+        // EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetBool("Streaking", false);
         trackController.isPlayerSpreaking = false;
         trackController.LaneMask.enabled = false;
-        isEnemyStreak = false;
         canvasGroup.alpha = 0;
     }
 
@@ -229,22 +275,22 @@ public class Beats : MonoBehaviour
         Debug.Log("OnPlayerStreakInterrupt");
         if (IsStreak && IsAttack && trackController.isPlayerSpreaking)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
-            EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
+            protagonist.StopStreak();
+            enemy.StopBeStreak();
+            // EventManager.instance.EventTrigger(EventConfig.P_StopStreak);
+            // EventManager.instance.EventTrigger(EventConfig.E_StopLoop);
         }
         else if (IsStreak && !IsAttack && trackController.isPlayerSpreaking)
         {
-            EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
+            protagonist.StopDefenseStreak();
+            // EventManager.instance.EventTrigger(EventConfig.P_StopStreakDefense);
         }
-        EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
+        protagonist.StopBeStreak();
+        // EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetBool("Streaking", false);
         trackController.isPlayerSpreaking = false;
     }
 
-    public void OnPlayerStreakUpdate()
-    {
-        Debug.Log("OnPlayerStreakUpdate");
-    }
     private void OnVisualUpdate()
     {
         visual.color = Color.Lerp(visual.color, Color.black, 0.3f);
@@ -256,8 +302,25 @@ public class Beats : MonoBehaviour
         UIManager.instance.GetPanel<UI_Accuracy>("UI_Accuracy").ShowAccuracy("Missing");
         if (!IsAttack)
         {
-            EventManager.instance.EventTrigger<float, bool>(EventConfig.P_BeAttacked, damageMultipier, IsStreak);
+            if (IsStreak)
+                protagonist.BeStreak(damageMultipier);
+            else
+                protagonist.BeAttack(damageMultipier);
+            // EventManager.instance.EventTrigger<float, bool>(EventConfig.P_BeAttacked, damageMultipier, IsStreak);
         }
+    }
+
+    public void MissHit()
+    {
+        Debug.Log("Miss Hit");
+        UIManager.instance.GetPanel<UI_Accuracy>("UI_Accuracy").ShowAccuracy("Missing");
+    }
+
+    public void MissStreak()
+    {
+        Debug.Log("Miss Streak");
+        UIManager.instance.GetPanel<UI_Accuracy>("UI_Accuracy").ShowAccuracy("Missing");
+        protagonist.BeStreak(damageMultipier);
     }
 
     void CheckAccuracy()

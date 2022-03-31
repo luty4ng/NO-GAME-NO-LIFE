@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class TrackController : MonoBehaviour
 {
     #region Fields
+    public Protagonist protagonist;
+    public Enemy enemy;
     public KeyCode keyboardButton;
     public List<string> matchedPayloads = new List<string>();
     public RectTransform spawn;
@@ -19,12 +21,7 @@ public class TrackController : MonoBehaviour
     RhythmController rhythmController;
     int pendingEventIdx = 0;
     public bool isPlayerSpreaking = false;
-    public enum TrackType
-    {
-        Attack,
-        Defense
-    }
-    public TrackType trackType;
+
     #endregion
 
     #region Methods
@@ -77,9 +74,13 @@ public class TrackController : MonoBehaviour
     }
     void CheckHit()
     {
-        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatHittable())
+        if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatEnter())
         {
-            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.HIT_SOUND);
+            if (trackedBeats.Peek().IsAttack)
+                MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.ATTACK_SOUND);
+            else
+                MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.DEFENSE_SOUND);
+            
             trackedBeats.Peek().OnHit();
             if (!trackedBeats.Peek().IsStreak)
                 trackedBeats.Dequeue();
@@ -89,7 +90,10 @@ public class TrackController : MonoBehaviour
     {
         if (trackedBeats.Count > 0 && trackedBeats.Peek().IsBeatSpreakable() && !isPlayerSpreaking)
         {
-            MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.HIT_SOUND);
+            if (trackedBeats.Peek().IsAttack)
+                MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.ATTACK_SOUND);
+            else
+                MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.DEFENSE_SOUND);
             trackedBeats.Peek().OnPlayerStreakEnter();
             return true;
         }
@@ -102,8 +106,8 @@ public class TrackController : MonoBehaviour
             return;
         Beats beat = trackedBeats.Peek();
 
-        if (isPlayerSpreaking)
-            beat.OnPlayerStreakUpdate();
+        // if (isPlayerSpreaking)
+        //     beat.OnPlayerStreakUpdate();
     }
 
     void CheckSpreakLose()

@@ -47,11 +47,13 @@ public sealed class UI_Ending : UIGroup
         {
             MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.BATTLE_WIN);
             victory.SetActive(true);
+            defeat.SetActive(false);
         }
         else
         {
             MusicBattleRegulator.current.PlaySoundClip(MusicBattleRegulator.current.audioMono.BATTLE_LOST);
             defeat.SetActive(true);
+            victory.SetActive(false);
         }
     }
 }

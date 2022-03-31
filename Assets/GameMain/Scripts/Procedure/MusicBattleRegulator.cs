@@ -64,7 +64,10 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     private void Update()
     {
         CheckPause();
-        BattleEnding();
+        CheckEnding();
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+            BattleEnding();
     }
 
     public void ChangeMusicVolume(float v)
@@ -89,26 +92,37 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
 
     public void BattleEnding()
     {
+        Debug.Log(UIManager.instance.GetPanel<UI_Ending>("UI_Ending"));
+        bool isWin = (protagonist.Health > protagonist.enemy.Health);
+        UIManager.instance.GetPanel<UI_Ending>("UI_Ending").isWin = isWin;
+        UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Show();
+        battleEnd = true;
+
+
+
+        StartCoroutine(DelayedExcute(() =>
+        {
+            UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Hide();
+            if (isWin)
+            {
+                dialogUIController.ShowDialog(start: false);
+            }
+            else
+                Pause();
+        }, 5f));
+
+    }
+
+    public void CheckEnding()
+    {
         if (Timer.isPause)
             return;
         if (battleEnd)
             return;
-            
+
         if (rhythmController.MuiscStartPlay && !rhythmController.audioCom.isPlaying && !Timer.isPause)
         {
-            Debug.Log(UIManager.instance.GetPanel<UI_Ending>("UI_Ending"));
-            bool isWin = (protagonist.Health > protagonist.enemy.Health);
-            UIManager.instance.GetPanel<UI_Ending>("UI_Ending").isWin = isWin;
-            UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Show();
-            battleEnd = true;
-            StartCoroutine(DelayedExcute(() =>
-            {
-                UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Hide();
-                if (isWin)
-                    CompleteLevel();
-                else
-                    Pause();
-            }, 5f));
+            BattleEnding();
         }
     }
 
@@ -118,6 +132,12 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     }
 
     public void CompleteLevel()
+    {
+        MapGlobals.CurrentLevel = levelClear;
+        current.SwitchSceneSwipe(finishScene);
+    }
+
+    public void CompleteLevelWithCG()
     {
         MapGlobals.CurrentLevel = levelClear;
         current.SwitchSceneSwipe(finishScene);

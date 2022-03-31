@@ -3,18 +3,17 @@ using GameKit;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Events;
-public class Protagonist : Entity
+public class Enemy : Entity
 {
-    public Enemy enemy;
-    private bool isEnemyFail = false;
+    public Protagonist protagonist;
     private Coroutine damageCoroutine;
     public void Attack() => animator.SetTrigger("Attack");
-    public void Defense() => animator.SetTrigger("Defense");
     public void Streak() => animator.SetTrigger("Streak");
-    public void StopStreak() => animator.SetTrigger("StopStreak");
-    public void DefenseStreak() => animator.SetTrigger("StreakDefense");
-    public void StopDefenseStreak() => animator.SetTrigger("StopDefenseStreak");
-    public void EnemyFail() => isEnemyFail = true;
+    public void StopStreak()
+    {
+        animator.SetTrigger("StopStreak");
+        Debug.Log("Enemy Stop Streak");
+    }
     public void BeAttack(float multipier)
     {
         animator.SetTrigger("BeAttack");
@@ -30,36 +29,27 @@ public class Protagonist : Entity
             OnDamaged(multipier);
         }));
     }
-
     public void StopBeStreak()
     {
         animator.SetTrigger("StopBeStreak");
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);
     }
-
     protected override void OnStart()
     {
-        healthBar = GameObject.Find("MyHealth").GetComponent<Image>();
-        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+        healthBar = GameObject.Find("EnemyHealth").GetComponent<Image>();
+        protagonist = GameObject.Find("Protagonist").GetComponent<Protagonist>();
         health = fullHealth;
-        EventManager.instance.AddEventListener(EventConfig.E_Failed, EnemyFail);
     }
-
     protected override void OnDamaged(float multipier)
     {
-        if (!isEnemyFail)
-        {
-            health = Mathf.Max(health - enemy.damage / multipier, 0);
-        }
+        health = Mathf.Max(health - protagonist.damage * multipier, 0);
         healthBar.fillAmount = (health / fullHealth);
+        if (health <= 0)
+            EventManager.instance.EventTrigger(EventConfig.E_Failed);
     }
-
-    private void PauseAnimator(bool isPause)
+    private void OnValidate()
     {
-        if (isPause)
-            animator.speed = 0;
-        else
-            animator.speed = 1;
+        protagonist.enemy = this;
     }
 }

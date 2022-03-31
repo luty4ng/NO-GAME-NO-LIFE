@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameKit;
@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public sealed class UI_Accuracy : UIGroup
+public sealed class UI_Accuracy_Mono : MonoBehaviour
 {
     private Image image;
     private RectTransform tmpRectTransform;
@@ -16,9 +16,9 @@ public sealed class UI_Accuracy : UIGroup
     public Sprite missing;
     public Sprite good;
     public Sprite perfect;
-    protected override void Start()
+    private CanvasGroup canvasGroup;
+    private void Start()
     {
-        UIManager.instance.RegisterUI(this as UIGroup);
         mySeq = DOTween.Sequence();
         image = GetComponentInChildren<Image>();
         tmpRectTransform = GetComponent<RectTransform>();
