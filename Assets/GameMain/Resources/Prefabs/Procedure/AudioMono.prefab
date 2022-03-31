@@ -47,4 +47,5 @@ MonoBehaviour:
   GAME_CONT: {fileID: 8300000, guid: 0d8d230f7c82565439217f87ac6b5eaf, type: 3}
   BATTLE_WIN: {fileID: 8300000, guid: 88e6c7fb94414594cabba3f205e3858d, type: 3}
   BATTLE_LOST: {fileID: 8300000, guid: b24cee41b9a3e734a8fde5bd6d315068, type: 3}
-  HIT_SOUND: {fileID: 8300000, guid: ed199a13b680312419b4b134189a0d52, type: 3}
+  ATTACK_SOUND: {fileID: 8300000, guid: ea1f53b62f663b1478985ca03736b455, type: 3}
+  DEFENSE_SOUND: {fileID: 8300000, guid: dcd20d37fbb30e548a5dfed79cbba69b, type: 3}

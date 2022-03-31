@@ -29,7 +29,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protagonist_LongDenfense 1
+  m_Name: Protagonist_DenfenseStreak 1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -58,7 +58,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: BeAttacked
+    m_ConditionEvent: BeAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3010395331912758089}
@@ -106,7 +106,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protagonist_LongDenfense 3
+  m_Name: Protagonist_DenfenseStreak 3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -188,28 +188,28 @@ AnimatorStateMachine:
     m_Position: {x: 920, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6377251907186118951}
-    m_Position: {x: 400, y: -10, z: 0}
+    m_Position: {x: 410, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8145478532642788187}
     m_Position: {x: 410, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3010395331912758089}
-    m_Position: {x: 410, y: -280, z: 0}
+    m_Position: {x: 410, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 443708370015346622}
-    m_Position: {x: 410, y: -190, z: 0}
+    m_Position: {x: 410, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6322305366049093497}
-    m_Position: {x: 180, y: 70, z: 0}
+    m_Position: {x: 110, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6781136220799305779}
-    m_Position: {x: 420, y: 70, z: 0}
+    m_Position: {x: 440, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3595014319180990262}
-    m_Position: {x: 830, y: 60, z: 0}
+    m_Position: {x: 710, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5967381156761004900}
-    m_Position: {x: 410, y: -360, z: 0}
+    m_Position: {x: 410, y: -340, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5474456782657682638}
@@ -262,67 +262,55 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Defense
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: BeAttacked
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Streak
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: StopStreak
+    m_Controller: {fileID: 9100000}
+  - m_Name: Defense
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
+  - m_Name: BeAttack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: BeStreak
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: StreakDefense
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: StopStreakDefense
+    m_Controller: {fileID: 9100000}
+  - m_Name: StopStreak
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: LongBeAttack
+    m_Controller: {fileID: 9100000}
+  - m_Name: StopBeStreak
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: StopLongBeAttack
+    m_Controller: {fileID: 9100000}
+  - m_Name: StopDefenseStreak
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsStreak
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsAttack
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -417,7 +405,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protagonist_BeAttacked
+  m_Name: Protagonist_BeAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -446,7 +434,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: LongBeAttack
+    m_ConditionEvent: BeAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5967381156761004900}
@@ -471,7 +459,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StopLongBeAttack
+    m_ConditionEvent: StopBeStreak
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1130589331976191315}
@@ -483,7 +471,7 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
-  m_HasFixedDuration: 1
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -506,7 +494,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -541,7 +529,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protagonist_LongBeAttacked
+  m_Name: Protagonist_BeStreak
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -595,7 +583,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protagonist_LongDenfense 2
+  m_Name: Protagonist_DenfenseStreak 2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -624,7 +612,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StopStreakDefense
+    m_ConditionEvent: StopDefenseStreak
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3595014319180990262}
@@ -659,7 +647,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
