@@ -113,9 +113,8 @@ public class Beats : MonoBehaviour
                 Destroy(this.gameObject);
             });
         }));
-
-
     }
+    
     void Pause(bool isPause)
     {
         if (tweenSeq == null)
@@ -261,7 +260,6 @@ public class Beats : MonoBehaviour
             enemy.StopStreak();
             isEnemyStreak = false;
         }
-
 
         // EventManager.instance.EventTrigger(EventConfig.P_StopLoop);
         trackController.hitterAnimator.SetBool("Streaking", false);
