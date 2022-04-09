@@ -33,7 +33,7 @@ public class TrackC : MonoBehaviour
     void Update()
     {
         TrySpawnBeat();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
             TryHitBeat();
         CheckMiss();
 

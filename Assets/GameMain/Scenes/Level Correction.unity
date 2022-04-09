@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d7fd8c20b28910d4bad63cd0a5432aa5, type: 3}
     - target: {fileID: 7497209999843703238, guid: 1ff7be96f15765346a6fca0e5039cbb0, type: 3}
       propertyPath: m_Text
-      value: "\u6309\u4E0B\u7A7A\u683C\u952E\u8FDB\u884C\u6253\u51FB\u6821\u51C6\uFF0C\u6ED1\u52A8\u4E0A\u65B9\u6ED1\u5757\u8C03\u6574\u6253\u51FB\u5224\u5B9A\uFF0C\u76F4\u81F3\u627E\u5230\u6700\u8212\u9002\u7684\u6253\u51FB\u70B9\u3002"
+      value: "\u6309\u4E0BA\u952E\u8FDB\u884C\u6253\u51FB\u6821\u51C6\uFF0C\u6ED1\u52A8\u4E0A\u65B9\u6ED1\u5757\u8C03\u6574\u6253\u51FB\u5224\u5B9A\uFF0C\u76F4\u81F3\u627E\u5230\u6700\u8212\u9002\u7684\u6253\u51FB\u70B9\u3002"
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4980962174330457120, guid: 1ff7be96f15765346a6fca0e5039cbb0, type: 3}

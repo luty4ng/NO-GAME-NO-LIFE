@@ -21,6 +21,10 @@ public class PauseMenuController : MonoBehaviour
         MapRegulator.current.ReportDialogSetActive(active);
         MapRegulator.current.gamePaused = active;
     }
+    public void Correction()
+    {
+        Scheduler.instance.LoadSceneSwipe("Level Correction");
+    }
 
     public void ContinueGame()
     {

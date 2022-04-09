@@ -105,6 +105,8 @@ RectTransform:
   - {fileID: 6713061722702376234}
   - {fileID: 5634403430621498808}
   - {fileID: 544298470524443574}
+  - {fileID: 8650489612594826053}
+  - {fileID: 5925620143743523415}
   m_Father: {fileID: 6713061723499412843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,6 +400,94 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
   m_PrefabInstance: {fileID: 526905556732370367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1964297308558510672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6713061723457833136}
+    m_Modifications:
+    - target: {fileID: 5295843791111107056, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_Text
+      value: "\u6309\u952E\u8BBE\u7F6E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6713061723499412842}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitToMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242118, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_Name
+      value: KeybindButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242118, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -359.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+--- !u!224 &5925620143743523415 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+  m_PrefabInstance: {fileID: 1964297308558510672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3562958250853948226
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6713061723457833136}
+    m_Modifications:
+    - target: {fileID: 5295843791111107056, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_Text
+      value: "\u6821\u51C6\u8BBE\u7F6E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6713061723499412842}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Correction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242116, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242118, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_Name
+      value: CorrectionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -211.75
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+--- !u!224 &8650489612594826053 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+  m_PrefabInstance: {fileID: 3562958250853948226}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5688927371231251377
 PrefabInstance:

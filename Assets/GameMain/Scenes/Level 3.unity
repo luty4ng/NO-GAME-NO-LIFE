@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165521493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2, y: 0.84, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0.84, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1130,7 +1130,11 @@ PrefabInstance:
       objectReference: {fileID: 2067117459}
     - target: {fileID: 8882960927446906373, guid: 26d9933d0422f4fe1966f892ab373281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToMain
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882960927446906373, guid: 26d9933d0422f4fe1966f892ab373281, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MusicBattleRegulator, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8882960928216698085, guid: 26d9933d0422f4fe1966f892ab373281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

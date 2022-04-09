@@ -47,6 +47,7 @@ public class TrackController : MonoBehaviour
         //     CheckHit();
         if (Input.GetKeyDown(keyboardButton))
         {
+            hitterAnimator.SetTrigger("Hit");
             if (!CheckSpreak())
                 CheckHit();
         }

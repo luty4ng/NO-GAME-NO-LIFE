@@ -1283,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ff2ef8dbeb4ee09d4fc9cadb61f1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
 --- !u!4 &1712792337
 Transform:
   m_ObjectHideFlags: 0
@@ -1803,6 +1804,10 @@ PrefabInstance:
     - target: {fileID: 5076092495671894467, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}
       propertyPath: m_Name
       value: Map Common Canvas Components
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076092496937285416, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c60b1d947bd954f54ada2a0eb7927c97, type: 3}

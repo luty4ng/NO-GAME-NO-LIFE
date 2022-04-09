@@ -93,12 +93,10 @@ public class MusicBattleRegulator : Regulator<MusicBattleRegulator>
     public void BattleEnding()
     {
         Debug.Log(UIManager.instance.GetPanel<UI_Ending>("UI_Ending"));
-        bool isWin = (protagonist.Health > protagonist.enemy.Health);
+        bool isWin = protagonist.enemy.Health == 0;
         UIManager.instance.GetPanel<UI_Ending>("UI_Ending").isWin = isWin;
         UIManager.instance.GetPanel<UI_Ending>("UI_Ending").Show();
         battleEnd = true;
-
-
 
         StartCoroutine(DelayedExcute(() =>
         {

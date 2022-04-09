@@ -36,12 +36,12 @@ namespace GameKit
             animator.SetTrigger("Move");
             swipePanel.DOLocalMoveX(0, 0.5f).OnComplete(() =>
             {
-                LoadSceneAsyn(name, () =>
+                string tmpScene = currentScene;
+                UnloadSceneAsyn(tmpScene, () =>
                 {
-                    string tmpScene = currentScene;
-                    currentScene = name;
-                    UnloadSceneAsyn(tmpScene, () =>
+                    LoadSceneAsyn(name, () =>
                     {
+                        currentScene = name;
                         swipePanel.DOLocalMoveX(-2420f, 0.5f).OnComplete(() =>
                         {
                             animator.SetTrigger("DeMove");

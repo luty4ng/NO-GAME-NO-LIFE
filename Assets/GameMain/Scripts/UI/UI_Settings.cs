@@ -49,6 +49,7 @@ public sealed class UI_Settings : UIGroup
 
     public void Correction()
     {
+        Debug.Log("load correction");
         Scheduler.instance.LoadSceneSwipe("Level Correction");
     }
 
