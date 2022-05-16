@@ -1359,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ff2ef8dbeb4ee09d4fc9cadb61f1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
 --- !u!4 &1712792337
 Transform:
   m_ObjectHideFlags: 0
@@ -1739,11 +1740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -63.57
+      value: -67.4
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -28.6
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalPosition.z

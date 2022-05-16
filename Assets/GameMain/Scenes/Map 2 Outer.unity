@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.1
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -539,18 +539,6 @@ PrefabInstance:
     - target: {fileID: 6936352535730442170, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6936352535730442172, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
-      propertyPath: m_Size.x
-      value: 3.0999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 6936352535730442172, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.00000011920929
-      objectReference: {fileID: 0}
-    - target: {fileID: 6936352535730442172, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.760293
       objectReference: {fileID: 0}
     - target: {fileID: 6936352535730442173, guid: 8c1abaca0cec34aba9573d84e8e6450f, type: 3}
       propertyPath: m_Name
@@ -1189,6 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ff2ef8dbeb4ee09d4fc9cadb61f1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
 --- !u!4 &1284042974
 Transform:
   m_ObjectHideFlags: 0
