@@ -498,6 +498,10 @@ PrefabInstance:
       value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 4980962175963921310, guid: 1ff7be96f15765346a6fca0e5039cbb0, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980962175963921310, guid: 1ff7be96f15765346a6fca0e5039cbb0, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 650160882}
