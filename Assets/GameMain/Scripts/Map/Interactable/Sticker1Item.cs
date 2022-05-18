@@ -8,12 +8,7 @@ public class Sticker1Item : SimpleDialogCharacter
 
     private Phase GetStickerDialog(String message)
     {
-        Phase phase = new Dialog(message);
-        if (stickerSprite != null)
-        {
-            phase = phase.SetRightImage(stickerSprite);
-        }
-        return phase;
+        return new Dialog(message).SetRightImage(stickerSprite);
     }
 
     public override void AddDialogPhases(List<Phase> phases)

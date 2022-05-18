@@ -8,12 +8,7 @@ public class PaperRecord1Item : SimpleDialogCharacter
 
     private Phase GetPaperRecordDialog(String message)
     {
-        Phase phase = new Dialog(message);
-        if (paperRecordSprite != null)
-        {
-            phase = phase.SetRightImage(paperRecordSprite);
-        }
-        return phase;
+        return new Dialog(message).SetRightImage(paperRecordSprite);
     }
 
     public override void AddDialogPhases(List<Phase> phases)
