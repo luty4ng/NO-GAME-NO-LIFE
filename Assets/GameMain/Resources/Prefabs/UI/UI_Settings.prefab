@@ -462,6 +462,7 @@ MonoBehaviour:
   rootBtns: {fileID: 3618642544212649788}
   settingBtns: {fileID: 38920417490952328}
   keyBindBtns: {fileID: 4605544925423773441}
+  skipBtn: {fileID: 3116743304837040659}
   keybind: {fileID: 2512177333819774216}
 --- !u!225 &4083808511383694643
 CanvasGroup:
@@ -1339,6 +1340,11 @@ PrefabInstance:
 --- !u!224 &3116743304837040658 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5295843791601242119, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
+  m_PrefabInstance: {fileID: 7079227998468708885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3116743304837040659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5295843791601242118, guid: 11cc69206b3774c2d96718466d80aaaa, type: 3}
   m_PrefabInstance: {fileID: 7079227998468708885}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9014741760143135727

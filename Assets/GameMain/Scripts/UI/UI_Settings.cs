@@ -14,6 +14,7 @@ public sealed class UI_Settings : UIGroup
     public GameObject rootBtns;
     public GameObject settingBtns;
     public GameObject keyBindBtns;
+    public GameObject skipBtn;
     public UI_Rebind keybind;
 
     protected override void OnStart()
@@ -29,6 +30,9 @@ public sealed class UI_Settings : UIGroup
         canvasGroup.alpha = 1;
         this.gameObject.SetActive(true);
         callback?.Invoke();
+#if !UNITY_EDITOR && !DEVELOPMENT_BUILD
+        skipBtn.SetActive(false);
+#endif
     }
 
     public override void Hide(UnityAction callback = null)
