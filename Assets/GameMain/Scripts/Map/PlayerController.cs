@@ -10,18 +10,39 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+    private AudioSource _audioSource;
     private float _defaultScale;
     
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _defaultScale = transform.localScale.x;  // used for changing character direction
+        
+        EventManager.instance.AddEventListener<bool>(EventConfig.Game_Pase, UpdateAudioSourceStatus);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.RemoveEventListener<bool>(EventConfig.Game_Pase, UpdateAudioSourceStatus);
     }
 
     private void Update()
     {
         UpdatePlayerMovement();
+    }
+
+    private void UpdateAudioSourceStatus(bool pause)
+    {
+        if (pause)
+        {
+            _audioSource.Pause();
+        }
+        else
+        {
+            _audioSource.Play();
+        }
     }
 
     private void UpdatePlayerMovement()
