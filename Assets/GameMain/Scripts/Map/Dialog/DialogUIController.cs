@@ -50,7 +50,7 @@ public class DialogUIController : MonoBehaviour
 
     private bool skipNext = false;
 
-    private void Start()
+    private void OnEnable()
     {
         window.SetActive(true);  // to aid debugging, window is often set to inactive during development
         windowAnimator = window.GetComponent<Animator>();

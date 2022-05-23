@@ -17,7 +17,6 @@ public class PauseMenuController : MonoBehaviour
     {
         bool active = !panel.activeSelf;
         audioSources[active ? 0 : 1].Play();
-        Time.timeScale = active ? 0f : 1f;
         panel.SetActive(active);
         MapRegulator.current.ReportDialogSetActive(active);
         MapRegulator.current.gamePaused = active;
